@@ -264,6 +264,18 @@ async fn post_logout(State(state): State<Arc<AppState>>, ExtractSessionID(sessio
     (StatusCode::OK, "OK").into_response()
 }
 
+async fn get_login() -> impl IntoResponse {
+r#"
+ _________________
+< 400 Bad Request >
+ -----------------
+        \   ^__^
+         \  (xx)\_______
+            (__)\       )\/\
+             U  ||----w |
+                ||     ||
+"#.into_response()
+}
 
 #[derive(Serialize)]
 struct GetAccessResult {
@@ -370,6 +382,8 @@ async fn main() {
     //    .init();
 
     let app = Router::new()
+        .route("/v1/login", get(get_login))
+        .route("/v1/login/", get(get_login))
         .route("/v1/login", post(post_login))
         .route("/v1/login/", post(post_login))
         .route("/v1/logout", post(post_logout))
