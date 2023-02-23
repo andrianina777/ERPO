@@ -20,7 +20,7 @@ pub type Manager = r2d2_freetds::FreetdsConnectionManager;
 pub type Pool = r2d2::Pool<Manager>;
 pub type Connection = r2d2::PooledConnection<Manager>;
 
-const SESSION_EXPIRE_SECS: u64 = 3600 * 24;
+const DEFAULT_SESSION_EXPIRE_MINUTES: u64 = 60 * 24;
 
 struct ExtractSessionID(String);
 
@@ -46,11 +46,12 @@ struct AppState {
     syb_port: u16,
     syb_database: String,
     session_dir: PathBuf,
+    session_expire_minutes: u64,
     sessions: Mutex<HashMap<String,Session>>,
 }
 
 impl AppState {
-    fn new(syb_server: &str, syb_port: u16, syb_database: &str, session_dir: &Path) -> AppState {
+    fn new(syb_server: &str, syb_port: u16, syb_database: &str, session_dir: &Path, session_expire_minutes: u64) -> AppState {
         let sessions = match Self::load_sessions(session_dir) {
             Err(e) => {
                 error!("Failed to load sessions from {:?}", session_dir.display());
@@ -65,6 +66,7 @@ impl AppState {
             syb_server: syb_server.to_string(),
             syb_port,
             syb_database: syb_database.to_string(),
+            session_expire_minutes,
             session_dir: session_dir.to_path_buf(),
             sessions: Mutex::new(sessions),
         }
@@ -235,7 +237,7 @@ async fn post_login(State(state): State<Arc<AppState>>, Json(payload): Json<Logi
     let session = Session {
         login: payload.login.to_string(),
         password: payload.password.to_string(),
-        expire: SystemTime::now() + Duration::from_secs(SESSION_EXPIRE_SECS),
+        expire: SystemTime::now() + Duration::from_secs(state.session_expire_minutes),
         rights
     };
 
@@ -303,17 +305,36 @@ async fn get_access(
  */
 #[tokio::main]
 async fn main() {
+    use clap::{arg, command, value_parser, ArgAction, Command, Arg, builder::PossibleValuesParser};
     let _logger = sexy::Logger::builder()
         .show_source(false)
         .build();
 
-    let session_dir = PathBuf::from("sessions");
-    if !session_dir.exists() {
-        std::fs::create_dir_all(&session_dir).expect("Failed to create {session_dir}");
+    let command = command!()
+        .arg(arg!(-S --"syb-server" <ADDRESS> "Sybase host")
+            .required(true))
+        .arg(arg!(-P --"syb-port" <PORT> "Sybase port")
+            .default_value("2025"))
+        .arg(arg!(-s --"sessions-dir" <DIRECTORY> "Session storage directory")
+            .default_value("./sessions"))
+        .arg(arg!(-p --port <PORT> "Listen port")
+            .default_value("3000"))
+        .arg(arg!(-e --"session-expire" <SECONDS> "Session expire (minutes)")
+            .default_value(&format!("{DEFAULT_SESSION_EXPIRE_MINUTES}")));
+    let matches = command.get_matches();
+    let syb_server = matches.get_one::<String>("syb-server").expect("Unexpected None (syb_server)");
+    let syb_port = u16::from_str_radix(matches.get_one::<String>("syb-port").expect("Unexpected None (syb_port)"), 10).expect("Invalid value for syb-port");
+    let sessions_dir = PathBuf::from(matches.get_one::<String>("sessions-dir").expect("Unexpected None (sessions_dir)"));
+    let port = u16::from_str_radix(matches.get_one::<String>("port").expect("Unexpected None (port)"), 10).expect("Invalid value for port");
+    let session_expire_minutes = u64::from_str_radix(matches.get_one::<String>("session-expire").expect("Unexpected None (session_expire_minutes)"), 10).expect("Invalid value for session-expire");
+
+    if !sessions_dir.exists() {
+        std::fs::create_dir_all(&sessions_dir).expect("Failed to create {session_dir}");
     }
     let state = Arc::new(AppState::new(
-            "192.168.130.220", 2025, "master", 
-            &session_dir));
+            syb_server, syb_port, "master", 
+            &sessions_dir,
+            session_expire_minutes));
     state.cleanup_sessions();
 
     // build our application with a single route
@@ -324,7 +345,6 @@ async fn main() {
         .with_state(state);
 
     // run it with hyper on localhost:3000
-    let port = 3000;
     info!("Started on port {port}");
     axum::Server::bind(&format!("0.0.0.0:{port}").parse().unwrap())
         .serve(app.into_make_service())
