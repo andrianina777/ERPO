@@ -371,8 +371,11 @@ async fn main() {
 
     let app = Router::new()
         .route("/v1/login", post(post_login))
+        .route("/v1/login/", post(post_login))
         .route("/v1/logout", post(post_logout))
+        .route("/v1/logout/", post(post_logout))
         .route("/v1/access/:app", get(get_access))
+        .route("/v1/access/:app/", get(get_access))
         .layer(TraceLayer::new_for_http())
         .with_state(state);
 
