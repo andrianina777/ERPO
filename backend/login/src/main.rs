@@ -239,7 +239,7 @@ async fn post_login(State(state): State<Arc<AppState>>, Json(payload): Json<Logi
     let session = Session {
         login: payload.login.to_string(),
         password: payload.password.to_string(),
-        expire: SystemTime::now() + Duration::from_secs(state.session_expire_minutes),
+        expire: SystemTime::now() + Duration::from_secs(state.session_expire_minutes * 60),
         rights
     };
 
@@ -272,12 +272,13 @@ async fn get_access(
     state.cleanup_sessions();
 
     let rights = {
-        let sessions = state.sessions.lock().unwrap();
-        match sessions.get(&session_id) {
+        let mut sessions = state.sessions.lock().unwrap();
+        match sessions.get_mut(&session_id) {
             None => {
                 return ((StatusCode::UNAUTHORIZED, "Bad Session Id").into_response());
             },
-            Some(session) => {
+            Some(mut session) => {
+                session.expire = SystemTime::now() + Duration::from_secs(state.session_expire_minutes * 60);
                 session.rights.clone()
             }
         }
