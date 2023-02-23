@@ -264,6 +264,13 @@ async fn post_logout(State(state): State<Arc<AppState>>, ExtractSessionID(sessio
     (StatusCode::OK, "OK").into_response()
 }
 
+
+#[derive(Serialize)]
+struct GetAccessResult {
+    login: String,
+    access: HashMap<String,String>,
+}
+
 async fn get_access(
     State(state): State<Arc<AppState>>,
     ExtractSessionID(session_id): ExtractSessionID,
@@ -271,7 +278,7 @@ async fn get_access(
 ) -> Response {
     state.cleanup_sessions();
 
-    let rights = {
+    let (login,rights) = {
         let mut sessions = state.sessions.lock().unwrap();
         match sessions.get_mut(&session_id) {
             None => {
@@ -279,15 +286,21 @@ async fn get_access(
             },
             Some(mut session) => {
                 session.expire = SystemTime::now() + Duration::from_secs(state.session_expire_minutes * 60);
-                session.rights.clone()
+                (session.login.clone(), session.rights.clone())
             }
         }
     };
 
-    if let Some(rights) = rights.get(&app) {
-        Json(rights).into_response()
+    if let Some(access) = rights.get(&app) {
+        Json(GetAccessResult {
+            login,
+            access: access.clone(),
+        }).into_response()
     } else {
-        Json(HashMap::<String,String>::new()).into_response()
+        Json(GetAccessResult {
+            login,
+            access: HashMap::new()
+        }).into_response()
     }
 }
 

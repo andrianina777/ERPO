@@ -43,10 +43,13 @@
 
 ```
 {
-  "amm_num": "r",
-  "general_valide": "rw",
-  "midac": "rw",
-  "pathologie": "r"
+  "login": "pharmacien",
+  "access": {
+    "classe": "r",
+    "agence_email": "r",
+    "type": "rw",
+    "fab": "rw",
+  }
 }
 ```
 
@@ -68,7 +71,6 @@ KGLIB  | varchar(64) NOT NULL   | Libellé groupe
 
 Colonne    | Type                         | Description
 -----------|------------------------------|-----------------------------
-KGLSEQ     |numeric identity(18) NOT NULL | Séq ligne de groupe
 KGLGROUPE  |char(8) NOT NULL              | Code groupe (KGroupe.KGCODE)
 KGLUSER    |varchar(30) NOT NULL          | Nom d'utilisateur sybase
 
@@ -76,7 +78,6 @@ KGLUSER    |varchar(30) NOT NULL          | Nom d'utilisateur sybase
 
 Colonne  | Type                         | Description
 ---------|------------------------------|-----------------------------
-KDSEQ    |numeric identity(18) NOT NULL | Séq ligne de droit
 KDGROUPE |char(8) NOT NULL              | Code groupe (KGroupe.KGCODE)
 KDAPP    |varchar(64) NOT NULL          | Nom d'application
 KDNOM    |varchar(255) NOT NULL         | Nom du droit
