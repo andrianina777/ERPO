@@ -7,14 +7,16 @@ use axum::{
     extract::{self, State, Json, FromRequestParts},
     response::{Result, IntoResponse, Response},
     http::{
+        Request,
         StatusCode,
-        request::Parts
+        request::Parts,
     },
 };
 use serde::{Serialize,Deserialize};
 use anyhow::anyhow;
 use r2d2_freetds::freetds::Statement;
 use log::{info, error};
+use hyper::Body;
 
 pub type Manager = r2d2_freetds::FreetdsConnectionManager;
 pub type Pool = r2d2::Pool<Manager>;
@@ -338,10 +340,26 @@ async fn main() {
     state.cleanup_sessions();
 
     // build our application with a single route
+    use tower_http::trace::TraceLayer;
+    //use tracing::Level;
+    //use tracing_subscriber::filter;
+    //use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+
+    //let filter = filter::Targets::new()
+    //    .with_target("tower_http::trace::on_response", Level::TRACE)
+    //    .with_target("tower_http::trace::on_request", Level::TRACE)
+    //    .with_default(Level::INFO);
+    //let tracing_layer = tracing_subscriber::fmt::layer();
+    //tracing_subscriber::registry()
+    //    .with(tracing_layer)
+    //    .with(filter)
+    //    .init();
+
     let app = Router::new()
-        .route("/api/v1/login", post(post_login))
-        .route("/api/v1/logout", post(post_logout))
-        .route("/api/v1/access/:app", get(get_access))
+        .route("/v1/login", post(post_login))
+        .route("/v1/logout", post(post_logout))
+        .route("/v1/access/:app", get(get_access))
+        .layer(TraceLayer::new_for_http())
         .with_state(state);
 
     // run it with hyper on localhost:3000
