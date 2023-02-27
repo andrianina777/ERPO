@@ -381,6 +381,14 @@ async fn main() {
     //    .with(filter)
     //    .init();
 
+    use tower_http::cors::{Any, CorsLayer};
+    use http::Method;
+    let cors = CorsLayer::new()
+        // allow `GET` and `POST` when accessing the resource
+        .allow_methods([Method::GET, Method::POST])
+        // allow requests from any origin
+        .allow_origin(Any);
+
     let app = Router::new()
         .route("/v1/login", get(get_login))
         .route("/v1/login/", get(get_login))
@@ -391,6 +399,7 @@ async fn main() {
         .route("/v1/access/:app", get(get_access))
         .route("/v1/access/:app/", get(get_access))
         .layer(TraceLayer::new_for_http())
+        .layer(cors)
         .with_state(state);
 
     // run it with hyper on localhost:3000
