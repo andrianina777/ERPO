@@ -384,9 +384,8 @@ async fn main() {
     use tower_http::cors::{Any, CorsLayer};
     use http::Method;
     let cors = CorsLayer::new()
-        // allow `GET` and `POST` when accessing the resource
-        .allow_methods([Method::GET, Method::POST])
-        // allow requests from any origin
+        .allow_methods(Any)
+        .allow_headers(Any)
         .allow_origin(Any);
 
     let app = Router::new()
