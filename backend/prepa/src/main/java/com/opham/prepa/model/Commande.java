@@ -28,6 +28,8 @@ public class Commande implements Serializable {
     private int province;
     private int garde;
     private int nbLigne;
+
+    private int ao;
     private Date date_prevue_liv;
     private int spec_cc;
     private Date date_sortie_magasin;

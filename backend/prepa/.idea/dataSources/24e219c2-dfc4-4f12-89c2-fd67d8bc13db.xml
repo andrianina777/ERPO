@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Equagestion@192.168.130.221 [2]">
+  <database-model serializer="dbm" dbms="SYBASE" family-id="SYBASE" format-version="4.45">
+    <root id="1">
+      <ServerVersion>12.5.4</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="AMC"/>
+    <database id="3" parent="1" name="Compta_08"/>
+    <database id="4" parent="1" name="Compta_09"/>
+    <database id="5" parent="1" name="Compta_10"/>
+    <database id="6" parent="1" name="DBSUIVI"/>
+    <database id="7" parent="1" name="DVPO"/>
+    <database id="8" parent="1" name="Doc_SMQ"/>
+    <database id="9" parent="1" name="Echantillon"/>
+    <database id="10" parent="1" name="EquaPRO"/>
+    <database id="11" parent="1" name="Equagestion">
+      <Current>1</Current>
+    </database>
+    <database id="12" parent="1" name="Fiches"/>
+    <database id="13" parent="1" name="GPS"/>
+    <database id="14" parent="1" name="Inventaire"/>
+    <database id="15" parent="1" name="Retard_Pers"/>
+    <database id="16" parent="1" name="TRT_Opham"/>
+    <database id="17" parent="1" name="VRP_Opham"/>
+    <database id="18" parent="1" name="Versions"/>
+    <database id="19" parent="1" name="master"/>
+    <database id="20" parent="1" name="model"/>
+    <database id="21" parent="1" name="sybsystemdb"/>
+    <database id="22" parent="1" name="sybsystemprocs"/>
+    <database id="23" parent="1" name="tempdb"/>
+  </database-model>
+</dataSource>

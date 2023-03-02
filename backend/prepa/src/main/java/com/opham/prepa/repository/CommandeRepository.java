@@ -16,7 +16,7 @@ public interface CommandeRepository {
 
     List<Commande> findAll();
 
-    List<Commande> findByDate(String group, Date dateliv);
+    List<Commande> findByDate(String groupe, Date dateliv);
 
   //  List<Commande> findByTitleContaining(String title);
 
