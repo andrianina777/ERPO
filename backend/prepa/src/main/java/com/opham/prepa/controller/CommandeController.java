@@ -6,29 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
 //
-//@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:3000",methods = {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("/api")
 public class CommandeController  {
 @Autowired
 CommandeRepository commandeRepository;
+
     @GetMapping("/prep")
-    public ResponseEntity<List<Commande>> findByDate(@RequestParam("groupe") String groupe,@RequestParam("dateliv") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
+    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="DET") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
         try {
             List<Commande> cmd = commandeRepository.findByDate(groupe,dateliv);
 
