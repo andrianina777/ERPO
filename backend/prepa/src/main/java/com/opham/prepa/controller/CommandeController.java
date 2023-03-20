@@ -1,6 +1,7 @@
 package com.opham.prepa.controller;
 
 import com.opham.prepa.model.Commande;
+import com.opham.prepa.model.LigneCommande;
 import com.opham.prepa.repository.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,9 +21,23 @@ public class CommandeController  {
 CommandeRepository commandeRepository;
 
     @GetMapping("/prep")
-    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="DET") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
+    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="DETAIL") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
         try {
             List<Commande> cmd = commandeRepository.findByDate(groupe,dateliv);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/lignecmd")
+    public ResponseEntity<List<LigneCommande>> findLigneCmdebyCode(@RequestParam(required = true) String code ) {
+        try {
+            List<LigneCommande> cmd = commandeRepository.findLigneCmdebyCode(code);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
