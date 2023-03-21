@@ -1,6 +1,7 @@
 package com.opham.prepa.repository;
 
 import com.opham.prepa.model.Commande;
+import com.opham.prepa.model.DetailPrep;
 import com.opham.prepa.model.LigneCommande;
 
 import java.util.Date;
@@ -20,6 +21,9 @@ public interface CommandeRepository {
     List<Commande> findByDate(String groupe, Date dateliv);
 
     List<LigneCommande> findLigneCmdebyCode(String code);
+
+    List<DetailPrep> listDetailBP(String code_CC);
+
 
 
 }

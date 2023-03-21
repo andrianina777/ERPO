@@ -1,8 +1,10 @@
 package com.opham.prepa.repository;
 
+import com.opham.prepa.mapper.DetailPrepaMapper;
 import com.opham.prepa.model.Commande;
 import com.opham.prepa.mapper.CommandeMapper;
 import com.opham.prepa.mapper.LigneCommandeMapper;
+import com.opham.prepa.model.DetailPrep;
 import com.opham.prepa.model.LigneCommande;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -35,5 +37,11 @@ public class JdbcCommandeRepository implements CommandeRepository{
                         "from FCCL  left join VIEW_FAR on ARCODE=CCLARTICLE left join xFCCL on xSeq=CCLSEQ\n" +
                         "where CCLCODE=? order by CCLARTICLE",
                 new LigneCommandeMapper(), code);
+    }
+
+    @Override
+    public List<DetailPrep> listDetailBP(String code_CC) {
+        return jdbcTemplate.query("exec x_DetailPrepa2 ?",
+                new DetailPrepaMapper(), code_CC);
     }
 }

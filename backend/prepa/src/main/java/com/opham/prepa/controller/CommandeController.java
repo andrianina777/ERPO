@@ -1,6 +1,7 @@
 package com.opham.prepa.controller;
 
 import com.opham.prepa.model.Commande;
+import com.opham.prepa.model.DetailPrep;
 import com.opham.prepa.model.LigneCommande;
 import com.opham.prepa.repository.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CommandeController  {
 CommandeRepository commandeRepository;
 
     @GetMapping("/prep")
-    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="DETAIL") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
+    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
         try {
             List<Commande> cmd = commandeRepository.findByDate(groupe,dateliv);
 
@@ -47,17 +48,18 @@ CommandeRepository commandeRepository;
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    @GetMapping("/prep")
-//    public ResponseEntity<List<Commande>> findByAll() {
-//        try {
-//            List<Commande> cmd = commandeRepository.findAll();
-//
-//            if (cmd.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//            return new ResponseEntity<>(cmd, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
+    @GetMapping("/listDetailPrepa")
+    public ResponseEntity<List<DetailPrep>> listDetailPrepa(@RequestParam(required = true) String code ) {
+        try {
+            List<DetailPrep> cmd = commandeRepository.listDetailBP(code);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
