@@ -2,6 +2,7 @@ package com.opham.prepa.controller;
 
 import com.opham.prepa.model.Commande;
 import com.opham.prepa.model.DetailPrep;
+import com.opham.prepa.model.InfoCommande;
 import com.opham.prepa.model.LigneCommande;
 import com.opham.prepa.repository.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,9 @@ import java.util.Date;
 import java.util.List;
 
 //
-@CrossOrigin(origins = "http://localhost:3000",methods = {RequestMethod.GET,RequestMethod.POST})
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE})
+
 @RequestMapping("/api")
 public class CommandeController  {
 @Autowired
@@ -58,6 +60,21 @@ CommandeRepository commandeRepository;
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/infoCmd")
+    public ResponseEntity<InfoCommande> getInfoCommande(@RequestParam(required = true) String code ) {
+        try {
+            InfoCommande cmd = commandeRepository.plusInfoCmd(code);
+
+            if (cmd!=null) {
+                return new ResponseEntity<>(cmd, HttpStatus.OK);
+
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
