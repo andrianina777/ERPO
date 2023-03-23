@@ -1,7 +1,6 @@
-package com.opham.prepa.mapper;
+package com.opham.prepa.mapper.Apreparer;
 
-import com.opham.prepa.model.DetailPrep;
-import com.opham.prepa.model.LigneCommande;
+import com.opham.prepa.model.Apreparer.DetailPrep;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

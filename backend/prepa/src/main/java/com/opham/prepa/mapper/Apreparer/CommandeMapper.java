@@ -1,10 +1,9 @@
-package com.opham.prepa.mapper;
+package com.opham.prepa.mapper.Apreparer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
-import com.opham.prepa.model.Commande;
+import com.opham.prepa.model.Apreparer.Commande;
 import org.springframework.jdbc.core.RowMapper;
 
 public class CommandeMapper implements RowMapper<Commande> {

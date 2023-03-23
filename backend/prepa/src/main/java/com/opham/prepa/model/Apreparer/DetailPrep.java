@@ -1,4 +1,4 @@
-package com.opham.prepa.model;
+package com.opham.prepa.model.Apreparer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

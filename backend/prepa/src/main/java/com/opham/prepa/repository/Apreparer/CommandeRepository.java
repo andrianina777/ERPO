@@ -1,9 +1,9 @@
-package com.opham.prepa.repository;
+package com.opham.prepa.repository.Apreparer;
 
-import com.opham.prepa.model.Commande;
-import com.opham.prepa.model.DetailPrep;
-import com.opham.prepa.model.InfoCommande;
-import com.opham.prepa.model.LigneCommande;
+import com.opham.prepa.model.Apreparer.Commande;
+import com.opham.prepa.model.Apreparer.DetailPrep;
+import com.opham.prepa.model.Apreparer.InfoCommande;
+import com.opham.prepa.model.Apreparer.LigneCommande;
 
 import java.util.Date;
 import java.util.List;

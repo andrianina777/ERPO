@@ -1,10 +1,10 @@
 package com.opham.prepa.controller;
 
-import com.opham.prepa.model.Commande;
-import com.opham.prepa.model.DetailPrep;
-import com.opham.prepa.model.InfoCommande;
-import com.opham.prepa.model.LigneCommande;
-import com.opham.prepa.repository.CommandeRepository;
+import com.opham.prepa.model.Apreparer.Commande;
+import com.opham.prepa.model.Apreparer.DetailPrep;
+import com.opham.prepa.model.Apreparer.InfoCommande;
+import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.repository.Apreparer.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
