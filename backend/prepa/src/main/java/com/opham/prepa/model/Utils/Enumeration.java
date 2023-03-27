@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Enumeration {
-    private String code;
+
     private String libelle;
 
 }

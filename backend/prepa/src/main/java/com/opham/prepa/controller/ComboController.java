@@ -17,9 +17,9 @@ public class ComboController {
     @Autowired
     ComboRepository comboRepository;
     @GetMapping("/axe")
-    public ResponseEntity<List<Axe>> listAxe( ) {
+    public ResponseEntity<List<String[]>> listAxe( ) {
         try {
-            List<Axe> cmd = comboRepository.findAllAxe();
+            List<String[]> cmd = comboRepository.findAllAxe();
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -30,9 +30,9 @@ public class ComboController {
         }
     }
     @GetMapping("/enumeration")
-    public ResponseEntity<List<Enumeration>> listEnumeration( @RequestParam(required = true) String code) {
+    public ResponseEntity<List<String[]>> listEnumeration( @RequestParam(required = true) String code) {
         try {
-            List<Enumeration> cmd = comboRepository.findParCode(code);
+            List<String[]> cmd = comboRepository.findParCode(code);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

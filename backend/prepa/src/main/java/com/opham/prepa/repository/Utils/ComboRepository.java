@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ComboRepository {
 
-    List<Axe> findAllAxe() ;
+    List<String[]> findAllAxe() ;
 
-    List<Enumeration> findParCode(String code);
+    List<String[]> findParCode(String code);
 }

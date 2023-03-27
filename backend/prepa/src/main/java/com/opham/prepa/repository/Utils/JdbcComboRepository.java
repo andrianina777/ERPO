@@ -15,13 +15,13 @@ public class JdbcComboRepository implements ComboRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Override
-    public List<Axe> findAllAxe() {
+    public List<String[]> findAllAxe() {
         return jdbcTemplate.query("select distinct CLPR from FCL order by CLPR",
                 new AxeMapper());
     }
 
     @Override
-    public List<Enumeration> findParCode(String code) {
+    public List<String[]> findParCode(String code) {
         return jdbcTemplate.query("select rtrim(KELIBELLE) as KELIBELLE from KEnumerations where rtrim(KECODE)=rtrim(?) order by KEORDRE",
                 new EnumerationMapper(),code);
     }

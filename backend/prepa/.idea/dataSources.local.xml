@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-223.7571.182">
+  <component name="dataSourceStorageLocal">
     <data-source name="Equagestion@192.168.130.221" uuid="c5dce589-9a11-464a-a1ed-c84a130772ed">
       <database-info product="sql server" version="12.50" jdbc-version="3.0" driver-name="jTDS Type 4 JDBC Driver for MS SQL Server and Sybase" driver-version="1.3.1" dbms="SYBASE" exact-version="12.5.4" exact-driver-version="1.3">
         <extra-name-characters>$#@</extra-name-characters>
