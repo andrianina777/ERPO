@@ -14,15 +14,17 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE})
 @RequestMapping("/api")
 public class ComboController {
+
     @Autowired
     ComboRepository comboRepository;
-    @GetMapping("/axe")
-    public ResponseEntity<List<String[]>> listAxe( ) {
-        try {
-            List<String[]> cmd = comboRepository.findAllAxe();
 
-            if (cmd.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @GetMapping("/axe")
+    public ResponseEntity<List<String>> listAxe( ) {
+        try {
+            List<String> cmd = comboRepository.findAllAxe();
+
+            if (cmd==null||cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>(cmd, HttpStatus.OK);
         } catch (Exception e) {
@@ -30,11 +32,11 @@ public class ComboController {
         }
     }
     @GetMapping("/enumeration")
-    public ResponseEntity<List<String[]>> listEnumeration( @RequestParam(required = true) String code) {
+    public ResponseEntity<List<String>> listEnumeration( @RequestParam(required = true) String code) {
         try {
-            List<String[]> cmd = comboRepository.findParCode(code);
+            List<String> cmd = comboRepository.findParCode(code);
 
-            if (cmd.isEmpty()) {
+            if (cmd.isEmpty()|| cmd==null) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(cmd, HttpStatus.OK);

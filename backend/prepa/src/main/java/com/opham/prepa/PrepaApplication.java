@@ -23,7 +23,7 @@ public class PrepaApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:3000","http://192.168.130.64:3000")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE","PATCH")
                         .allowCredentials(true)
                         .maxAge(3600);
             }

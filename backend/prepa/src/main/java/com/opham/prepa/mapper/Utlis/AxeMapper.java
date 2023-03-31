@@ -6,10 +6,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AxeMapper implements RowMapper<String[]> {
+public class AxeMapper implements RowMapper<String> {
     @Override
-    public String[] mapRow(ResultSet rs, int rowNum) throws SQLException {
-        String axe = rs.getString("CLPR");
-        return new String[]{axe};
+    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return rs.getString("CLPR");
+
     }
 }

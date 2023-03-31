@@ -16,7 +16,7 @@ import java.util.List;
 
 //
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE})
+@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH})
 
 @RequestMapping("/api")
 public class CommandeController  {
@@ -77,6 +77,16 @@ CommandeRepository commandeRepository;
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PatchMapping("/updateInfoCmd")
+    public ResponseEntity<InfoCommande> updateInfoCmd(@RequestBody InfoCommande inf ) {
+        int updatedRows = commandeRepository.updateInfoCmd(inf);
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

@@ -9,13 +9,13 @@ import java.sql.SQLException;
 
 
 
-public class EnumerationMapper implements RowMapper<String[]> {
+public class EnumerationMapper implements RowMapper<String> {
     @Override
-    public String[] mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
       //  Enumeration enuma = new Enumeration();
      //   enuma.setCode(rs.getString("KECODE"));
         String libelle = rs.getString("KELIBELLE");
      //   enuma.setLibelle(rs.getString("KELIBELLE"));
-        return new String[]{libelle};
+        return  libelle;
     }
 }

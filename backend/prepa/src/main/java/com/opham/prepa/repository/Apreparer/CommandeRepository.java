@@ -27,6 +27,7 @@ public interface CommandeRepository {
 
     InfoCommande plusInfoCmd(String code_cc);
 
+    int updateInfoCmd(InfoCommande in);
 
 
 }

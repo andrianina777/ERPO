@@ -26,5 +26,6 @@ public class InfoCommande implements Serializable {
 
     private String contact;
 
+    private String raisonDateLiv;
 
 }
