@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
@@ -27,5 +29,8 @@ public class InfoCommande implements Serializable {
     private String contact;
 
     private String raisonDateLiv;
+
+    private Date date_l;
+    private Time heure_l;
 
 }

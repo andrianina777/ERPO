@@ -19,6 +19,8 @@ public class InfoCmdMapper implements RowMapper<InfoCommande> {
         cmd.setComs_mag(rs.getString("coms_mag"));
         cmd.setContact(rs.getString("contact"));
         cmd.setRaisonDateLiv(rs.getString("raisonDateLiv"));
+        cmd.setDate_l(rs.getDate("date_l"));
+        cmd.setHeure_l(rs.getTime("heure_l"));
         return cmd;
     }
 }

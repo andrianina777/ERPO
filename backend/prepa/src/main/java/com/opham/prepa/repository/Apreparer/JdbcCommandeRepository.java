@@ -48,7 +48,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
 
     @Override
     public InfoCommande plusInfoCmd(String code_CC) {
-        return jdbcTemplate.queryForObject("select CCCODE as CODE_CC,CCNOM as NOM_CLIENT,CCADR1||CCADR2 as adresse,CC2AXE as axe,CC2DATELIV_PREVU as DATE_LIV,CCCOMMENTAIRES as coms_client,CCCOMMENTMAG as coms_mag,CLTEL||' | '||CLTEL2 as contact,CC2RAISONDATELIVPREV as raisonDateLiv   from FCC \n" +
+        return jdbcTemplate.queryForObject("select CCCODE as CODE_CC,CCNOM as NOM_CLIENT,CCADR1||CCADR2 as adresse,CC2AXE as axe,CC2DATELIV_PREVU as DATE_LIV,CCCOMMENTAIRES as coms_client,CCCOMMENTMAG as coms_mag,CLTEL||' | '||CLTEL2 as contact,CC2RAISONDATELIVPREV as raisonDateLiv,convert(date,CC2DATELIV_PREVU) as date_l,convert(time,CC2DATELIV_PREVU) as heure_l   from FCC \n" +
                         "inner join FCC2 on CC2CODE=CCCODE inner join FCL on CLCODE=CCCLIENT where CCCODE=?",
                 new Object[] { code_CC } , new InfoCmdMapper());
     }
