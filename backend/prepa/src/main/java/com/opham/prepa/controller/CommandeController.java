@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 //
 @RestController
@@ -87,6 +88,20 @@ CommandeRepository commandeRepository;
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/genererBP")
+    public ResponseEntity<Map<String, List<Object>>> genererBP(@RequestParam(required = true) String code ) {
+        try {
+            Map<String, List<Object>>  cmd = commandeRepository.genererBP(code);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -7,6 +7,7 @@ import com.opham.prepa.model.Apreparer.LigneCommande;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface CommandeRepository {
   /*  int save(Commande book);
@@ -28,6 +29,8 @@ public interface CommandeRepository {
     InfoCommande plusInfoCmd(String code_cc);
 
     int updateInfoCmd(InfoCommande in);
+
+    Map<String, List<Object>>  genererBP(String code);
 
 
 }

@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Utlis/AlerteMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Utils/Alerte.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ArticleCmdMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/DepotCmdMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ListeCmdMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/RayonCmdMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ArticleCmd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/DepotCmd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ListeCmd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/RayonCmd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/ComboController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/ComboController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Apreparer/InfoCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Apreparer/InfoCmdMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Apreparer/InfoCommande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Apreparer/InfoCommande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/ComboRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/ComboRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcComboRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcComboRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +36,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -46,7 +53,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
@@ -59,17 +66,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PrepaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="prepa" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.opham.prepa.PrepaApplication" />
@@ -129,6 +125,10 @@
       <workItem from="1680671758277" duration="1433000" />
       <workItem from="1680757612081" duration="1766000" />
       <workItem from="1680843541214" duration="4263000" />
+      <workItem from="1681189269635" duration="1710000" />
+      <workItem from="1681275316217" duration="7505000" />
+      <workItem from="1681364142343" duration="8628000" />
+      <workItem from="1681448587046" duration="6176000" />
     </task>
     <servers />
   </component>
@@ -145,5 +145,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
