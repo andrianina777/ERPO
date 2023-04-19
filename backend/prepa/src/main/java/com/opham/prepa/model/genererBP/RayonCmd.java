@@ -12,6 +12,6 @@ import java.io.Serializable;
 public class RayonCmd implements Serializable {
     private String rayon;
     private String depot;
-    private int etat;
+    private boolean etat;
     private int nb_article;
 }

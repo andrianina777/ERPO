@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ArticleCmdMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/DepotCmdMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ListeCmdMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/RayonCmdMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ArticleCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/DepotCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ListeCmd.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/RayonCmd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ArticleCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ArticleCmdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/RayonCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/RayonCmdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ArticleCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ArticleCmd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/RayonCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/RayonCmd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +30,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" root0="SKIP_HIGHLIGHTING" />
@@ -56,6 +59,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -129,6 +133,9 @@
       <workItem from="1681275316217" duration="7505000" />
       <workItem from="1681364142343" duration="8628000" />
       <workItem from="1681448587046" duration="6176000" />
+      <workItem from="1681707425170" duration="11858000" />
+      <workItem from="1681795091593" duration="866000" />
+      <workItem from="1681882701550" duration="1879000" />
     </task>
     <servers />
   </component>
@@ -146,5 +153,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

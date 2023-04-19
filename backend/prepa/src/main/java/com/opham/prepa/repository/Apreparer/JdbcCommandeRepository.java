@@ -21,9 +21,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.jdbc.core.*;
+import java.sql.*;
 import java.sql.Types;
 import java.util.*;
+import org.springframework.dao.DataAccessException;
 
 @Repository
 public class JdbcCommandeRepository implements CommandeRepository{
@@ -38,7 +40,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
     }
 
     @Override
-    public List<Commande> findByDate(String groupe, Date dateliv) {
+    public List<Commande> findByDate(String groupe, java.util.Date dateliv) {
         return jdbcTemplate.query("exec x_Atte_Prepa_Partiel2_test ?,?",
                 new CommandeMapper(), groupe,dateliv);
     }
@@ -70,7 +72,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
     }
 
     @Override
-    public Map<String, List<Object>> genererBP(String code) {
+    public List<List<Object>> genererBP(String code) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("BECCPREP_Liste_Depot")
                 .declareParameters(
@@ -86,13 +88,51 @@ public class JdbcCommandeRepository implements CommandeRepository{
 
         Map<String, List<Object>> mappedResults = new HashMap<>();
 
-
-        mappedResults.put("result1", Collections.singletonList((List<DepotCmd>) results.get("result1")));
+        List<List<Object>> resultList = new ArrayList<>();
+        resultList.add((List<Object>) results.get("result1"));
+        resultList.add((List<Object>) results.get("result2"));
+        resultList.add((List<Object>) results.get("result3"));
+        resultList.add((List<Object>) results.get("result4"));
+      /*  mappedResults.put("result1", Collections.singletonList((List<DepotCmd>) results.get("result1")));
         mappedResults.put("result2", Collections.singletonList((List<ArticleCmd>) results.get("result2")));
         mappedResults.put("result3", Collections.singletonList((List<ListeCmd>) results.get("result3")));
-        mappedResults.put("result4", Collections.singletonList((List<RayonCmd>) results.get("result4")));
-        return mappedResults;
+        mappedResults.put("result4", Collections.singletonList((List<RayonCmd>) results.get("result4")));*/
+        return resultList;
     }
+
+    @Override
+    public List<List<Object>> preparerCmd(String code) {
+        List<List<Object>> results = jdbcTemplate.query("{ exec BECCPREP_Liste_Depot ? }", new Object[]{code}, new ResultSetExtractor<List<List<Object>>>() {
+            @Override
+            public List<List<Object>> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                List<List<Object>> results = new ArrayList<>();
+                RowMapper<?> rowMapper = null;
+                while (rs.next()) {
+                    List<Object> result = new ArrayList<>();
+                    int columnCount = rs.getMetaData().getColumnCount();
+                    System.out.println(columnCount);
+                    if (columnCount == 2) {
+                        rowMapper = new DepotCmdMapper();
+                    } else if (columnCount ==3) {
+                        rowMapper = new ArticleCmdMapper();
+                    } else if (columnCount == 4) {
+                        rowMapper = new ListeCmdMapper();
+                    } else {
+                        rowMapper = new RayonCmdMapper();
+                    }
+                    do {
+                        result.add(rowMapper.mapRow(rs, rs.getRow()));
+                    } while (rs.next());
+                    results.add(result);
+                }
+                return results;
+            }
+        });
+        return results;
+    }
+
+
+
 
 
 }

@@ -18,7 +18,7 @@ public class ArticleCmdMapper implements RowMapper<ArticleCmd> {
         cmd.setQte_a_preparer(rs.getInt("QTE_A_PREPARER"));
         cmd.setDispo(rs.getInt("DISPO"));
         cmd.setTransfert(rs.getString("TRANSFERT"));
-        cmd.setEtat(rs.getInt(8));
+        cmd.setEtat(rs.getBoolean(8));
         cmd.setDepot(rs.getString("DEPOT"));
         return cmd;
     }

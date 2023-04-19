@@ -92,9 +92,23 @@ CommandeRepository commandeRepository;
     }
 
     @GetMapping("/genererBP")
-    public ResponseEntity<Map<String, List<Object>>> genererBP(@RequestParam(required = true) String code ) {
+    public ResponseEntity<List<List<Object>>> genererBP(@RequestParam(required = true) String code ) {
         try {
-            Map<String, List<Object>>  cmd = commandeRepository.genererBP(code);
+            List<List<Object>>  cmd = commandeRepository.genererBP(code);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/preparerCmd")
+    public ResponseEntity<List<List<Object>>> preparerCmd(@RequestParam(required = true) String code ) {
+        try {
+            List<List<Object>>  cmd = commandeRepository.preparerCmd(code);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

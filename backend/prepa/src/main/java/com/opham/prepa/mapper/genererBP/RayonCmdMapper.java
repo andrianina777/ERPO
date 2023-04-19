@@ -13,7 +13,7 @@ public class RayonCmdMapper implements RowMapper<RayonCmd> {
         RayonCmd cmd = new RayonCmd();
         cmd.setRayon(rs.getString(1));
         cmd.setDepot(rs.getString("depot"));
-        cmd.setEtat(rs.getInt(3));
+        cmd.setEtat(rs.getBoolean(3));
         cmd.setNb_article(rs.getInt(4));
         return cmd;
     }

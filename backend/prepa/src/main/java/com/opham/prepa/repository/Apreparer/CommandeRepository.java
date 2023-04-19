@@ -30,7 +30,9 @@ public interface CommandeRepository {
 
     int updateInfoCmd(InfoCommande in);
 
-    Map<String, List<Object>>  genererBP(String code);
+    List<List<Object>>   genererBP(String code);
+
+    List<List<Object>> preparerCmd(String code);
 
 
 }

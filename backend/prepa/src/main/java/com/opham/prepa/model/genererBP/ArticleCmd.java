@@ -16,6 +16,6 @@ public class ArticleCmd implements Serializable {
     private int qte_a_preparer;
     private int dispo;
     private String transfert;
-    private int etat;
+    private boolean etat;
     private String depot;
 }
