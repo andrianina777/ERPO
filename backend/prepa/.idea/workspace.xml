@@ -7,12 +7,8 @@
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ArticleCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ArticleCmdMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/RayonCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/RayonCmdMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ArticleCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ArticleCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/RayonCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/RayonCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ListeCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/genererBP/ListeCmdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ListeCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/genererBP/ListeCmd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +131,14 @@
       <workItem from="1681448587046" duration="6176000" />
       <workItem from="1681707425170" duration="11858000" />
       <workItem from="1681795091593" duration="866000" />
-      <workItem from="1681882701550" duration="1879000" />
+      <workItem from="1681882701550" duration="1937000" />
+      <workItem from="1681968053362" duration="352000" />
+      <workItem from="1681978597420" duration="234000" />
+      <workItem from="1682313871728" duration="1820000" />
+      <workItem from="1682399661325" duration="693000" />
+      <workItem from="1682426672928" duration="787000" />
+      <workItem from="1682485252703" duration="1893000" />
+      <workItem from="1682572195368" duration="693000" />
     </task>
     <servers />
   </component>

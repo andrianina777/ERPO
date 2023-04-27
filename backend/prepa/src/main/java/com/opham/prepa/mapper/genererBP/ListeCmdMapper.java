@@ -66,7 +66,7 @@ public class ListeCmdMapper implements RowMapper<ListeCmd> {
         cmd.setSTNUMARM2(rs.getString(51));
         cmd.setARNUMEROTE(rs.getInt(52));
         cmd.setARCOMP(rs.getInt(53));
-        cmd.setVVS0(rs.getInt(54));
+        cmd.setEtat(rs.getBoolean(54));
         cmd.setSeqLib(rs.getInt(55));
         cmd.setComment_mag(rs.getString(56));
         cmd.setCclcolisage(rs.getString(57));

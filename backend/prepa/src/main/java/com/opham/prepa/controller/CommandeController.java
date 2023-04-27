@@ -105,7 +105,7 @@ CommandeRepository commandeRepository;
         }
     }
 
-    @GetMapping("/preparerCmd")
+ /*   @GetMapping("/preparerCmd")
     public ResponseEntity<List<List<Object>>> preparerCmd(@RequestParam(required = true) String code ) {
         try {
             List<List<Object>>  cmd = commandeRepository.preparerCmd(code);
@@ -117,5 +117,5 @@ CommandeRepository commandeRepository;
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 }

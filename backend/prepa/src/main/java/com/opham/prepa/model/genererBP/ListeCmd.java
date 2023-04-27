@@ -61,7 +61,7 @@ public class ListeCmd implements Serializable {
     private String STDEPOT,STNUMARM1,STNUMARM2;
     private int ARNUMEROTE;
     private int ARCOMP;
-    private int VVS0;
+    private boolean etat;
     private int seqLib;
     private String comment_mag;
     private String cclcolisage;
