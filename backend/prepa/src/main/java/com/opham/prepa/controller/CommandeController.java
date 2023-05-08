@@ -4,6 +4,7 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -105,10 +106,10 @@ CommandeRepository commandeRepository;
         }
     }
 
- /*   @GetMapping("/preparerCmd")
-    public ResponseEntity<List<List<Object>>> preparerCmd(@RequestParam(required = true) String code ) {
+    @PostMapping("/insertBP")
+    public ResponseEntity<String> insertBP(@RequestParam("code_CC") String code_CC, @RequestParam("depot") String depot) {
         try {
-            List<List<Object>>  cmd = commandeRepository.preparerCmd(code);
+            String cmd = commandeRepository.insert_BP(code_CC, depot);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -117,5 +118,30 @@ CommandeRepository commandeRepository;
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }*/
+    }
+
+    @PostMapping("/insertL6")
+    public ResponseEntity<Void> insertL6(@RequestBody ListeCmd lc,@RequestParam("id") String id) {
+        try {
+             commandeRepository.insertL6(lc,id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/new-id")
+    public ResponseEntity<String> getNewId() {
+        try {
+            String id = commandeRepository.getId();
+            if (id.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

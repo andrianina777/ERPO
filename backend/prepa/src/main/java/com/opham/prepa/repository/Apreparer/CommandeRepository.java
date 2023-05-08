@@ -4,10 +4,10 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.genererBP.ListeCmd;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public interface CommandeRepository {
   /*  int save(Commande book);
@@ -33,6 +33,12 @@ public interface CommandeRepository {
     List<List<Object>>   genererBP(String code);
 
     List<List<Object>> preparerCmd(String code);
+
+    String insert_BP(String code_CC,String depot);
+
+    String getId();
+
+    void insertL6(ListeCmd l,String id);
 
 
 }
