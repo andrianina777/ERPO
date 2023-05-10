@@ -73,25 +73,26 @@ public class JdbcCommandeRepository implements CommandeRepository{
 
 
     @Override
-    public String insert_BP(String code_CC,String depot) {
-        String sql = "exec v_x_New_BP ?,?";
-        String result =  jdbcTemplate.queryForObject(sql, new Object[] { code_CC,depot }, String.class);
+    public String insert_BP(String ids,String code_CC,String depot) {
+        String sql = "exec v_x_CreateBP ?, ?,?";
+        String result =  jdbcTemplate.queryForObject(sql, new Object[] { ids,code_CC,depot }, String.class);
         return result;
     }
 
     @Override
-    public void insertL6(ListeCmd lc,String id) {
+    public int insertL6(ListeCmd lc) {
         String sql = "INSERT INTO DBSUIVI..L6_PREPA_INSERT\n" +
-                "\t(Article, Lettre, Designation, LienCode, LienNum, Qte, UnitFact, PrixHT, ModeLiv, LigneLibre, TypeVente, Reglement, Echeancesp, abs_Qte, Factman, Offert, Artype, Devise, Coursdev, PrixHTdev, TotHTdev, Rem1, Rem2, Rem3, TotPrixHT, Emplacement, Attachement, Lot, Arreffour, cclmarche, ccldate, cclcolis, arqtecolis, cclpaht, seqLib, comment_mag, cclcolisage, cclnbcolis, cclpack, rayon, commande, depot, cclpromo,ID)\n" +
+                "\t(Article, Lettre, Designation, LienCode, LienNum, Qte, UnitFact, PrixHT, ModeLiv, LigneLibre, TypeVente, Reglement, Echeancesp, abs_Qte, Factman, Offert, Artype, Devise, Coursdev, PrixHTdev, TotHTdev, Rem1, Rem2, Rem3, TotPrixHT, Emplacement, Attachement, Lot, Arreffour, cclmarche, ccldate, cclcolis, arqtecolis, cclpaht, seqLib, comment_mag, cclcolisage, cclnbcolis, cclpack, rayon, depot, cclpromo,myID,commande)\n" +
                 "VALUES \n" +
-                "\t(?,?,?,?,?,?,?,? ,?,?,?,?,? ,?,? ,?,? ,?,?,? ,?,? ,?,? ,?,?,?,?,?,?,?,? ,?,? ,?,?,?,?,? ,?,?,?,?,? );";
-        jdbcTemplate.update(sql, lc.getArticle(),lc.getLettre(),lc.getDesignation(),lc.getLienCode(),lc.getLienNum(),
-                lc.getQte(),lc.getUnitfact(),lc.getPrix_ht(),lc.getModeliv(),lc.getLignelibre(),lc.getTypeVente(),
-                lc.getReglement(),lc.getEcheancesp(),lc.getAbs_qte(),lc.getFactman(),lc.getOffert(),lc.getArtype(),lc.getDevise(),
-                lc.getCoursdev(),lc.getPrixht_dev(),lc.getTotht_dev(),lc.getRem1(),lc.getRem2(),lc.getRem3(),lc.getTotPrix_HT(),lc.getEmplacement(),
-                lc.getAttachement(),lc.getLot(),lc.getArreffour(),lc.getCclmarche(),lc.getCcldate(),lc.getCclcolis(),lc.getArqtecolis(),lc.getCclpaht(),
-                lc.getSeqLib(),lc.getComment_mag(),lc.getCclcolisage(),lc.getCclnbcolis(),
-                lc.getCclpack(),lc.getRayon(),lc.getLienCode(),lc.getDepot(),lc.getCclpromo(),id);
+                "\t(?,?,?,?,?,?,?,? ,?,?,?,?,? ,?,? ,?,? ,?,?,? ,?,? ,?,? ,?,?,?,?,?,?,?,? ,?,? ,?,?,?,?,? ,?,?,?,?,?)";
+
+        return  jdbcTemplate.update(sql, lc.getArticle(),lc.getLettre(),lc.getDesignation(),lc.getLienCode(),lc.getLienNum(),
+                    lc.getQte(),lc.getUnitfact(),lc.getPrix_ht(),lc.getModeliv(),lc.getLignelibre(),lc.getTypeVente(),
+                    lc.getReglement(),lc.getEcheancesp(),lc.getAbs_qte(),lc.getFactman(),lc.getOffert(),lc.getArtype(),lc.getDevise(),
+                    lc.getCoursdev(),lc.getPrixht_dev(),lc.getTotht_dev(),lc.getRem1(),lc.getRem2(),lc.getRem3(),lc.getTotPrix_HT(),lc.getEmplacement(),
+                    lc.getAttachement(),lc.getLot(),lc.getArreffour(),lc.getCclmarche(),lc.getCcldate(),lc.getCclcolis(),lc.getArqtecolis(),lc.getCclpaht(),
+                    lc.getSeqLib(),lc.getComment_mag(),lc.getCclcolisage(),lc.getCclnbcolis(),
+                    lc.getCclpack(),lc.getRayon(),lc.getDepot(),lc.getCclpromo(),lc.getMyID(),lc.getLienCode());
     }
 
     @Override

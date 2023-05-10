@@ -34,11 +34,11 @@ public interface CommandeRepository {
 
     List<List<Object>> preparerCmd(String code);
 
-    String insert_BP(String code_CC,String depot);
+    String insert_BP(String ids,String code_CC,String depot);
 
     String getId();
 
-    void insertL6(ListeCmd l,String id);
+    int insertL6(ListeCmd l);
 
 
 }

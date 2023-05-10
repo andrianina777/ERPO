@@ -69,11 +69,6 @@ public class ListeCmd implements Serializable {
     private int cclpack;
     private String rayon;
     private int cclpromo;
-    private String id;
-
-
-
-
-
+    private String myID;
 
 }

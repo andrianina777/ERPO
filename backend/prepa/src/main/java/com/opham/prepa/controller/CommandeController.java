@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -20,6 +22,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH})
 @RequestMapping("/api")
+
 public class CommandeController  {
 
 @Autowired
@@ -107,9 +110,9 @@ CommandeRepository commandeRepository;
     }
 
     @PostMapping("/insertBP")
-    public ResponseEntity<String> insertBP(@RequestParam("code_CC") String code_CC, @RequestParam("depot") String depot) {
+    public ResponseEntity<String> insertBP(@RequestParam(required = true) String ids,@RequestParam(required = true) String code_CC, @RequestParam(required = true) String depot) {
         try {
-            String cmd = commandeRepository.insert_BP(code_CC, depot);
+            String cmd = commandeRepository.insert_BP(ids,code_CC, depot);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -121,12 +124,12 @@ CommandeRepository commandeRepository;
     }
 
     @PostMapping("/insertL6")
-    public ResponseEntity<Void> insertL6(@RequestBody ListeCmd lc,@RequestParam("id") String id) {
-        try {
-             commandeRepository.insertL6(lc,id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ListeCmd> updateInfoCmd(@RequestBody ListeCmd lc ) {
+        int updatedRows = commandeRepository.insertL6(lc);
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 

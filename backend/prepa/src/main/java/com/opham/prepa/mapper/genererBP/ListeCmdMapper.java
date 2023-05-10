@@ -74,6 +74,7 @@ public class ListeCmdMapper implements RowMapper<ListeCmd> {
         cmd.setCclpack(rs.getInt(59));
         cmd.setRayon(rs.getString(60));
         cmd.setCclpromo(rs.getInt(61));
+
         return cmd;
     }
 }
