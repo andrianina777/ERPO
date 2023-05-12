@@ -1,5 +1,6 @@
 package com.opham.prepa.repository.Apreparer;
 
+import com.opham.prepa.Utils.Convert;
 import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Apreparer.InfoCmdMapper;
 import com.opham.prepa.mapper.genererBP.ArticleCmdMapper;
@@ -21,10 +22,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.*;
+import org.springframework.util.ResourceUtils;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.sql.Types;
 import java.util.*;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 @Repository
@@ -163,7 +174,34 @@ public class JdbcCommandeRepository implements CommandeRepository{
     }
 
 
+    @Override
+    public byte[] generateReport(String codeBP, Integer isDouble, String hexa) {
+        try {
+            // Charger le fichier JRXML
+//            File file = ResourceUtils.getFile("classpath:prepaA5.jrxml");
+//            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(file.getAbsolutePath());
+//            ClassPathResource jrxmlResource = new ClassPathResource("src/main/java/com/opham/prepa/report/prepaA5.jrxml");
+//            InputStream inputStream = jrxmlResource.getInputStream();
+            String hexes = Convert.decimalToHexadecimal(1234566);
+            // Charger le rapport Jasper
+//            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(inputStream);
+            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(new FileInputStream("src/main/java/com/opham/prepa/report/prepaA5.jrxml"));
 
+            // Paramètres du rapport
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("code_BP", codeBP);
+            parameters.put("isDouble", isDouble);
+            parameters.put("hexa", hexa);
+
+            // Générer le rapport
+            byte[] reportBytes = JasperRunManager.runReportToPdf(jasperReport, parameters, jdbcTemplate.getDataSource().getConnection());
+
+            return reportBytes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 }

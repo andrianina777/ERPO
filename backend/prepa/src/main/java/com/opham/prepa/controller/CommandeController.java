@@ -8,7 +8,9 @@ import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.validation.BindingResult;
@@ -145,6 +147,21 @@ CommandeRepository commandeRepository;
             // Log the exception for debugging purposes
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/printPrepa")
+    public ResponseEntity<byte[]> generateReport(@RequestParam String codeBP, @RequestParam Integer isDouble, @RequestParam String hexa) {
+        byte[] reportBytes = commandeRepository.generateReport(codeBP, isDouble, hexa);
+
+        if (reportBytes != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "prepaA5.pdf");
+
+            return new ResponseEntity<>(reportBytes, headers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
