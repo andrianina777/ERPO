@@ -40,7 +40,9 @@ public interface CommandeRepository {
 
     int insertL6(ListeCmd l);
 
-    byte[] generateReport(String codeBP, Integer isDouble, String hexa);
+    byte[] generateReport(String codeBP, Integer isDouble);
+
+    void atteTransfert(String code_CC, int xSeq);
 
 
 }

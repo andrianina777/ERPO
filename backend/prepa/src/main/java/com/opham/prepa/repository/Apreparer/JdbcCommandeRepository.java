@@ -91,6 +91,12 @@ public class JdbcCommandeRepository implements CommandeRepository{
     }
 
     @Override
+    public void atteTransfert(String code_CC,int xSeq) {
+        String sql = "exec v_bp_updateAtteTransfert ?, ?";
+         jdbcTemplate.update(sql, new Object[] { code_CC,xSeq });
+    }
+
+    @Override
     public int insertL6(ListeCmd lc) {
         String sql = "INSERT INTO DBSUIVI..L6_PREPA_INSERT\n" +
                 "\t(Article, Lettre, Designation, LienCode, LienNum, Qte, UnitFact, PrixHT, ModeLiv, LigneLibre, TypeVente, Reglement, Echeancesp, abs_Qte, Factman, Offert, Artype, Devise, Coursdev, PrixHTdev, TotHTdev, Rem1, Rem2, Rem3, TotPrixHT, Emplacement, Attachement, Lot, Arreffour, cclmarche, ccldate, cclcolis, arqtecolis, cclpaht, seqLib, comment_mag, cclcolisage, cclnbcolis, cclpack, rayon, depot, cclpromo,myID,commande)\n" +
@@ -175,14 +181,15 @@ public class JdbcCommandeRepository implements CommandeRepository{
 
 
     @Override
-    public byte[] generateReport(String codeBP, Integer isDouble, String hexa) {
+    public byte[] generateReport(String codeBP, Integer isDouble) {
         try {
             // Charger le fichier JRXML
 //            File file = ResourceUtils.getFile("classpath:prepaA5.jrxml");
 //            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(file.getAbsolutePath());
 //            ClassPathResource jrxmlResource = new ClassPathResource("src/main/java/com/opham/prepa/report/prepaA5.jrxml");
 //            InputStream inputStream = jrxmlResource.getInputStream();
-            String hexes = Convert.decimalToHexadecimal(1234566);
+
+            String hexes = Convert.decimalToHexadecimal(Integer.parseInt(codeBP.substring(2,10).concat("3")));
             // Charger le rapport Jasper
 //            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(inputStream);
             JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(new FileInputStream("src/main/java/com/opham/prepa/report/prepaA5.jrxml"));
@@ -191,7 +198,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("code_BP", codeBP);
             parameters.put("isDouble", isDouble);
-            parameters.put("hexa", hexa);
+            parameters.put("hexa", hexes);
 
             // Générer le rapport
             byte[] reportBytes = JasperRunManager.runReportToPdf(jasperReport, parameters, jdbcTemplate.getDataSource().getConnection());

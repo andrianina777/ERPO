@@ -8,6 +8,6 @@ public class Convert {
     public static String decimalToHexadecimal(int decimalNumber) {
         BigInteger bigInteger = BigInteger.valueOf(decimalNumber);
         String hexadecimalString = bigInteger.toString(16);
-        return StringUtils.capitalize(hexadecimalString); // Optional: Capitalize the hexadecimal string
+        return StringUtils.capitalize(hexadecimalString.toUpperCase()); // Optional: Capitalize the hexadecimal string
     }
 }

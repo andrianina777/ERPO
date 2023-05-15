@@ -151,8 +151,8 @@ CommandeRepository commandeRepository;
     }
 
     @GetMapping("/printPrepa")
-    public ResponseEntity<byte[]> generateReport(@RequestParam String codeBP, @RequestParam Integer isDouble, @RequestParam String hexa) {
-        byte[] reportBytes = commandeRepository.generateReport(codeBP, isDouble, hexa);
+    public ResponseEntity<byte[]> generateReport(@RequestParam String codeBP, @RequestParam Integer isDouble) {
+        byte[] reportBytes = commandeRepository.generateReport(codeBP, isDouble);
 
         if (reportBytes != null) {
             HttpHeaders headers = new HttpHeaders();
@@ -162,6 +162,17 @@ CommandeRepository commandeRepository;
             return new ResponseEntity<>(reportBytes, headers, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/atteTransfert")
+    public ResponseEntity<String> atteTransfert(@RequestParam String code_CC, @RequestParam Integer xSeq) {
+        try {
+            commandeRepository.atteTransfert(code_CC, xSeq);
+            return ResponseEntity.ok("Transfer successful");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Transfer failed: " + e.getMessage());
         }
     }
 }

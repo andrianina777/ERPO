@@ -199,8 +199,8 @@
 					<text><![CDATA[NB Ligne TOTAL :]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="97" y="24" width="34" height="13" uuid="b92c5932-c5e4-4803-813f-8f70188134bc">
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<reportElement x="97" y="23" width="34" height="13" uuid="b92c5932-c5e4-4803-813f-8f70188134bc">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
@@ -328,7 +328,7 @@
 			<textField>
 				<reportElement x="267" y="34" width="106" height="24" uuid="a8aaab32-603a-44c9-b06f-bc57a4ee70e8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monaco" size="10" isBold="true"/>
+					<font fontName="Monaco" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Hexa}]]></textFieldExpression>
 			</textField>
@@ -433,14 +433,14 @@
 	<pageFooter>
 		<band height="23">
 			<textField>
-				<reportElement mode="Opaque" x="-22" y="6" width="388" height="10" backcolor="#E6E6E6" uuid="6339be6f-dbfa-4360-a9a9-47ef3b4f24c6"/>
+				<reportElement mode="Opaque" x="-22" y="10" width="388" height="10" backcolor="#E6E6E6" uuid="6339be6f-dbfa-4360-a9a9-47ef3b4f24c6"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" sur"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="366" y="6" width="35" height="10" backcolor="#E6E6E6" uuid="3a955acc-75d1-4f1a-bb95-22cf19defdaa"/>
+				<reportElement mode="Opaque" x="366" y="10" width="35" height="10" backcolor="#E6E6E6" uuid="3a955acc-75d1-4f1a-bb95-22cf19defdaa"/>
 				<textElement>
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
