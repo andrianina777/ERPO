@@ -4,6 +4,7 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -173,6 +174,20 @@ CommandeRepository commandeRepository;
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Transfer failed: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/encoursprep")
+    public ResponseEntity<List<EnCoursCMD>> listEnCoursPrepa(@RequestParam(required = true) Integer prepspecif,@RequestParam(required = true) Integer isVisible, @RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
+        try {
+            List<EnCoursCMD> cmd = commandeRepository.listEnCoursPrepa(prepspecif,isVisible,dateliv);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

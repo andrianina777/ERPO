@@ -3,6 +3,7 @@ package com.opham.prepa.model.Apreparer;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -28,9 +29,8 @@ public class Commande implements Serializable {
     private int province;
     private int garde;
     private int nbLigne;
-
     private int ao;
-    private Date date_prevue_liv;
+    private Timestamp date_prevue_liv;
     private int spec_cc;
     private Date date_sortie_magasin;
     private int duree_mag_restant;

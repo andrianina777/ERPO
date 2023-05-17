@@ -3,6 +3,7 @@ package com.opham.prepa.repository.Apreparer;
 import com.opham.prepa.Utils.Convert;
 import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Apreparer.InfoCmdMapper;
+import com.opham.prepa.mapper.EnPreparation.EnCoursCmdMapper;
 import com.opham.prepa.mapper.genererBP.ArticleCmdMapper;
 import com.opham.prepa.mapper.genererBP.DepotCmdMapper;
 import com.opham.prepa.mapper.genererBP.ListeCmdMapper;
@@ -13,6 +14,7 @@ import com.opham.prepa.mapper.Apreparer.LigneCommandeMapper;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.genererBP.ArticleCmd;
 import com.opham.prepa.model.genererBP.DepotCmd;
 import com.opham.prepa.model.genererBP.ListeCmd;
@@ -54,6 +56,12 @@ public class JdbcCommandeRepository implements CommandeRepository{
     public List<Commande> findByDate(String groupe, java.util.Date dateliv) {
         return jdbcTemplate.query("exec x_Atte_Prepa_Partiel2_test ?,?",
                 new CommandeMapper(), groupe,dateliv);
+    }
+
+    @Override
+    public List<EnCoursCMD> listEnCoursPrepa(int prepspecif,int isVisible, java.util.Date dateliv) {
+        return jdbcTemplate.query("exec v_x_CC_Preparation_Partiel2 ?,?,?",
+                new EnCoursCmdMapper(), prepspecif,isVisible,dateliv);
     }
 
     public List<LigneCommande> findLigneCmdebyCode(String code) {

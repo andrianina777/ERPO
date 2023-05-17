@@ -25,7 +25,7 @@ public class CommandeMapper implements RowMapper<Commande> {
         cmd.setGarde(rs.getInt("GARDE"));
         cmd.setNbLigne(rs.getInt("NB_LIGNE"));
         cmd.setAo(rs.getInt("AO"));
-        cmd.setDate_prevue_liv(rs.getDate("DATELIV_PREVU"));
+        cmd.setDate_prevue_liv(rs.getTimestamp("DATELIV_PREVU"));
         cmd.setSpec_cc(rs.getInt("CC2SPEC"));
         cmd.setDate_sortie_magasin(rs.getDate("SORTIE_MAGASIN_PREVUE"));
         cmd.setDuree_mag_restant(rs.getInt("MAG_RESTANT"));
