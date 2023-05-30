@@ -15,6 +15,7 @@ import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
+import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ArticleCmd;
 import com.opham.prepa.model.genererBP.DepotCmd;
 import com.opham.prepa.model.genererBP.ListeCmd;
@@ -23,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -38,18 +40,47 @@ import java.util.*;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
+import com.opham.prepa.Utils.DataSourceConfig;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class JdbcCommandeRepository implements CommandeRepository{
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    private final JdbcTemplate jdbcTemplate;
+   // private final DynamicDataSourceConfig dynamicDataSourceConfig;
+    private final DataSourceConfig dataSourceConfig;
 
     @Autowired
-     JdbcTemplate jdbcTemplate;
+    public JdbcCommandeRepository(JdbcTemplate jdbcTemplate, DataSourceConfig dataSourceConfig) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.dataSourceConfig = dataSourceConfig;
+    }
 
     @Override
     public List<Commande> findAll() {
         return jdbcTemplate.query("exec x_Atte_Prepa_Partiel3 ",
                 new CommandeMapper());
+    }
+
+    @Override
+    public boolean checkCredentials(Credentials credentials) {
+        DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
+        jdbcTemplate.setDataSource(dataSource);
+
+        String sql = "SELECT COUNT(*) FROM FAR";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+        return count != null && count > 0 ;
+              //  && credentials.isPasswordValid(credentials.getPassword());
     }
 
     @Override

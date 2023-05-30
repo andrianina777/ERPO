@@ -5,6 +5,7 @@ import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
+import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ import java.util.Map;
 @RequestMapping("/api")
 
 public class CommandeController  {
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
 @Autowired
 CommandeRepository commandeRepository;
@@ -188,6 +191,28 @@ CommandeRepository commandeRepository;
             return new ResponseEntity<>(cmd, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+//    @PostMapping("/login")
+//    public String login(@RequestParam String username, @RequestParam String password) {
+//        boolean isValidCredentials = commandeRepository.checkCredentials(username, password);
+//
+//        if (isValidCredentials) {
+//            return "Connexion réussie !";
+//        } else {
+//            return "Échec de la connexion.";
+//        }
+//    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Credentials credentials) {
+        boolean isValidCredentials = commandeRepository.checkCredentials(credentials);
+
+        if (isValidCredentials) {
+            return ResponseEntity.ok("Connexion réussie !");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Échec de la connexion.");
         }
     }
 }

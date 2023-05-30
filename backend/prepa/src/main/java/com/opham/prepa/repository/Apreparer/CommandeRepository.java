@@ -5,6 +5,7 @@ import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
+import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ListeCmd;
 
 import java.util.Date;
@@ -46,6 +47,7 @@ public interface CommandeRepository {
     void atteTransfert(String code_CC, int xSeq);
 
     List<EnCoursCMD> listEnCoursPrepa(int prepspecif,int isVisible,Date dateliv);
+    boolean checkCredentials(Credentials credentials);
 
 
 }
