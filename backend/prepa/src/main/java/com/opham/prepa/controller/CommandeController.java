@@ -35,7 +35,7 @@ public class CommandeController  {
 CommandeRepository commandeRepository;
 
     @GetMapping("/prep")
-    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
+    public ResponseEntity<List<Commande>> findByDate(@RequestParam(required = false,defaultValue="DETAIL") String groupe,@RequestParam(required = false,defaultValue="") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateliv ) {
         try {
             List<Commande> cmd = commandeRepository.findByDate(groupe,dateliv);
 
@@ -51,7 +51,7 @@ CommandeRepository commandeRepository;
     @GetMapping("/lignecmd")
     public ResponseEntity<List<LigneCommande>> findLigneCmdebyCode(@RequestParam(required = true) String code ) {
         try {
-            List<LigneCommande> cmd = commandeRepository.findLigneCmdebyCode(code);
+                    List<LigneCommande> cmd = commandeRepository.findLigneCmdebyCode(code);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -63,7 +63,7 @@ CommandeRepository commandeRepository;
     }
 
     @GetMapping("/listDetailPrepa")
-    public ResponseEntity<List<DetailPrep>> listDetailPrepa(@RequestParam(required = true) String code ) {
+    public ResponseEntity<List<DetailPrep>> listDetailPrepa(@RequestParam(required = true) String code) {
         try {
             List<DetailPrep> cmd = commandeRepository.listDetailBP(code);
 
@@ -171,13 +171,24 @@ CommandeRepository commandeRepository;
 
     @PostMapping("/atteTransfert")
     public ResponseEntity<String> atteTransfert(@RequestParam String code_CC, @RequestParam Integer xSeq) {
-        try {
-            commandeRepository.atteTransfert(code_CC, xSeq);
-            return ResponseEntity.ok("Transfer successful");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Transfer failed: " + e.getMessage());
+        int updatedRows = commandeRepository.atteTransfert(code_CC, xSeq);
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("/resumeT")
+    public ResponseEntity<String> updateCCResume(@RequestParam  String codeCC) {
+        commandeRepository.updateCCResume(codeCC);
+        return ResponseEntity.status(HttpStatus.OK).body("CCRESUME updated successfully.");
+    }
+
+    @PutMapping("/updateFrais")
+    public ResponseEntity<String> updateFrais(@RequestParam  String codeCC) {
+        commandeRepository.updateFrais(codeCC);
+        return ResponseEntity.status(HttpStatus.OK).body("cmd frais updated successfully.");
     }
 
     @GetMapping("/encoursprep")

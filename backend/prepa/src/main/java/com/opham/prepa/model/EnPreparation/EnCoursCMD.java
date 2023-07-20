@@ -38,6 +38,7 @@ public class EnCoursCMD implements Serializable {
     private String situation_exp;
     private String axe;
     private String valeur;
+    private String code_traite;
 
 
 }

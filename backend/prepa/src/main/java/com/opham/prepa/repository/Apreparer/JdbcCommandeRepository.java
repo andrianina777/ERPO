@@ -85,13 +85,13 @@ public class JdbcCommandeRepository implements CommandeRepository{
 
     @Override
     public List<Commande> findByDate(String groupe, java.util.Date dateliv) {
-        return jdbcTemplate.query("exec x_Atte_Prepa_Partiel2_test ?,?",
+        return jdbcTemplate.query("exec v_x_Atte_Prepa_Partiel ?,?",
                 new CommandeMapper(), groupe,dateliv);
     }
 
     @Override
     public List<EnCoursCMD> listEnCoursPrepa(int prepspecif,int isVisible, java.util.Date dateliv) {
-        return jdbcTemplate.query("exec v_x_CC_Preparation_Partiel2 ?,?,?",
+        return jdbcTemplate.query("exec v_x_CC_Preparation_Partiel ?,?,?",
                 new EnCoursCmdMapper(), prepspecif,isVisible,dateliv);
     }
 
@@ -130,9 +130,21 @@ public class JdbcCommandeRepository implements CommandeRepository{
     }
 
     @Override
-    public void atteTransfert(String code_CC,int xSeq) {
+    public int atteTransfert(String code_CC,int xSeq) {
         String sql = "exec v_bp_updateAtteTransfert ?, ?";
-         jdbcTemplate.update(sql, new Object[] { code_CC,xSeq });
+        return jdbcTemplate.update(sql, code_CC,xSeq);
+    }
+
+    @Override
+    public void updateCCResume(String codeCC) {
+        String sql = "update FCC set CCRESUME=(isnull(CCRESUME,''))||'*T*' where CCCODE=? and upper(CCRESUME) not like '%*T*%'";
+        jdbcTemplate.update(sql, codeCC);
+    }
+
+    @Override
+    public void updateFrais(String codeCC) {
+        String sql = "update FCC set CCDATEECH2=getdate(),CCDATEECH3=getdate(),CCDATEECH4=getdate(),CCDATEECH1=getdate(),CCPREPSPECIF=3 where CCCODE=?";
+        jdbcTemplate.update(sql, codeCC);
     }
 
     @Override

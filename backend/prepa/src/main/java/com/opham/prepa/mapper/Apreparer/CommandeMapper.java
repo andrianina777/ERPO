@@ -36,6 +36,7 @@ public class CommandeMapper implements RowMapper<Commande> {
         cmd.setAxe(rs.getString("CC2AXE"));
         cmd.setNb_BP(rs.getInt("NB_BP"));
         cmd.setValeur(rs.getString("CLVALEUR"));
+        cmd.setCode_traite(rs.getString("CODE_TRAITE"));
         return cmd;
     }
 }

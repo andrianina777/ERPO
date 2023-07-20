@@ -1,9 +1,6 @@
 package com.opham.prepa.repository.Utils;
 
-import com.opham.prepa.model.Utils.Alerte;
-import com.opham.prepa.model.Utils.Axe;
-import com.opham.prepa.model.Utils.Enumeration;
-import com.opham.prepa.model.Utils.Etape;
+import com.opham.prepa.model.Utils.*;
 
 import java.util.List;
 
@@ -15,5 +12,7 @@ public interface ComboRepository {
 
     Alerte getAlerte(String code);
     Etape getEtape();
+    Lock getLock(String xTable,String xCode,int isClose);
+
 
 }

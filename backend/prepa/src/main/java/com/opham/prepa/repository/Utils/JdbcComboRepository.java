@@ -2,12 +2,10 @@ package com.opham.prepa.repository.Utils;
 
 import com.opham.prepa.Utils.DataSourceConfig;
 import com.opham.prepa.Utils.DynamicDataSourceConfig;
-import com.opham.prepa.mapper.Utlis.AlerteMapper;
-import com.opham.prepa.mapper.Utlis.AxeMapper;
-import com.opham.prepa.mapper.Utlis.EnumerationMapper;
-import com.opham.prepa.mapper.Utlis.EtapeMapper;
+import com.opham.prepa.mapper.Utlis.*;
 import com.opham.prepa.model.Utils.Alerte;
 import com.opham.prepa.model.Utils.Etape;
+import com.opham.prepa.model.Utils.Lock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -53,5 +51,11 @@ public class JdbcComboRepository implements ComboRepository {
                         "count(case when ETAPE='En cours Ctrl' then 1 end) as EncoursCtrl,\n" +
                         "count(case when ETAPE in ('Emballage','Atte Facture') then 1 end) as Emballage from x_CC_ANNUEL where DATE_COMMANDE>='2023/01/01'",
                 new Object[] {  } , new EtapeMapper());
+    }
+
+    @Override
+    public Lock getLock( String xTable,String xCode,int isClose) {
+        return jdbcTemplate.queryForObject("exec v_bp_lock ?,?,?"
+                 , new LockMapper(),xTable,xCode,isClose);
     }
 }

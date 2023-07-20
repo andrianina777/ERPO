@@ -38,6 +38,7 @@ public class EnCoursCmdMapper implements RowMapper<EnCoursCMD> {
         cmd.setSituation_exp(rs.getString("SITUATION_EXP"));
         cmd.setAxe(rs.getString("CC2AXE"));
         cmd.setValeur(rs.getString("CLVALEUR"));
+        cmd.setCode_traite(rs.getString("CODE_TRAITE"));
         return cmd;
     }
 }

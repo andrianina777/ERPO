@@ -1,10 +1,7 @@
 package com.opham.prepa.controller;
 
 import com.opham.prepa.model.Apreparer.InfoCommande;
-import com.opham.prepa.model.Utils.Alerte;
-import com.opham.prepa.model.Utils.Axe;
-import com.opham.prepa.model.Utils.Enumeration;
-import com.opham.prepa.model.Utils.Etape;
+import com.opham.prepa.model.Utils.*;
 import com.opham.prepa.repository.Utils.ComboRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,6 +71,16 @@ public class ComboController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/lock")
+    public ResponseEntity<Lock> getLock(@RequestParam(required = true) String xTable,@RequestParam(required = true) String xCode,@RequestParam(required = true) int  isClose ) {
+        Lock lock = comboRepository.getLock(xTable,xCode,isClose);
+        if (lock !=null) {
+            return new ResponseEntity<>(lock, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 

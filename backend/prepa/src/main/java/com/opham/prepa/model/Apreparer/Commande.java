@@ -41,6 +41,7 @@ public class Commande implements Serializable {
     private String axe;
     private int nb_BP;
     private String valeur;
+    private String code_traite;
 
 
 }
