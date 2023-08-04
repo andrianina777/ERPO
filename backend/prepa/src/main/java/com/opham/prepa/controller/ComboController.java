@@ -1,6 +1,8 @@
 package com.opham.prepa.controller;
 
+import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
+import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.Utils.*;
 import com.opham.prepa.repository.Utils.ComboRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000","http://192.168.201.13:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH})
 @RequestMapping("/api")
 public class ComboController {
 
@@ -49,7 +51,7 @@ public class ComboController {
     @GetMapping("/timing")
     public ResponseEntity<Alerte> getAlerte(@RequestParam(required = true) String code ) {
         try {
-            Alerte cmd = comboRepository.getAlerte(code);
+              Alerte cmd = comboRepository.getAlerte(code);
 
             if (cmd!=null) {
                 return new ResponseEntity<>(cmd, HttpStatus.OK);
@@ -83,6 +85,34 @@ public class ComboController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+    @GetMapping("/droit")
+    public ResponseEntity<Droit> getDroid(@RequestParam(required = true) String xUser,@RequestParam(required = true) String access ) {
+        try {
+            Droit cmd = comboRepository.getDoit(xUser,access);
+
+            if (cmd!=null) {
+                return new ResponseEntity<>(cmd, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/listDroit")
+    public ResponseEntity<List<Droit>> listDoit(@RequestParam(required = true) String xUser) {
+        try {
+            List<Droit> cmd = comboRepository.listDoit(xUser);
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 
 }

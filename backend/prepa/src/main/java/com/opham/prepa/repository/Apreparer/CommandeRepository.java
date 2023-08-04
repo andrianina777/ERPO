@@ -47,8 +47,10 @@ public interface CommandeRepository {
     int atteTransfert(String code_CC, int xSeq);
 
     List<EnCoursCMD> listEnCoursPrepa(int prepspecif,int isVisible,Date dateliv);
-    boolean checkCredentials(Credentials credentials);
+    Credentials checkCredentials(Credentials credentials);
     void updateCCResume(String codeCC);
     void updateFrais(String codeCC);
+
+
 
 }

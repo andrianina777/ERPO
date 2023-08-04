@@ -5,11 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Credentials implements Serializable {
-    private String username;
-    private String password;
+public class Droit implements Serializable {
+    private int lire;
+    private int write;
+    private String groupe;
+    private String user;
+    private String descAcces;
+
 }

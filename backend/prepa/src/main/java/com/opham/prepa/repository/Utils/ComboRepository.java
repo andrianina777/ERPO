@@ -14,5 +14,7 @@ public interface ComboRepository {
     Etape getEtape();
     Lock getLock(String xTable,String xCode,int isClose);
 
+    Droit getDoit(String xUser,String access);
 
+    List<Droit> listDoit(String xUser);
 }

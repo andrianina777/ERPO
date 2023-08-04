@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="SYBASE_OPHAM">
-  <database-model serializer="dbm" dbms="SYBASE" family-id="SYBASE" format-version="4.45">
-    <root id="1">
-      <ServerVersion>12.5.4</ServerVersion>
-    </root>
+  <database-model serializer="dbm" dbms="SYBASE" family-id="SYBASE" format-version="4.48">
+    <root id="1"/>
     <database id="2" parent="1" name="AMC"/>
     <database id="3" parent="1" name="Compta_08"/>
     <database id="4" parent="1" name="Compta_09"/>

@@ -10,20 +10,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Utlis/LockMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Utils/Lock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Utlis/DroitMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Utils/Droit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8df8a6de-6230-4cba-9545-f2f116c07566.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8df8a6de-6230-4cba-9545-f2f116c07566.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5dce589-9a11-464a-a1ed-c84a130772ed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5dce589-9a11-464a-a1ed-c84a130772ed.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prepa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/prepa.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/PrepaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/PrepaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/Utils/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/Utils/DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/Utils/DynamicDataSourceConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/Utils/SecurityConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/ComboController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/ComboController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/CommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Apreparer/CommandeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Apreparer/CommandeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/EnPreparation/EnCoursCmdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/EnPreparation/EnCoursCmdMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Apreparer/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Apreparer/Commande.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/EnPreparation/EnCoursCMD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/EnPreparation/EnCoursCMD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Utils/Credentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Utils/Credentials.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/CommandeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/ComboRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/ComboRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcComboRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcComboRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/opham/prepa/PrepaApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/opham/prepa/PrepaApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/opham/prepa/PrepaApplication$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/opham/prepa/PrepaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/opham/prepa/PrepaApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/opham/prepa/controller/CommandeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/opham/prepa/PrepaApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,16 +77,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/opham/prepa/report" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dialy/IdeaProjects/ERPO/backend/prepa&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;22055ccd08151c946512945f21da674e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/opham/prepa/report" />
@@ -80,17 +103,20 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/opham/prepa" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.opham.prepa.Utils" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.opham.prepa" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="PrepaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="20" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ENABLE_JMX_AGENT" value="false" />
       <module name="prepa" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.opham.prepa.PrepaApplication" />
-      <option name="ENABLE_JMX_AGENT" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="/Library/Java/JavaVirtualMachines/jdk-11.0.12.jdk/Contents/Home" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -188,6 +214,21 @@
       <workItem from="1689656776592" duration="5719000" />
       <workItem from="1689743218638" duration="1545000" />
       <workItem from="1689829165589" duration="772000" />
+      <workItem from="1689844376201" duration="3533000" />
+      <workItem from="1689919852729" duration="65000" />
+      <workItem from="1689922516797" duration="3775000" />
+      <workItem from="1690177174018" duration="8151000" />
+      <workItem from="1690263947901" duration="6672000" />
+      <workItem from="1690274199963" duration="9130000" />
+      <workItem from="1690347696206" duration="8976000" />
+      <workItem from="1690437465776" duration="4650000" />
+      <workItem from="1690458536784" duration="2552000" />
+      <workItem from="1690525998020" duration="4306000" />
+      <workItem from="1690780198645" duration="2890000" />
+      <workItem from="1690867020980" duration="15352000" />
+      <workItem from="1690952030940" duration="4263000" />
+      <workItem from="1691039129697" duration="5563000" />
+      <workItem from="1691125493397" duration="492000" />
     </task>
     <servers />
   </component>
@@ -204,7 +245,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

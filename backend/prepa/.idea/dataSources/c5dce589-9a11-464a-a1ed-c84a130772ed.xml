@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Equagestion@192.168.130.221">
-  <database-model serializer="dbm" dbms="SYBASE" family-id="SYBASE" format-version="4.45">
-    <root id="1">
-      <ServerVersion>12.5.4</ServerVersion>
-    </root>
+  <database-model serializer="dbm" dbms="SYBASE" family-id="SYBASE" format-version="4.48">
+    <root id="1"/>
     <database id="2" parent="1" name="AMC"/>
     <database id="3" parent="1" name="Compta_08"/>
     <database id="4" parent="1" name="Compta_09"/>
@@ -42270,17 +42268,17 @@ TBALIGNE</ColNames>
       <DasType>datetime(23,3)|93s</DasType>
       <Position>9</Position>
     </column>
-    <index id="12277" parent="2322" name="chefp">
-      <ColNames>TBAECH</ColNames>
-    </index>
-    <index id="12278" parent="2322" name="code">
-      <ColNames>TBAECODE</ColNames>
-    </index>
-    <index id="12279" parent="2322" name="photo">
+    <index id="12277" parent="2322" name="photo">
       <ColNames>TBAEPS</ColNames>
     </index>
-    <index id="12280" parent="2322" name="seq">
+    <index id="12278" parent="2322" name="seq">
       <ColNames>TBAESEQ</ColNames>
+    </index>
+    <index id="12279" parent="2322" name="chefp">
+      <ColNames>TBAECH</ColNames>
+    </index>
+    <index id="12280" parent="2322" name="code">
+      <ColNames>TBAECODE</ColNames>
     </index>
     <column id="12281" parent="2323" name="TBGCDE">
       <DasType>numeric(14,2)|2s</DasType>

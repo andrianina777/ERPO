@@ -26,7 +26,7 @@ public class PrepaApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000","http://192.168.130.64:3000","http://192.168.130.69:8083")
+                registry.addMapping("/**").allowedOrigins("http://localhost:3000","http://192.168.130.64:3000","http://192.168.201.13:3000")
                         .allowedMethods("GET", "POST", "PUT", "DELETE","PATCH","HEAD")
                         .allowCredentials(true)
                         .allowedHeaders("Authorization","Cache-Control","Content-Type")

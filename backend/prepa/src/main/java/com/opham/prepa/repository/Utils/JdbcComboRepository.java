@@ -1,9 +1,10 @@
 package com.opham.prepa.repository.Utils;
 
 import com.opham.prepa.Utils.DataSourceConfig;
-import com.opham.prepa.Utils.DynamicDataSourceConfig;
+import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Utlis.*;
 import com.opham.prepa.model.Utils.Alerte;
+import com.opham.prepa.model.Utils.Droit;
 import com.opham.prepa.model.Utils.Etape;
 import com.opham.prepa.model.Utils.Lock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class JdbcComboRepository implements ComboRepository {
     @Autowired
     public JdbcComboRepository(JdbcTemplate jdbcTemplate , DataSourceConfig dataSourceConfig) {
         this.jdbcTemplate = jdbcTemplate;
-        this.dataSourceConfig = dataSourceConfig;
+       this.dataSourceConfig = dataSourceConfig;
     }
 
     @Override
@@ -57,5 +58,18 @@ public class JdbcComboRepository implements ComboRepository {
     public Lock getLock( String xTable,String xCode,int isClose) {
         return jdbcTemplate.queryForObject("exec v_bp_lock ?,?,?"
                  , new LockMapper(),xTable,xCode,isClose);
+    }
+
+    @Override
+    public Droit getDoit(String xUser, String access) {
+        return jdbcTemplate.queryForObject("exec v_bp_getDroit ?,?",
+                 new DroitMapper(),xUser,access);
+    }
+
+    @Override
+    public List<Droit> listDoit(String xUser) {
+        return jdbcTemplate.query("select isnull(rtrim(xGroupeCode),'') as CodeGroupe,isnull(xRead,0) as LIRE,isnull(xWrite,0) as WRITE,isnull(rtrim(xUser),'') as xUser ,isnull(rtrim(xDroit),'') as xDroit from v_xGroupeUsers  \n" +
+                        "left join v_xGroupe on rtrim(xGroupeCode)=rtrim(xCode) left join v_xDroit on  rtrim(xGroupe)=rtrim(xGroupeCode) where  rtrim(xUser)=? ",
+                new DroitMapper(), xUser);
     }
 }

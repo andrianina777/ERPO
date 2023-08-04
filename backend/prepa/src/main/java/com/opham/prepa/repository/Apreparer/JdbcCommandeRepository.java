@@ -46,15 +46,12 @@ import com.opham.prepa.Utils.DataSourceConfig;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class JdbcCommandeRepository implements CommandeRepository{
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
     private final JdbcTemplate jdbcTemplate;
    // private final DynamicDataSourceConfig dynamicDataSourceConfig;
@@ -63,7 +60,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
     @Autowired
     public JdbcCommandeRepository(JdbcTemplate jdbcTemplate, DataSourceConfig dataSourceConfig) {
         this.jdbcTemplate = jdbcTemplate;
-        this.dataSourceConfig = dataSourceConfig;
+       this.dataSourceConfig = dataSourceConfig;
     }
 
     @Override
@@ -73,13 +70,18 @@ public class JdbcCommandeRepository implements CommandeRepository{
     }
 
     @Override
-    public boolean checkCredentials(Credentials credentials) {
-        DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
+    public Credentials checkCredentials(Credentials credentials) {
+        //DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
+        DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
         jdbcTemplate.setDataSource(dataSource);
 
         String sql = "SELECT COUNT(*) FROM FAR";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-        return count != null && count > 0 ;
+        if (count != null && count > 0) {
+            return credentials;
+        } else {
+            return null;
+        }
               //  && credentials.isPasswordValid(credentials.getPassword());
     }
 
