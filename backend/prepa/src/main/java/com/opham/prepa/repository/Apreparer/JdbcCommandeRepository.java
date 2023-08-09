@@ -1,6 +1,7 @@
 package com.opham.prepa.repository.Apreparer;
 
 import com.opham.prepa.Utils.Convert;
+import com.opham.prepa.Utils.FileParser;
 import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Apreparer.InfoCmdMapper;
 import com.opham.prepa.mapper.EnPreparation.EnCoursCmdMapper;
@@ -72,7 +73,11 @@ public class JdbcCommandeRepository implements CommandeRepository{
     @Override
     public Credentials checkCredentials(Credentials credentials) {
         //DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
-        DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
+        String name = credentials.getName_server();
+        String filepath = "src/main/java/com/opham/prepa/file/interfaces";
+        FileParser fileParser = new FileParser();
+        String ip = fileParser.recupererIP(name, filepath);
+        DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(),ip);
         jdbcTemplate.setDataSource(dataSource);
 
         String sql = "SELECT COUNT(*) FROM FAR";

@@ -1,5 +1,6 @@
 package com.opham.prepa.controller;
 
+import com.opham.prepa.Utils.FileParser;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
@@ -113,6 +116,29 @@ public class ComboController {
         }
     }
 
+    @GetMapping("/listServer")
+    public ResponseEntity<List<String>> listNames() {
+        try {
+ /*           InputStream inputStream = getClass().getClassLoader().getResourceAsStream("../file/interfaces");
+
+            if (inputStream == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }*/
+
+            FileParser fileParser = new FileParser();
+
+            List<String> names = fileParser.extractNames("src/main/java/com/opham/prepa/file/interfaces");
+
+            if (names.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(names, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }
