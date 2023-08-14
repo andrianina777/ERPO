@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 //
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000", "http://192.168.201.13:3000"}, methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000", "http://192.168.201.13:3000","http://192.168.201.212:3000"}, methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PATCH})
 @RequestMapping("/api")
 
 public class CommandeController {

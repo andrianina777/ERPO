@@ -12,6 +12,7 @@
     <groupId>com.opham</groupId>
     <artifactId>prepa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>prepa</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -32,6 +33,11 @@
 <!--            <artifactId>spring-boot-starter-security</artifactId>-->
 <!--            <version>3.0.4</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>

@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000","http://192.168.201.13:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000","http://192.168.201.13:3000","http://192.168.201.212:3000"},methods = {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PATCH})
 @RequestMapping("/api")
 public class ComboController {
 
@@ -127,7 +127,7 @@ public class ComboController {
 
             FileParser fileParser = new FileParser();
 
-            List<String> names = fileParser.extractNames("src/main/java/com/opham/prepa/file/interfaces");
+            List<String> names = fileParser.extractNames("interfaces");
 
             if (names.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

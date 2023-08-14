@@ -74,7 +74,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
     public Credentials checkCredentials(Credentials credentials) {
         //DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
         String name = credentials.getName_server();
-        String filepath = "src/main/java/com/opham/prepa/file/interfaces";
+        String filepath = "interfaces";
         FileParser fileParser = new FileParser();
         String ip = fileParser.recupererIP(name, filepath);
         DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(),ip);
