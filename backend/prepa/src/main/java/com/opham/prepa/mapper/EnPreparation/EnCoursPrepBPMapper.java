@@ -28,11 +28,12 @@ public class EnCoursPrepBPMapper  implements RowMapper<EnCoursPrepBP> {
         cmd.setSituation_Mag(rs.getString("SITUATION_MAG"));
         cmd.setCodeBP_traite(rs.getString("CODEBP_TRAITE"));
         cmd.setCodeCC_traite(rs.getString("CODECC_TRAITE"));
-        cmd.setURGENT(rs.getInt("URGENT"));
-        cmd.setA_PRENDRE(rs.getInt("A_PRENDRE"));
-        cmd.setPRIO(rs.getInt("PRIO"));
-        cmd.setGARDE(rs.getInt("GARDE"));
-        cmd.setAO(rs.getInt("AO"));
+        cmd.setUrgent(rs.getInt("URGENT"));
+        cmd.setAprendre(rs.getInt("A_PRENDRE"));
+        cmd.setPrioritaire(rs.getInt("PRIO"));
+        cmd.setGarde(rs.getInt("GARDE"));
+        cmd.setProvince(rs.getInt("TANA"));
+        cmd.setAo(rs.getInt("AO"));
         cmd.setValeur(rs.getString("CLVALEUR"));
 
         return cmd;

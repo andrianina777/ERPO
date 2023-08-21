@@ -27,12 +27,13 @@ public class EnCoursPrepBP implements Serializable {
     private String situation_Mag;
     private String codeBP_traite;
     private String codeCC_traite;
-    private int URGENT;
-    private int A_PRENDRE;
-    private int PRIO;
-    private int GARDE;
-    private int AO;
+    private int urgent;
+    private int aprendre;
+    private int prioritaire;
+    private int garde;
+    private int ao;
     private String valeur;
+    private int province;
 
 
 }

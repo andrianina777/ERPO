@@ -456,7 +456,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="198" y="4" width="40" height="17" uuid="810ede46-43a4-40ee-9f90-1cb341665e31"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Monaco" size="12"/>
 				</textElement>
 				<text><![CDATA[__/__]]></text>
