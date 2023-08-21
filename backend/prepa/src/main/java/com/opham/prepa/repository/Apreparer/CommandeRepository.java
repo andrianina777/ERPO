@@ -5,6 +5,7 @@ import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
+import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
 import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ListeCmd;
 
@@ -12,14 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface CommandeRepository {
-  /*  int save(Commande book);
-
-    int update(Commande book);
-
-    Commande findById(Long id);
-
-    int deleteById(Long id);*/
-
     List<Commande> findAll();
 
     List<Commande> findByDate(String groupe, Date dateliv);
@@ -50,6 +43,9 @@ public interface CommandeRepository {
     Credentials checkCredentials(Credentials credentials);
     void updateCCResume(String codeCC);
     void updateFrais(String codeCC);
+
+    List<EnCoursPrepBP> listBPEncours(int etat);
+
 
 
 

@@ -116,6 +116,20 @@ public class ComboController {
         }
     }
 
+    @GetMapping("/listDepot")
+    public ResponseEntity<List<Depot>> listDepot(@RequestParam(required = true) String critaire) {
+        try {
+            List<Depot> cmd = comboRepository.listDepot(critaire);
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @GetMapping("/listServer")
     public ResponseEntity<List<String>> listNames() {
         try {

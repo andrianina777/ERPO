@@ -5,6 +5,7 @@ import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
+import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
 import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
@@ -253,6 +254,20 @@ public class CommandeController {
             return ResponseEntity.ok("Déconnexion réussie !");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Échec de la déconnexion.");
+        }
+    }
+
+    @GetMapping("/listEnCoursBP")
+    public ResponseEntity<List<EnCoursPrepBP>> listBPEncours(@RequestParam(required = true) int etat) {
+        try {
+            List<EnCoursPrepBP> cmd = commandeRepository.listBPEncours(etat);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

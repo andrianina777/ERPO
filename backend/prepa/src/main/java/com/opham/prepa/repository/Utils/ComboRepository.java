@@ -17,4 +17,6 @@ public interface ComboRepository {
     Droit getDoit(String xUser,String access);
 
     List<Droit> listDoit(String xUser);
+
+    List<Depot> listDepot(String critaire);
 }

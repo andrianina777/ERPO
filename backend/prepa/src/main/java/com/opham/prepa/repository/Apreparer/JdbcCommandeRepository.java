@@ -5,6 +5,7 @@ import com.opham.prepa.Utils.FileParser;
 import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Apreparer.InfoCmdMapper;
 import com.opham.prepa.mapper.EnPreparation.EnCoursCmdMapper;
+import com.opham.prepa.mapper.EnPreparation.EnCoursPrepBPMapper;
 import com.opham.prepa.mapper.genererBP.ArticleCmdMapper;
 import com.opham.prepa.mapper.genererBP.DepotCmdMapper;
 import com.opham.prepa.mapper.genererBP.ListeCmdMapper;
@@ -16,6 +17,7 @@ import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
+import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
 import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ArticleCmd;
 import com.opham.prepa.model.genererBP.DepotCmd;
@@ -268,5 +270,9 @@ public class JdbcCommandeRepository implements CommandeRepository{
         }
     }
 
-
+    @Override
+    public List<EnCoursPrepBP> listBPEncours(int etat) {
+        return jdbcTemplate.query("exec x_BP_EnCours_Magasin ?",
+                new EnCoursPrepBPMapper(), etat);
+    }
 }
