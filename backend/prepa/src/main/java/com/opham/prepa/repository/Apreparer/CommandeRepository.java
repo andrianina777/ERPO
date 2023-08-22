@@ -4,8 +4,10 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.EnPreparation.DetailBP;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
+import com.opham.prepa.model.EnPreparation.ListLigneBP;
 import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ListeCmd;
 
@@ -45,6 +47,10 @@ public interface CommandeRepository {
     void updateFrais(String codeCC);
 
     List<EnCoursPrepBP> listBPEncours(int etat);
+
+    List<ListLigneBP> listLigneBP(String BP);
+    List<DetailBP> detailBP(String BP);
+
 
 
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class EnCoursPrepBP implements Serializable {
     private String codeBP;
-    private String codeCC;
+    private String code;
     private Date date;
     private String depot;
     private String codeClient;

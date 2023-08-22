@@ -4,8 +4,10 @@ import com.opham.prepa.Utils.Convert;
 import com.opham.prepa.Utils.FileParser;
 import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Apreparer.InfoCmdMapper;
+import com.opham.prepa.mapper.EnPreparation.DetailBPMapper;
 import com.opham.prepa.mapper.EnPreparation.EnCoursCmdMapper;
 import com.opham.prepa.mapper.EnPreparation.EnCoursPrepBPMapper;
+import com.opham.prepa.mapper.EnPreparation.ListBPMapper;
 import com.opham.prepa.mapper.genererBP.ArticleCmdMapper;
 import com.opham.prepa.mapper.genererBP.DepotCmdMapper;
 import com.opham.prepa.mapper.genererBP.ListeCmdMapper;
@@ -16,42 +18,30 @@ import com.opham.prepa.mapper.Apreparer.LigneCommandeMapper;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.EnPreparation.DetailBP;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
+import com.opham.prepa.model.EnPreparation.ListLigneBP;
 import com.opham.prepa.model.Utils.Credentials;
-import com.opham.prepa.model.genererBP.ArticleCmd;
-import com.opham.prepa.model.genererBP.DepotCmd;
 import com.opham.prepa.model.genererBP.ListeCmd;
-import com.opham.prepa.model.genererBP.RayonCmd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
-import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.*;
-import org.springframework.util.ResourceUtils;
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.sql.*;
 import java.sql.Types;
 import java.util.*;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import com.opham.prepa.Utils.DataSourceConfig;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class JdbcCommandeRepository implements CommandeRepository{
@@ -274,5 +264,21 @@ public class JdbcCommandeRepository implements CommandeRepository{
     public List<EnCoursPrepBP> listBPEncours(int etat) {
         return jdbcTemplate.query("exec x_BP_EnCours_Magasin ?",
                 new EnCoursPrepBPMapper(), etat);
+    }
+
+    @Override
+    public List<ListLigneBP> listLigneBP(String BP) {
+        return jdbcTemplate.query("select BPLARTICLE as article,rtrim(ARLIB) as libelle,rtrim(STEMPLOT) as lot,NLOTDATEPER as datePer,BPLEMP as empl,Sum(BPLQTE) as QTE from FBPL left join FSTEMP on STEMPAR=BPLARTICLE and STEMPDEPOT=BPLDEPOT and STEMPLETTRE=BPLLETTRE\n" +
+                        "and BPLEMP=STEMPEMP\n" +
+                        "left join VIEW_FAR_TOUS on ARCODE=BPLARTICLE left join FNLOT on NLOTAR=BPLARTICLE and NLOTCODE=STEMPLOT where BPLCODE=?\n" +
+                        "group by BPLARTICLE,ARLIB,STEMPLOT,NLOTDATEPER,BPLEMP",
+                new ListBPMapper(), BP);
+    }
+
+    @Override
+    public List<DetailBP> detailBP(String BP) {
+        return jdbcTemplate.query("select  BPCODE,ETAT_BP,RAYON_PREPARATION,DEBUT_PREPA_RAYON,FIN_PREPA_RAYON,DUREE_PREPA_RAYON,AGENT_PREPA_RAYON,QTE_TOTAL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL,NB_COLIS \n" +
+                        "from VIEW_BP_DETAIL where BPCODE=? order by RAYON_PREPARATION",
+                new DetailBPMapper(), BP);
     }
 }

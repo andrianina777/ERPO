@@ -13,7 +13,7 @@ public class EnCoursPrepBPMapper  implements RowMapper<EnCoursPrepBP> {
     public EnCoursPrepBP mapRow(ResultSet rs, int rowNum) throws SQLException {
         EnCoursPrepBP cmd = new EnCoursPrepBP();
         cmd.setCodeBP(rs.getString("BPCODE"));
-        cmd.setCodeCC(rs.getString("BPCC"));
+        cmd.setCode(rs.getString("BPCC"));
         cmd.setDate(rs.getDate("BPDATE"));
         cmd.setDepot(rs.getString("BPDEPOT"));
         cmd.setCodeClient(rs.getString("BPCL"));

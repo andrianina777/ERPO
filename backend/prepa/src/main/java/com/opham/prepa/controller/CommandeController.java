@@ -4,8 +4,10 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Apreparer.DetailPrep;
 import com.opham.prepa.model.Apreparer.InfoCommande;
 import com.opham.prepa.model.Apreparer.LigneCommande;
+import com.opham.prepa.model.EnPreparation.DetailBP;
 import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
+import com.opham.prepa.model.EnPreparation.ListLigneBP;
 import com.opham.prepa.model.Utils.Credentials;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
@@ -17,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -261,6 +262,34 @@ public class CommandeController {
     public ResponseEntity<List<EnCoursPrepBP>> listBPEncours(@RequestParam(required = true) int etat) {
         try {
             List<EnCoursPrepBP> cmd = commandeRepository.listBPEncours(etat);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/listLigneBP")
+    public ResponseEntity<List<ListLigneBP>> listLigneBP(@RequestParam(required = true) String BP) {
+        try {
+            List<ListLigneBP> cmd = commandeRepository.listLigneBP(BP);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/detailBP")
+    public ResponseEntity<List<DetailBP>> detailBP(@RequestParam(required = true) String BP) {
+        try {
+            List<DetailBP> cmd = commandeRepository.detailBP(BP);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
