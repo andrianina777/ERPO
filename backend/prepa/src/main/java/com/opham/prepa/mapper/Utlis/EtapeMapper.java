@@ -17,6 +17,10 @@ public class EtapeMapper implements RowMapper<Etape> {
         etape.setAtteCtrl(rs.getInt("AtteCtrl"));
         etape.setEncoursCtrl(rs.getInt("EncoursCtrl"));
         etape.setEmballage(rs.getInt("Emballage"));
+        etape.setEncoursPrepBP(rs.getInt("ENCOURS_PREPA_BP"));
+        etape.setEncoursCtrlBP(rs.getInt("ENCOURS_CTRL_BP"));
+        etape.setAtteCtrlBP(rs.getInt("ATTE_CTRL_BP"));
+        etape.setFinCtrlBP(rs.getInt("FIN_CTRL_BP"));
         return etape;
     }
 }

@@ -42,11 +42,7 @@ public class JdbcComboRepository implements ComboRepository {
 
     @Override
     public Etape getEtape() {
-        return jdbcTemplate.queryForObject("select count(case when ETAPE='Attente Prep' then 1 end) as AttePrep,\n" +
-                        "count(case when ETAPE='En cours Prep' then 1 end) as EncoursPrep,\n" +
-                        "count(case when ETAPE='Attente Ctrl' then 1 end) as AtteCtrl,\n" +
-                        "count(case when ETAPE='En cours Ctrl' then 1 end) as EncoursCtrl,\n" +
-                        "count(case when ETAPE in ('Emballage','Atte Facture') then 1 end) as Emballage from x_CC_ANNUEL where DATE_COMMANDE>='2023/01/01'",
+        return jdbcTemplate.queryForObject(" exec v_bp_etape_badge",
                 new Object[]{}, new EtapeMapper());
     }
 

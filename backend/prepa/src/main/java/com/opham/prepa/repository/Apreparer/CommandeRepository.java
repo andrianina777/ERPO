@@ -51,6 +51,10 @@ public interface CommandeRepository {
     List<ListLigneBP> listLigneBP(String BP);
     List<DetailBP> detailBP(String BP);
 
+    List<DetailBP> detailBPCTRL(String BP);
+
+    EnCoursPrepBP infoEncoursBP(String BP);
+
 
 
 

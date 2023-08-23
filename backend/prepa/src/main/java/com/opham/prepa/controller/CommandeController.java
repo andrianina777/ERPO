@@ -9,6 +9,7 @@ import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
 import com.opham.prepa.model.EnPreparation.ListLigneBP;
 import com.opham.prepa.model.Utils.Credentials;
+import com.opham.prepa.model.Utils.Droit;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Apreparer.CommandeRepository;
 import jakarta.servlet.http.HttpSession;
@@ -29,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 //
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000", "http://192.168.201.13:3000","http://192.168.201.212:3000"}, methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PATCH})
+@CrossOrigin(origins = {"http://localhost:3000", "http://192.168.130.64:3000", "http://192.168.201.13:3000","http://192.168.130.69:8081"}, methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PATCH})
 @RequestMapping("/api")
 
 public class CommandeController {
@@ -295,6 +296,33 @@ public class CommandeController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/detailBPCTRL")
+    public ResponseEntity<List<DetailBP>> detailBPCTRL(@RequestParam(required = true) String BP) {
+        try {
+            List<DetailBP> cmd = commandeRepository.detailBPCTRL(BP);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/infoEncoursBP")
+    public ResponseEntity<EnCoursPrepBP> infoEncoursBP(@RequestParam(required = true) String BP ) {
+        try {
+            EnCoursPrepBP cmd = commandeRepository.infoEncoursBP(BP);
+
+            if (cmd!=null) {
+                return new ResponseEntity<>(cmd, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

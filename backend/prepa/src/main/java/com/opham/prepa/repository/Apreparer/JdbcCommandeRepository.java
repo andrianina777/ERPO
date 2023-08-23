@@ -4,10 +4,8 @@ import com.opham.prepa.Utils.Convert;
 import com.opham.prepa.Utils.FileParser;
 import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Apreparer.InfoCmdMapper;
-import com.opham.prepa.mapper.EnPreparation.DetailBPMapper;
-import com.opham.prepa.mapper.EnPreparation.EnCoursCmdMapper;
-import com.opham.prepa.mapper.EnPreparation.EnCoursPrepBPMapper;
-import com.opham.prepa.mapper.EnPreparation.ListBPMapper;
+import com.opham.prepa.mapper.EnPreparation.*;
+import com.opham.prepa.mapper.Utlis.EtapeMapper;
 import com.opham.prepa.mapper.genererBP.ArticleCmdMapper;
 import com.opham.prepa.mapper.genererBP.DepotCmdMapper;
 import com.opham.prepa.mapper.genererBP.ListeCmdMapper;
@@ -23,6 +21,7 @@ import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.EnPreparation.EnCoursPrepBP;
 import com.opham.prepa.model.EnPreparation.ListLigneBP;
 import com.opham.prepa.model.Utils.Credentials;
+import com.opham.prepa.model.Utils.Etape;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,20 +39,21 @@ import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
+
 import org.springframework.dao.DataAccessException;
 import com.opham.prepa.Utils.DataSourceConfig;
 
 @Repository
-public class JdbcCommandeRepository implements CommandeRepository{
+public class JdbcCommandeRepository implements CommandeRepository {
 
     private final JdbcTemplate jdbcTemplate;
-   // private final DynamicDataSourceConfig dynamicDataSourceConfig;
+    // private final DynamicDataSourceConfig dynamicDataSourceConfig;
     private final DataSourceConfig dataSourceConfig;
 
     @Autowired
     public JdbcCommandeRepository(JdbcTemplate jdbcTemplate, DataSourceConfig dataSourceConfig) {
         this.jdbcTemplate = jdbcTemplate;
-       this.dataSourceConfig = dataSourceConfig;
+        this.dataSourceConfig = dataSourceConfig;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
         String filepath = "interfaces";
         FileParser fileParser = new FileParser();
         String ip = fileParser.recupererIP(name, filepath);
-        DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(),ip);
+        DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(), ip);
         jdbcTemplate.setDataSource(dataSource);
 
         String sql = "SELECT COUNT(*) FROM FAR";
@@ -79,19 +79,19 @@ public class JdbcCommandeRepository implements CommandeRepository{
         } else {
             return null;
         }
-              //  && credentials.isPasswordValid(credentials.getPassword());
+        //  && credentials.isPasswordValid(credentials.getPassword());
     }
 
     @Override
     public List<Commande> findByDate(String groupe, java.util.Date dateliv) {
         return jdbcTemplate.query("exec v_x_Atte_Prepa_Partiel ?,?",
-                new CommandeMapper(), groupe,dateliv);
+                new CommandeMapper(), groupe, dateliv);
     }
 
     @Override
-    public List<EnCoursCMD> listEnCoursPrepa(int prepspecif,int isVisible, java.util.Date dateliv) {
+    public List<EnCoursCMD> listEnCoursPrepa(int prepspecif, int isVisible, java.util.Date dateliv) {
         return jdbcTemplate.query("exec v_x_CC_Preparation_Partiel ?,?,?",
-                new EnCoursCmdMapper(), prepspecif,isVisible,dateliv);
+                new EnCoursCmdMapper(), prepspecif, isVisible, dateliv);
     }
 
     public List<LigneCommande> findLigneCmdebyCode(String code) {
@@ -111,27 +111,27 @@ public class JdbcCommandeRepository implements CommandeRepository{
     public InfoCommande plusInfoCmd(String code_CC) {
         return jdbcTemplate.queryForObject("select CCCODE as CODE_CC,CCNOM as NOM_CLIENT,CCADR1||CCADR2 as adresse,CC2AXE as axe,CC2DATELIV_PREVU as DATE_LIV,CCCOMMENTAIRES as coms_client,CCCOMMENTMAG as coms_mag,CLTEL||' | '||CLTEL2 as contact,CC2RAISONDATELIVPREV as raisonDateLiv,convert(date,CC2DATELIV_PREVU) as date_l,convert(time,CC2DATELIV_PREVU) as heure_l   from FCC \n" +
                         "inner join FCC2 on CC2CODE=CCCODE inner join FCL on CLCODE=CCCLIENT where CCCODE=?",
-                new Object[] { code_CC } , new InfoCmdMapper());
+                new Object[]{code_CC}, new InfoCmdMapper());
     }
 
     @Override
     public int updateInfoCmd(InfoCommande inf) {
         String sql = "exec v_bp_updateInfoCmd ?,?,?,?,?";
-        return jdbcTemplate.update(sql, inf.getComs_mag(),inf.getAxe(),inf.getDate_liv(),inf.getRaisonDateLiv(),inf.getCode_cc());
+        return jdbcTemplate.update(sql, inf.getComs_mag(), inf.getAxe(), inf.getDate_liv(), inf.getRaisonDateLiv(), inf.getCode_cc());
     }
 
 
     @Override
-    public String insert_BP(String ids,String code_CC,String depot) {
+    public String insert_BP(String ids, String code_CC, String depot) {
         String sql = "exec v_x_CreateBP ?, ?,?";
-        String result =  jdbcTemplate.queryForObject(sql, new Object[] { ids,code_CC,depot }, String.class);
+        String result = jdbcTemplate.queryForObject(sql, new Object[]{ids, code_CC, depot}, String.class);
         return result;
     }
 
     @Override
-    public int atteTransfert(String code_CC,int xSeq) {
+    public int atteTransfert(String code_CC, int xSeq) {
         String sql = "exec v_bp_updateAtteTransfert ?, ?";
-        return jdbcTemplate.update(sql, code_CC,xSeq);
+        return jdbcTemplate.update(sql, code_CC, xSeq);
     }
 
     @Override
@@ -153,23 +153,23 @@ public class JdbcCommandeRepository implements CommandeRepository{
                 "VALUES \n" +
                 "\t(?,?,?,?,?,?,?,? ,?,?,?,?,? ,?,? ,?,? ,?,?,? ,?,? ,?,? ,?,?,?,?,?,?,?,? ,?,? ,?,?,?,?,? ,?,?,?,?,?)";
 
-        return  jdbcTemplate.update(sql, lc.getArticle(),lc.getLettre(),lc.getDesignation(),lc.getLienCode(),lc.getLienNum(),
-                    lc.getQte(),lc.getUnitfact(),lc.getPrix_ht(),lc.getModeliv(),lc.getLignelibre(),lc.getTypeVente(),
-                    lc.getReglement(),lc.getEcheancesp(),lc.getAbs_qte(),lc.getFactman(),lc.getOffert(),lc.getArtype(),lc.getDevise(),
-                    lc.getCoursdev(),lc.getPrixht_dev(),lc.getTotht_dev(),lc.getRem1(),lc.getRem2(),lc.getRem3(),lc.getTotPrix_HT(),lc.getEmplacement(),
-                    lc.getAttachement(),lc.getLot(),lc.getArreffour(),lc.getCclmarche(),lc.getCcldate(),lc.getCclcolis(),lc.getArqtecolis(),lc.getCclpaht(),
-                    lc.getSeqLib(),lc.getComment_mag(),lc.getCclcolisage(),lc.getCclnbcolis(),
-                    lc.getCclpack(),lc.getRayon(),lc.getDepot(),lc.getCclpromo(),lc.getMyID(),lc.getLienCode());
+        return jdbcTemplate.update(sql, lc.getArticle(), lc.getLettre(), lc.getDesignation(), lc.getLienCode(), lc.getLienNum(),
+                lc.getQte(), lc.getUnitfact(), lc.getPrix_ht(), lc.getModeliv(), lc.getLignelibre(), lc.getTypeVente(),
+                lc.getReglement(), lc.getEcheancesp(), lc.getAbs_qte(), lc.getFactman(), lc.getOffert(), lc.getArtype(), lc.getDevise(),
+                lc.getCoursdev(), lc.getPrixht_dev(), lc.getTotht_dev(), lc.getRem1(), lc.getRem2(), lc.getRem3(), lc.getTotPrix_HT(), lc.getEmplacement(),
+                lc.getAttachement(), lc.getLot(), lc.getArreffour(), lc.getCclmarche(), lc.getCcldate(), lc.getCclcolis(), lc.getArqtecolis(), lc.getCclpaht(),
+                lc.getSeqLib(), lc.getComment_mag(), lc.getCclcolisage(), lc.getCclnbcolis(),
+                lc.getCclpack(), lc.getRayon(), lc.getDepot(), lc.getCclpromo(), lc.getMyID(), lc.getLienCode());
     }
 
     @Override
     public String getId() {
         String sql = "select newID()";
-        String result =  jdbcTemplate.queryForObject(sql, new Object[] { }, String.class);
+        String result = jdbcTemplate.queryForObject(sql, new Object[]{}, String.class);
         return result;
     }
 
-        @Override
+    @Override
     public List<List<Object>> genererBP(String code) {
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("BECCPREP_Liste_Depot")
@@ -211,7 +211,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
                     System.out.println(columnCount);
                     if (columnCount == 2) {
                         rowMapper = new DepotCmdMapper();
-                    } else if (columnCount ==3) {
+                    } else if (columnCount == 3) {
                         rowMapper = new ArticleCmdMapper();
                     } else if (columnCount == 4) {
                         rowMapper = new ListeCmdMapper();
@@ -239,7 +239,7 @@ public class JdbcCommandeRepository implements CommandeRepository{
 //            ClassPathResource jrxmlResource = new ClassPathResource("src/main/java/com/opham/prepa/report/prepaA5.jrxml");
 //            InputStream inputStream = jrxmlResource.getInputStream();
 
-            String hexes = Convert.decimalToHexadecimal(Integer.parseInt(codeBP.substring(2,10).concat("3")));
+            String hexes = Convert.decimalToHexadecimal(Integer.parseInt(codeBP.substring(2, 10).concat("3")));
             // Charger le rapport Jasper
 //            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(inputStream);
             JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(new FileInputStream("src/main/java/com/opham/prepa/report/prepaA5.jrxml"));
@@ -277,8 +277,19 @@ public class JdbcCommandeRepository implements CommandeRepository{
 
     @Override
     public List<DetailBP> detailBP(String BP) {
-        return jdbcTemplate.query("select  BPCODE,ETAT_BP,RAYON_PREPARATION,DEBUT_PREPA_RAYON,FIN_PREPA_RAYON,DUREE_PREPA_RAYON,AGENT_PREPA_RAYON,QTE_TOTAL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL,NB_COLIS \n" +
-                        "from VIEW_BP_DETAIL where BPCODE=? order by RAYON_PREPARATION",
+        return jdbcTemplate.query("select  BPCODE,ETAT_PREPA_RAYON,RAYON_PREPARATION,DEBUT_PREPA_RAYON,FIN_PREPA_RAYON,DUREE_PREPA_RAYON,AGENT_PREPA_RAYON,QTE_TOTAL from VIEW_BP_DETAIL where BPCODE=? order by RAYON_PREPARATION",
                 new DetailBPMapper(), BP);
+    }
+
+    @Override
+    public List<DetailBP> detailBPCTRL(String BP) {
+        return jdbcTemplate.query("select BPCODE,ETAT_CONTROL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL,sum(QTE_TOTAL) as QTE_TOTAL,NB_COLIS from VIEW_BP_DETAIL where BPCODE=? group by NB_COLIS,BPCODE,ETAT_CONTROL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL",
+                new DetailBPCTRLMapper(), BP);
+    }
+
+    @Override
+    public EnCoursPrepBP infoEncoursBP(String BP) {
+        return jdbcTemplate.queryForObject(" select BPCODE,ETAT_BP,xEmp from VIEW_BP_ENCOURS left join xEMP_CTRL  on xCC_Encours=BPCODE where BPCODE=?",
+                new InfoEncoursBPMapper(), BP);
     }
 }

@@ -14,5 +14,9 @@ public class Etape  implements Serializable {
     private  int AtteCtrl;
     private int EncoursCtrl;
     private int emballage;
+    private int encoursPrepBP;
+    private int atteCtrlBP;
+    private int encoursCtrlBP;
+    private int finCtrlBP;
 
 }
