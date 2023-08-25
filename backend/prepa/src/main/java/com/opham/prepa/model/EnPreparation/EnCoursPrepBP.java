@@ -34,6 +34,8 @@ public class EnCoursPrepBP implements Serializable {
     private int ao;
     private String valeur;
     private int province;
+    private String depuis_traite;
+
 
 
 }

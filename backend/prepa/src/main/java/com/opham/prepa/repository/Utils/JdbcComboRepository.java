@@ -36,7 +36,7 @@ public class JdbcComboRepository implements ComboRepository {
 
     @Override
     public Alerte getAlerte(String code) {
-        return jdbcTemplate.queryForObject("select code,val,Alerte from xTiming where rtrim(code) =rtrim(?)",
+        return jdbcTemplate.queryForObject("select rtrim(code) as code,val,Alerte from xTiming where rtrim(code) =rtrim(?)",
                 new Object[]{code}, new AlerteMapper());
     }
 

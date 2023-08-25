@@ -283,7 +283,7 @@ public class JdbcCommandeRepository implements CommandeRepository {
 
     @Override
     public List<DetailBP> detailBPCTRL(String BP) {
-        return jdbcTemplate.query("select BPCODE,ETAT_CONTROL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL,sum(QTE_TOTAL) as QTE_TOTAL,NB_COLIS from VIEW_BP_DETAIL where BPCODE=? group by NB_COLIS,BPCODE,ETAT_CONTROL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL",
+        return jdbcTemplate.query("select BPCODE,ETAT_CONTROL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL,sum(QTE_TOTAL) as QTE_TOTAL,NB_COLIS from VIEW_BP_DETAIL where BPCODE=? and isnull(CONTROLEUR,'')<>'' group by NB_COLIS,BPCODE,ETAT_CONTROL,CONTROLEUR,DEBUT_CTRL,FIN_CTRL,DUREE_CTRL",
                 new DetailBPCTRLMapper(), BP);
     }
 

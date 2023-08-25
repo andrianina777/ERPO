@@ -35,6 +35,7 @@ public class EnCoursPrepBPMapper  implements RowMapper<EnCoursPrepBP> {
         cmd.setProvince(rs.getInt("TANA"));
         cmd.setAo(rs.getInt("AO"));
         cmd.setValeur(rs.getString("CLVALEUR"));
+        cmd.setDepuis_traite(rs.getString("DEPUIS_TRAITE"));
 
         return cmd;
     }
