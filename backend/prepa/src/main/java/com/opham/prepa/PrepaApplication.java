@@ -21,20 +21,35 @@ public class PrepaApplication {
 
 
     }
+  /*  @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*")
+               // registry.addMapping("/**").allowedOrigins("http://localhost:3000","http://192.168.130.64:3000","http://192.168.201.13:3000","http://192.168.130.69:8081","http://192.168.201.212:3000")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD")
+                        .allowCredentials(true)
+                        .allowedHeaders("Authorization", "Cache-Control", "Content-Type")
+                        .maxAge(3600);
+            }
+        };
+    }*/
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000","http://192.168.130.64:3000","http://192.168.201.13:3000","http://192.168.130.69:8081")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE","PATCH","HEAD")
+                registry.addMapping("/**")
+                        .allowedOriginPatterns("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD")
                         .allowCredentials(true)
-                        .allowedHeaders("Authorization","Cache-Control","Content-Type")
+                        .allowedHeaders("Authorization", "Cache-Control", "Content-Type")
                         .maxAge(3600);
             }
         };
     }
-
 
 
 }

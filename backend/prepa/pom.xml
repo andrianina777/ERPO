@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.opham</groupId>
     <artifactId>prepa</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>V1.0</version>
     <packaging>war</packaging>
     <name>prepa</name>
     <description>Demo project for Spring Boot</description>
