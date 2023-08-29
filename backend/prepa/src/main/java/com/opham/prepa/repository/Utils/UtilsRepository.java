@@ -4,7 +4,7 @@ import com.opham.prepa.model.Utils.*;
 
 import java.util.List;
 
-public interface ComboRepository {
+public interface UtilsRepository {
 
     List<String> findAllAxe() ;
 

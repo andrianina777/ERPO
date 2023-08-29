@@ -31,7 +31,7 @@ public class PrepaApplication {
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD")
                         .allowCredentials(true)
                         .allowedHeaders("Authorization", "Cache-Control", "Content-Type")
-                        .maxAge(3600);
+                          .maxAge(3600);
             }
         };
     }*/

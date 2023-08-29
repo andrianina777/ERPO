@@ -1,7 +1,6 @@
 package com.opham.prepa.repository.Utils;
 
 import com.opham.prepa.Utils.DataSourceConfig;
-import com.opham.prepa.mapper.Apreparer.DetailPrepaMapper;
 import com.opham.prepa.mapper.Utlis.*;
 import com.opham.prepa.model.Utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class JdbcComboRepository implements ComboRepository {
+public class JdbcUtilsRepository implements UtilsRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final DataSourceConfig dataSourceConfig;
 
     @Autowired
-    public JdbcComboRepository(JdbcTemplate jdbcTemplate, DataSourceConfig dataSourceConfig) {
+    public JdbcUtilsRepository(JdbcTemplate jdbcTemplate, DataSourceConfig dataSourceConfig) {
         this.jdbcTemplate = jdbcTemplate;
         this.dataSourceConfig = dataSourceConfig;
     }
