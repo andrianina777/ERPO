@@ -1,23 +1,21 @@
 # ERPO
 
-## Tech Stack
+## Auto-déploiement
 
-### frontend
+La branche `master` est automatiquement déployée
+vers le serveur de production.
 
-- vue3
-- vuetify
-- vueuse
-- pinia
-- veevalidate
+Pour copier les modifications depuis la branche
+`backend_prepa` vers master, effectuer les
+opérations suivantes:
 
-### backend
-
-Pour l'instant, écrit en rust pour des raisons de manque de temps.
-A remplacer plus tard par un outil plus accessible:
-
-- Java Spring Boot
-- NodeJS + Express
-- Python + Flask
-
-
+```
+git checkout master
+git pull
+git checkout backend_prepa
+git pull
+git rebase -i master
+git checkout master
+git merge backend_prepa
+```
 
