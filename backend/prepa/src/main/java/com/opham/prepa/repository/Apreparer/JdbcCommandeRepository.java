@@ -31,17 +31,20 @@ import org.springframework.stereotype.Repository;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import org.springframework.jdbc.core.*;
-
-import java.io.FileInputStream;
+import org.springframework.core.io.ClassPathResource;
+import java.io.*;
 import java.sql.*;
 import java.sql.Types;
 import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
-
+import java.io.InputStream;
+import net.sf.jasperreports.engine.*;
 import org.springframework.dao.DataAccessException;
 import com.opham.prepa.Utils.DataSourceConfig;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Repository
 public class JdbcCommandeRepository implements CommandeRepository {
@@ -230,19 +233,16 @@ public class JdbcCommandeRepository implements CommandeRepository {
     }
 
 
-    @Override
+
     public byte[] generateReport(String codeBP, Integer isDouble) {
         try {
-            // Charger le fichier JRXML
-//            File file = ResourceUtils.getFile("classpath:prepaA5.jrxml");
-//            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(file.getAbsolutePath());
-//            ClassPathResource jrxmlResource = new ClassPathResource("src/main/java/com/opham/prepa/report/prepaA5.jrxml");
-//            InputStream inputStream = jrxmlResource.getInputStream();
 
             String hexes = Convert.decimalToHexadecimal(Integer.parseInt(codeBP.substring(2, 10).concat("3")));
-            // Charger le rapport Jasper
-//            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(inputStream);
-            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(new FileInputStream("src/main/java/com/opham/prepa/report/prepaA5.jrxml"));
+            InputStream jrxmlInputStream = getClass().getResourceAsStream("/report/prepaA5.jrxml");
+            if (jrxmlInputStream == null) {
+                throw new FileNotFoundException("Le fichier JRXML n'a pas été trouvé.");
+            }
+            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(jrxmlInputStream);
 
             // Paramètres du rapport
             Map<String, Object> parameters = new HashMap<>();
