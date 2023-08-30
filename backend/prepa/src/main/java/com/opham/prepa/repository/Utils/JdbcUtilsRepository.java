@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -65,12 +67,18 @@ public class JdbcUtilsRepository implements UtilsRepository {
     }
 
     @Override
-    public List<Depot> listDepot(String critaire) {
-        return jdbcTemplate.query(
-                "SELECT DPCODE, DPNOM, DPCENTRAL, DPCOLIS, xDPVTE, DP_TRANSFERT, DP_PREPA FROM FDP WHERE ISNULL(DP_DESACTIVE, 0) = 1 " +
-                        (critaire != null && !critaire.isEmpty() ? "AND ?" : ""),
-                new DepotMapper(),
-                critaire
-        );
+    public List<Depot> listDepot(String critere) {
+        String sql = "SELECT DPCODE, DPNOM, isnull(DPCENTRAL,0) as DPCENTRAL, isnull(DPCOLIS,0) as DPCOLIS, isnull(xDPVTE,0) as xDPVTE,isnull(DP_TRANSFERT,0) as DP_TRANSFERT, isnull(DP_PREPA,0) as  DP_PREPA FROM FDP WHERE ISNULL(DP_DESACTIVE, 0) = 0 " +
+                (critere != null && !critere.isEmpty() ? "AND " + critere : "");
+
+        return jdbcTemplate.query(sql, new DepotMapper());
+    }
+
+    @Override
+    public List<Alle> listAlle(String depot, String critere) {
+        String sql = "select xDEPOT,xALLE,isnull(xSTATUT,0) as xSTATUT from xEMP_DIGUE where xDEPOT=?" +
+                (critere != null && !critere.isEmpty() ? "AND " + critere : "")+ "order by xALLE" ;
+
+        return jdbcTemplate.query(sql, new AlleMapper(),depot);
     }
 }

@@ -124,13 +124,26 @@ public class UtilsController {
         }
     }
 
+    @GetMapping("/listAlle")
+    public ResponseEntity<List<Alle>> listDepot(@RequestParam(required = true) String depot,@RequestParam(required = false) String critere) {
+        try {
+            List<Alle> cmd = utilsRepository.listAlle(depot,critere);
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @GetMapping("/listServer")
     public ResponseEntity<List<String>> listNames() {
         try {
             FileParser fileParser = new FileParser();
 
-            List<String> names = fileParser.extractNames("/Users/anjaniainaandrianina/Desktop/Preparation Aout2023/Backend Aout 2023/ERPO/backend/prepa/interfaces");
+            List<String> names = fileParser.extractNames("interfaces");
 
             if (names.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

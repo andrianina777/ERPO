@@ -18,5 +18,7 @@ public interface UtilsRepository {
 
     List<Droit> listDoit(String xUser);
 
-    List<Depot> listDepot(String critaire);
+    List<Depot> listDepot(String critere);
+
+    List<Alle> listAlle(String depot,String critere);
 }
