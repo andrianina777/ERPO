@@ -69,7 +69,7 @@ public class JdbcCommandeRepository implements CommandeRepository {
     public Credentials checkCredentials(Credentials credentials) {
         //DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
         String name = credentials.getName_server();
-        String filepath = "/Users/anjaniainaandrianina/Desktop/Preparation Aout2023/Backend Aout 2023/ERPO/backend/prepa/interfaces";
+        String filepath = "interfaces";
         FileParser fileParser = new FileParser();
         String ip = fileParser.recupererIP(name, filepath);
         DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(), ip);
@@ -238,7 +238,6 @@ public class JdbcCommandeRepository implements CommandeRepository {
         try {
 
             String hexes = Convert.decimalToHexadecimal(Integer.parseInt(codeBP.substring(2, 10).concat("3")));
-
             InputStream jrxmlInputStream = getClass().getResourceAsStream("/report/prepaA5.jrxml");
             if (jrxmlInputStream == null) {
                 throw new FileNotFoundException("Le fichier JRXML n'a pas été trouvé.");
