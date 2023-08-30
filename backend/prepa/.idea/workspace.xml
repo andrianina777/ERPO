@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/UtilsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/UtilsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Apreparer/JdbcCommandeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/UtilsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/UtilsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,6 +226,7 @@
       <workItem from="1693200603885" duration="10481000" />
       <workItem from="1693285255480" duration="5977000" />
       <workItem from="1693291486118" duration="5756000" />
+      <workItem from="1693373127754" duration="1984000" />
     </task>
     <servers />
   </component>
