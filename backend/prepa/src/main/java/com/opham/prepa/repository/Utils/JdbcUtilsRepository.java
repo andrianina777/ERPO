@@ -76,7 +76,7 @@ public class JdbcUtilsRepository implements UtilsRepository {
 
     @Override
     public List<Alle> listAlle(String depot, String critere) {
-        String sql = "select xDEPOT,xALLE,isnull(xSTATUT,0) as xSTATUT from xEMP_DIGUE where xDEPOT=?" +
+        String sql = "select xDEPOT,xALLE,isnull(xSTATUT,0) as xSTATUT from xEMP_DIGUE where rtrim(xDEPOT)=rtrim(?)" +
                 (critere != null && !critere.isEmpty() ? "AND " + critere : "")+ "order by xALLE" ;
 
         return jdbcTemplate.query(sql, new AlleMapper(),depot);

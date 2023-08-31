@@ -18,6 +18,9 @@ target/
 *.iws
 *.iml
 *.ipr
+backend/prepa/target/
+backend/prepa/.idea
+
 
 ### NetBeans ###
 /nbproject/private/
