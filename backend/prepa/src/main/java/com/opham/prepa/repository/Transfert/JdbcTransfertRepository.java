@@ -1,14 +1,9 @@
 package com.opham.prepa.repository.Transfert;
 
 import com.opham.prepa.Utils.DataSourceConfig;
-<<<<<<< HEAD
-import com.opham.prepa.mapper.Transfert.RotationDetailMapper;
-import com.opham.prepa.mapper.Transfert.RotationMapper;
-=======
 import com.opham.prepa.mapper.Transfert.*;
 import com.opham.prepa.model.Transfert.Rangement;
 import com.opham.prepa.model.Transfert.Transfert;
->>>>>>> backend_prepa
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
@@ -47,11 +42,7 @@ public class JdbcTransfertRepository implements TransfertRepository {
 
                 )
                 .returningResultSet("result1", new RotationMapper())
-<<<<<<< HEAD
-                .returningResultSet("result2", new RotationDetailMapper());
-=======
                 .returningResultSet("result2", new TransfertMapper());
->>>>>>> backend_prepa
 
         Map<String, Object> results = jdbcCall.execute(depot, alle);
 
@@ -62,8 +53,6 @@ public class JdbcTransfertRepository implements TransfertRepository {
         resultList.add((List<Object>) results.get("result2"));
         return resultList;
     }
-<<<<<<< HEAD
-=======
 
     @Override
     public List<List<Object>> listColisIncomplet(String depotOrg, String depotDest, String alle) {
@@ -143,5 +132,4 @@ public class JdbcTransfertRepository implements TransfertRepository {
         return jdbcTemplate.update(sql, t.getArticle(), t.getLibelle(), t.getLabo(), t.getDepot_org(), t.getEmpl_org(), t.getDepot_dest(), t.getEmpl_dest(), t.getLot(), t.getDatePer(), t.getLettre(),
                 t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId());
     }
->>>>>>> backend_prepa
 }

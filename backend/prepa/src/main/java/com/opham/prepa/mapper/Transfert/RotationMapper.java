@@ -20,11 +20,7 @@ public class RotationMapper implements RowMapper<Rotation> {
         cmd.setDepot_org(rs.getString("xDEPOT"));
         cmd.setEmpl_org(rs.getString("xEMP_ORG"));
         cmd.setColisage(rs.getInt("ARFRANCOFO"));
-<<<<<<< HEAD
-        cmd.setEmpl_dest(rs.getString("xDEPOT"));
-=======
         cmd.setDepot_dest(rs.getString("xDEPOT"));
->>>>>>> backend_prepa
         cmd.setEmpl_dest(rs.getString("xEMP_DEST"));
         cmd.setQte(rs.getInt("QUANTITE"));
         cmd.setEtat(rs.getBoolean(11));

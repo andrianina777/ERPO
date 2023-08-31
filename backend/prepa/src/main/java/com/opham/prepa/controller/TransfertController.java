@@ -1,22 +1,12 @@
 package com.opham.prepa.controller;
 
-<<<<<<< HEAD
-=======
 import com.opham.prepa.model.Transfert.Transfert;
 import com.opham.prepa.model.genererBP.ListeCmd;
->>>>>>> backend_prepa
 import com.opham.prepa.repository.Transfert.TransfertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-=======
 import org.springframework.web.bind.annotation.*;
->>>>>>> backend_prepa
 
 import java.util.List;
 @RestController
@@ -38,8 +28,6 @@ public class TransfertController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-<<<<<<< HEAD
-=======
 
     @GetMapping("/colisIncomplet")
     public ResponseEntity<List<List<Object>>> listColisIncomplet(@RequestParam(required = false,defaultValue = "GROS")  String depotOrg,@RequestParam(required = false,defaultValue = "DET")  String depotDest,@RequestParam(required = false)  String alle) {
@@ -92,5 +80,4 @@ public class TransfertController {
             return ResponseEntity.notFound().build();
         }
     }
->>>>>>> backend_prepa
 }
