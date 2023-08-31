@@ -6,34 +6,25 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RotationDetail implements Serializable {
+public class PetitColis implements Serializable {
     private String article;
     private String libelle;
-    private String labo;
-    private String depot_org;
-    private String empl_org;
-    private String depot_dest;
-    private String empl_dest;
     private String lot;
     private Date datePer;
-    private String lettre;
+    private String depot_org;
+    private String empl_org;
+    private int colisage;
+    private int palette;
+    private int nbColis;
+    private int perc;
+    private int stock_det;
+    private String depot_dest;
+    private String empl_dest;
     private int qte;
-    private String numarm1;
-    private String numarm2;
-    private String devise;
-    private Double padev;
-    private Double paht;
-    private Double frais;
-    private int ug;
-    private int qteNonEt;
-    private int qteEnCoursEt;
-    private int qteEt;
-
-
-
-
+    private int lot_vte;
+    private Double nb_j_vte;
+    private boolean etat;
 }
