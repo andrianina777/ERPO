@@ -5,10 +5,10 @@ set -eou pipefail
 TARGET_DIR="$HOME/target"
 
 cd backend/prepa
-if ! [ -f "$WORK_DIR/backend/jconn4.jar" ]; then
+if ! [ -f "$HOME/.java/lib/jconn4.jar" ]; then
     echo "*** install jconn4.jar ***"
-    curl -L http://192.168.130.6/jconn4/jconn4.jar -o "$WORK_DIR/backend/jconn4.jar"
-    ./mvnw install:install-file -Dfile="$WORK_DIR/backend/jconn4.jar" -DgroupId=com.sybase.jdbc4.jdbc -DartifactId=jconn4 -Dversion=4.0 -Dpackaging=jar
+    curl -L http://192.168.130.6/jconn4/jconn4.jar -o "$HOME/.java/lib/jconn4.jar"
+    ./mvnw install:install-file -Dfile="$HOME/.java/lib/jconn4.jar" -DgroupId=com.sybase.jdbc4.jdbc -DartifactId=jconn4 -Dversion=4.0 -Dpackaging=jar
 fi
 
 echo "*** mvn package ***"
