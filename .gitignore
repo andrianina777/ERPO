@@ -20,8 +20,9 @@ target/
 *.ipr
 backend/prepa/target/
 backend/prepa/.idea
-
-
+backend/prepa/src/main/java/com/opham/prepa/report/
+backend/prepa/.idea/workspace.xml
+**/.DS_Store
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

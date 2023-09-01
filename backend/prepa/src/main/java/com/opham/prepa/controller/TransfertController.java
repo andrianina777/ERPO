@@ -30,7 +30,7 @@ public class TransfertController {
     }
 
     @GetMapping("/colisIncomplet")
-    public ResponseEntity<List<List<Object>>> listColisIncomplet(@RequestParam(required = false,defaultValue = "GROS")  String depotOrg,@RequestParam(required = false,defaultValue = "DET")  String depotDest,@RequestParam(required = false)  String alle) {
+    public ResponseEntity<List<List<Object>>> listColisIncomplet(@RequestParam(required = false,defaultValue = "GROS")  String depotOrg,@RequestParam(required = false,defaultValue = "DET")  String depotDest,@RequestParam(required = false,defaultValue ="")  String alle) {
         try {
             List<List<Object>> cmd = transfertRepository.listColisIncomplet(depotOrg,depotDest,alle);
 
@@ -44,7 +44,7 @@ public class TransfertController {
     }
 
     @GetMapping("/petitColis")
-    public ResponseEntity<List<List<Object>>> listPetitColis(@RequestParam(required = false,defaultValue = "GROS")  String depotOrg,@RequestParam(required = false,defaultValue = "DET")  String depotDest,@RequestParam(required = false)  String alle) {
+    public ResponseEntity<List<List<Object>>> listPetitColis(@RequestParam(required = false,defaultValue = "GROS")  String depotOrg,@RequestParam(required = false,defaultValue = "DET")  String depotDest,@RequestParam(required = false,defaultValue ="")  String alle) {
         try {
             List<List<Object>> cmd = transfertRepository.listPetitColis(depotOrg,depotDest,alle);
 
