@@ -1,5 +1,6 @@
 package com.opham.prepa.repository.Transfert;
 
+import com.opham.prepa.model.Transfert.ProblemeStock;
 import com.opham.prepa.model.Transfert.Rotation;
 import com.opham.prepa.model.Transfert.Transfert;
 
@@ -14,5 +15,11 @@ public interface TransfertRepository {
     List<List<Object>> listRangement(String depot);
 
     int insertL6_Transfert(Transfert t);
+
+    String insert_FSIL(String ids, String commentaire);
+
+
+    List<ProblemeStock> testStock(String article,int qte,String depot,String lettre,String empl);
+    ProblemeStock stockPasVide(String article,String depot_Dest,String empl_Dest);
 
 }

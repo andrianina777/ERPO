@@ -1,7 +1,12 @@
 package com.opham.prepa.repository.Transfert;
 
 import com.opham.prepa.Utils.DataSourceConfig;
+import com.opham.prepa.mapper.Apreparer.CommandeMapper;
 import com.opham.prepa.mapper.Transfert.*;
+import com.opham.prepa.mapper.Utlis.AlleMapper;
+import com.opham.prepa.mapper.Utlis.DroitMapper;
+import com.opham.prepa.model.Apreparer.Commande;
+import com.opham.prepa.model.Transfert.ProblemeStock;
 import com.opham.prepa.model.Transfert.Rangement;
 import com.opham.prepa.model.Transfert.Transfert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,4 +137,25 @@ public class JdbcTransfertRepository implements TransfertRepository {
         return jdbcTemplate.update(sql, t.getArticle(), t.getLibelle(), t.getLabo(), t.getDepot_org(), t.getEmpl_org(), t.getDepot_dest(), t.getEmpl_dest(), t.getLot(), t.getDatePer(), t.getLettre(),
                 t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId());
     }
+
+    @Override
+    public String insert_FSIL(String ids, String commentaire) {
+        String sql = "exec v_bp_transfert ?, ?";
+        String result = jdbcTemplate.queryForObject(sql, new Object[]{ids, commentaire}, String.class);
+        return result;
+    }
+
+    @Override
+    public List<ProblemeStock> testStock(String article, int qte, String depot, String lettre, String empl) {
+        String sql = "exec  bp_testStockConseilAppro ?,?,?,?,?" ;
+        return jdbcTemplate.query(sql, new ProblemeStockMapper(),article,qte,depot,lettre,empl);
+    }
+
+    @Override
+    public ProblemeStock stockPasVide(String article, String depot_Dest, String empl_Dest) {
+        return jdbcTemplate.queryForObject("select count(*),STEMPEMP from VIEW_STOCK_LOT_EMPL_FRBP where STEMPAR=? and STEMPDEPOT=? and STEMPEMP=? and isnull(QTE_DISPO,0)>0 group by STEMPEMP,STEMPDEPOT,STEMPAR",
+                new BlemRotationMapper(), article, depot_Dest,empl_Dest);
+    }
+
+
 }

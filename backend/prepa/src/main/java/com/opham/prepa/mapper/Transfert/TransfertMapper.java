@@ -16,7 +16,7 @@ public class TransfertMapper implements RowMapper<Transfert> {
         cmd.setLabo(rs.getString(3));
         cmd.setDepot_org(rs.getString(4));
         cmd.setEmpl_org(rs.getString(5));
-        cmd.setEmpl_dest(rs.getString(6));
+        cmd.setDepot_dest(rs.getString(6));
         cmd.setEmpl_dest(rs.getString(7));
         cmd.setLot(rs.getString(8));
         cmd.setDatePer(rs.getDate(9));
