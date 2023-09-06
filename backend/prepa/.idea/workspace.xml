@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/BlemRotationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/ProblemeStockMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Transfert/ProblemeStock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/TransfertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/TransfertController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/TransfertMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/TransfertMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/TransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/TransfertRepository.java" afterDir="false" />
     </list>
@@ -234,7 +230,7 @@
       <workItem from="1693457989328" duration="13581000" />
       <workItem from="1693803280951" duration="9955000" />
       <workItem from="1693889683719" duration="11198000" />
-      <workItem from="1693976436910" duration="4405000" />
+      <workItem from="1693976436910" duration="10037000" />
     </task>
     <servers />
   </component>
