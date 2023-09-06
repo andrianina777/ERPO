@@ -131,9 +131,9 @@ public class TransfertController {
     }
 
     @GetMapping("/stockPasVide")
-    public ResponseEntity<Integer> stockPasVide(@RequestParam(required = true) String depot, @RequestParam(required = true) String empl) {
+    public ResponseEntity<Integer> stockPasVide(@RequestParam(required = true) String depot,@RequestParam(required = true) String empl ) {
         try {
-            int cmd = transfertRepository.stockPasVide(depot, empl);
+            int cmd = transfertRepository.stockPasVide(depot,empl);
 
 /*            if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
