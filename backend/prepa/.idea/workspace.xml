@@ -12,6 +12,7 @@
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/TransfertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/TransfertController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/BlemRotationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/BlemRotationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/TransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/TransfertRepository.java" afterDir="false" />
     </list>
@@ -231,6 +232,8 @@
       <workItem from="1693803280951" duration="9955000" />
       <workItem from="1693889683719" duration="11198000" />
       <workItem from="1693976436910" duration="10037000" />
+      <workItem from="1693998412012" duration="1107000" />
+      <workItem from="1693999662086" duration="1737000" />
     </task>
     <servers />
   </component>

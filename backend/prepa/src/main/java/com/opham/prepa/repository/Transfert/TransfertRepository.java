@@ -20,6 +20,6 @@ public interface TransfertRepository {
 
 
     ProblemeStock testStock(String article,int qte,String depot,String lettre,String empl);
-    ProblemeStock stockPasVide(String article,String depot_Dest,String empl_Dest);
+    int stockPasVide(String depot_Dest,String empl_Dest);
 
 }

@@ -116,14 +116,15 @@ public class TransfertController {
     }
 
     @GetMapping("/stockPasVide")
-    public ResponseEntity<ProblemeStock> stockPasVide(@RequestParam(required = true) String article,@RequestParam(required = true) String depot,@RequestParam(required = true) String empl ) {
+    public ResponseEntity<Integer> stockPasVide(@RequestParam(required = true) String depot,@RequestParam(required = true) String empl ) {
         try {
-            ProblemeStock cmd = transfertRepository.stockPasVide(article,depot,empl);
+            int cmd = transfertRepository.stockPasVide(depot,empl);
 
-            if (cmd!=null) {
-                return new ResponseEntity<>(cmd, HttpStatus.OK);
-            }
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+/*            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            }*/
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
