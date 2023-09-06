@@ -102,15 +102,29 @@ public class TransfertController {
     }
 
     @GetMapping("/testStock")
-    public ResponseEntity<List<ProblemeStock>> testStock(@RequestParam(required = true) String article,@RequestParam(required = true) int qte,@RequestParam(required = true) String depot,@RequestParam(required = true) String lettre,@RequestParam(required = true) String empl) {
+    public ResponseEntity<ProblemeStock> testStock(@RequestParam(required = true) String article,@RequestParam(required = true) int qte,@RequestParam(required = true) String depot,@RequestParam(required = true) String lettre,@RequestParam(required = true) String empl) {
         try {
-            List<ProblemeStock> cmd = transfertRepository.testStock(article, qte, depot,lettre, empl);
-            if ( cmd.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            ProblemeStock cmd = transfertRepository.testStock(article, qte, depot,lettre, empl);
+            if (cmd!=null) {
+                return new ResponseEntity<>(cmd, HttpStatus.OK);
             }
-            return new ResponseEntity<>(cmd, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/stockPasVide")
+    public ResponseEntity<ProblemeStock> stockPasVide(@RequestParam(required = true) String article,@RequestParam(required = true) String depot,@RequestParam(required = true) String empl ) {
+        try {
+            ProblemeStock cmd = transfertRepository.stockPasVide(article,depot,empl);
+
+            if (cmd!=null) {
+                return new ResponseEntity<>(cmd, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -19,7 +19,7 @@ public interface TransfertRepository {
     String insert_FSIL(String ids, String commentaire);
 
 
-    List<ProblemeStock> testStock(String article,int qte,String depot,String lettre,String empl);
+    ProblemeStock testStock(String article,int qte,String depot,String lettre,String empl);
     ProblemeStock stockPasVide(String article,String depot_Dest,String empl_Dest);
 
 }

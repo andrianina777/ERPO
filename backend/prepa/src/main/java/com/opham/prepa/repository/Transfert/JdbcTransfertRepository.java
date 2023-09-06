@@ -146,9 +146,9 @@ public class JdbcTransfertRepository implements TransfertRepository {
     }
 
     @Override
-    public List<ProblemeStock> testStock(String article, int qte, String depot, String lettre, String empl) {
-        String sql = "exec  bp_testStockConseilAppro ?,?,?,?,?" ;
-        return jdbcTemplate.query(sql, new ProblemeStockMapper(),article,qte,depot,lettre,empl);
+    public ProblemeStock testStock(String article, int qte, String depot, String lettre, String empl) {
+        String sql = "exec bp_testStockConseilAppro ?,?,?,?,?";
+        return jdbcTemplate.queryForObject(sql, new ProblemeStockMapper(), article, qte, depot, lettre, empl);
     }
 
     @Override
