@@ -10,8 +10,8 @@ public class BlemRotationMapper implements RowMapper<ProblemeStock> {
     @Override
     public ProblemeStock mapRow(ResultSet rs, int rowNum) throws SQLException {
         ProblemeStock cmd = new ProblemeStock();
-        cmd.setQteStock(rs.getInt("QTE_ACTU"));
-        cmd.setEmpl(rs.getString("STEMPEMP"));
+        cmd.setQteStock(rs.getInt(1));
+        cmd.setEmpl(rs.getString(2));
         return cmd;
     }
 }

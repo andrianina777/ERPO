@@ -152,9 +152,9 @@ public class JdbcTransfertRepository implements TransfertRepository {
     }
 
     @Override
-    public ProblemeStock stockPasVide(String article, String depot_Dest, String empl_Dest) {
-        return jdbcTemplate.queryForObject("select count(*),STEMPEMP from VIEW_STOCK_LOT_EMPL_FRBP where STEMPAR=? and STEMPDEPOT=? and STEMPEMP=? and isnull(QTE_DISPO,0)>0 group by STEMPEMP,STEMPDEPOT,STEMPAR",
-                new BlemRotationMapper(), article, depot_Dest,empl_Dest);
+    public int stockPasVide( String depot_Dest, String empl_Dest) {
+        return jdbcTemplate.queryForObject("select count(*) from VIEW_STOCK_LOT_EMPL_FRBP where  STEMPDEPOT=? and STEMPEMP=? and isnull(QTE_DISPO,0)>0",
+                Integer.class, depot_Dest, empl_Dest);
     }
 
 
