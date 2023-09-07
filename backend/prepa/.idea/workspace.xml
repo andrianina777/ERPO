@@ -11,6 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" afterDir="false" />
+>>>>>>> 068e450 (test stock)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,6 +238,7 @@
       <workItem from="1693998412012" duration="1107000" />
       <workItem from="1693999662086" duration="3420000" />
       <workItem from="1694062772550" duration="878000" />
+<<<<<<< HEAD
       <workItem from="1694408581128" duration="1198000" />
       <workItem from="1694497030967" duration="9430000" />
       <workItem from="1694582157902" duration="4109000" />
@@ -257,6 +262,8 @@
       <workItem from="1696395640411" duration="6020000" />
       <workItem from="1696481643376" duration="945000" />
       <workItem from="1696569053864" duration="1058000" />
+=======
+>>>>>>> 068e450 (test stock)
     </task>
     <servers />
   </component>
