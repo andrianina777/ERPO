@@ -21,4 +21,6 @@ public interface UtilsRepository {
     List<Depot> listDepot(String critere);
 
     List<Alle> listAlle(String depot,String critere);
+
+    List<Article> listArticle(String critere);
 }

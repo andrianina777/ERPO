@@ -156,5 +156,19 @@ public class UtilsController {
         }
     }
 
+    @GetMapping("/listArticle")
+    public ResponseEntity<List<Article>> listArticle(@RequestParam(required = false) String critere) {
+        try {
+            List<Article> cmd = utilsRepository.listArticle(critere);
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

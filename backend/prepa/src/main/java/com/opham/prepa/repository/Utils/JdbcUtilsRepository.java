@@ -81,4 +81,24 @@ public class JdbcUtilsRepository implements UtilsRepository {
 
         return jdbcTemplate.query(sql, new AlleMapper(),depot);
     }
+
+    @Override
+    public List<Article> listArticle(String critere) {
+        String sql = "\t\tselect ARCODE,ARLIB,ARFO,L.FONOM as NON_LABO,ARDEPART,F.DTLIB as FAMILLE,ARFAM,C.FPLIB as CATEGORIE,xARTP_GAM,G.FONOM as GAMME,xARTP_DISTR,D.FONOM as DISTRIBUTEUR,xARTP_FRNS,P.FONOM as FOURNIS_PRINC\n" +
+                "\t\t,xARTP_FAB,B.FONOM as FABRICANT,xARTP_PLATFORME,PL.FONOM as PLATFORME,ARCHEFP,SC.FPLIB as SOUS_CAT,xARTP_DCI,ARLIBXENO,ARFRANCOFO,\n" +
+                "\t\tcase when isnull(ARGENERIQUE,0)=0 then 'NORMAL' when isnull(ARGENERIQUE,0)=1 then 'GENERIQUE' when isnull(ARGENERIQUE,0)=2 then 'SPECIALITE' when isnull(ARGENERIQUE,0)=3 then 'GENERIQUE DE MARQUE' end as TYPE,\n" +
+                "\t\tcase when isnull(xARTP_FROID,0)=0 then 'NORMAL' when isnull(xARTP_FROID,0)=1 then 'FROID' when isnull(xARTP_FROID,0)=2 then 'FRAIS' end as conversation,\n" +
+                "\t\tcase when isnull(xARTP_STATSPEC,0)=0 then 'NORMAL' when isnull(xARTP_STATSPEC,0)=1 then 'STUPEFIANT' when isnull(xARTP_STATSPEC,0)=2 then 'PSYCHOTROPE' when isnull(xARTP_STATSPEC,0)=3 then 'HOSPITALIER' end as STATUT \n" +
+                "\t\tfrom VIEW_FAR left join FFO L on L.FOCODE=ARFO left join FDT F on F.DTCODE=ARDEPART \n" +
+                "\t\tleft join FFP C on C.FPCODE=ARFAM and isnull(C.FTYPE,0)=1 left join FFO G on G.FOCODE=xARTP_GAM and isnull(G.FOANCIEN,0)=0 and isnull(G.FOGAMME,0)=1\n" +
+                "\t\tleft join FFO D on D.FOCODE=xARTP_DISTR and isnull(D.FOANCIEN,0)=0 and isnull(D.FODISTR,0)=1\n" +
+                "\t\tleft join FFO P on P.FOCODE=xARTP_FRNS and isnull(P.FOANCIEN,0)=0 and isnull(P.FOFOURNIS,0)=1\n" +
+                "\t\tleft join FFO B on B.FOCODE=xARTP_FAB and isnull(B.FOANCIEN,0)=0 and isnull(B.FOFABRIC,0)=1\n" +
+                "\t\tleft join FFO PL on PL.FOCODE=xARTP_PLATFORME and isnull(PL.FOANCIEN,0)=0 and isnull(PL.FOPLATEFORME,0)=1\n" +
+                "\t\tleft join FFP SC on SC.FPCODE=ARCHEFP and isnull(SC.FTYPE,0)=1\n" +
+                "\t\twhere isnull(AROLD,0)=0 " +
+                (critere != null && !critere.isEmpty() ? "AND " + critere : "")+ "order by ARCODE,ARLIB" ;
+
+        return jdbcTemplate.query(sql, new ArticleMapper());
+    }
 }
