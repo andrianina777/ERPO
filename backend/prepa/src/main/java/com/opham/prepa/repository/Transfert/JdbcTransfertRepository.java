@@ -1,5 +1,6 @@
 package com.opham.prepa.repository.Transfert;
 
+import com.opham.prepa.Utils.Convert;
 import com.opham.prepa.Utils.DataSourceConfig;
 import com.opham.prepa.mapper.Apreparer.CommandeMapper;
 import com.opham.prepa.mapper.Transfert.*;
@@ -9,6 +10,8 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Transfert.ProblemeStock;
 import com.opham.prepa.model.Transfert.Rangement;
 import com.opham.prepa.model.Transfert.Transfert;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlParameter;
@@ -16,6 +19,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -139,9 +144,9 @@ public class JdbcTransfertRepository implements TransfertRepository {
     }
 
     @Override
-    public String insert_FSIL(String ids, String commentaire) {
-        String sql = "exec v_bp_transfert ?, ?";
-        String result = jdbcTemplate.queryForObject(sql, new Object[]{ids, commentaire}, String.class);
+    public String insert_FSIL(String ids, String commentaire,String depOrg,String depDest) {
+        String sql = "exec v_bp_transfert ?, ?,?,?";
+        String result = jdbcTemplate.queryForObject(sql, new Object[]{ids, commentaire,depOrg,depDest}, String.class);
         return result;
     }
 
@@ -155,6 +160,36 @@ public class JdbcTransfertRepository implements TransfertRepository {
     public int stockPasVide( String depot_Dest, String empl_Dest) {
         return jdbcTemplate.queryForObject("select count(*) from VIEW_STOCK_LOT_EMPL_FRBP where  STEMPDEPOT=? and STEMPEMP=? and isnull(QTE_DISPO,0)>0",
                 Integer.class, depot_Dest, empl_Dest);
+    }
+
+    @Override
+    public byte[] generateReportTransfert(String td, String org, String dest, Integer isDouble, String users) {
+        try {
+
+            String hexes = Convert.decimalToHexadecimal(Integer.parseInt(td.substring(2, 10).concat("1")));
+            InputStream jrxmlInputStream = getClass().getResourceAsStream("/report/transfertA5.jrxml");
+            if (jrxmlInputStream == null) {
+                throw new FileNotFoundException("Le fichier JRXML n'a pas été trouvé.");
+            }
+            JasperReport jasperReport = net.sf.jasperreports.engine.JasperCompileManager.compileReport(jrxmlInputStream);
+
+            // Paramètres du rapport
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("code_TD", td);
+            parameters.put("isDouble", isDouble);
+            parameters.put("hexa", hexes);
+            parameters.put("depot_org", org);
+            parameters.put("depot_dest", dest);
+            parameters.put("users", users);
+
+            // Générer le rapport
+            byte[] reportBytes = JasperRunManager.runReportToPdf(jasperReport, parameters, jdbcTemplate.getDataSource().getConnection());
+
+            return reportBytes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 

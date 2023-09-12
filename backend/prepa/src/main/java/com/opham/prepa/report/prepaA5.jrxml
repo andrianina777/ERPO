@@ -199,11 +199,11 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textField pattern="d MMM  yyyy H:mm:ss ">
-					<reportElement x="9" y="4" width="123" height="19" uuid="f57526cc-df65-4f57-aec0-e35689d93064"/>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+					<reportElement x="3" y="4" width="129" height="19" uuid="f57526cc-df65-4f57-aec0-e35689d93064"/>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("d MMM yyyy H:mm:ss", new java.util.Locale("FR", "FR")).format(new java.util.Date())]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="9" y="23" width="123" height="16" uuid="adf3459b-82aa-447e-bc87-9b5ae6768a01"/>
+					<reportElement x="3" y="23" width="129" height="16" uuid="adf3459b-82aa-447e-bc87-9b5ae6768a01"/>
 					<text><![CDATA[NB Ligne TOTAL :]]></text>
 				</staticText>
 				<textField>
@@ -286,19 +286,19 @@
 				<textFieldExpression><![CDATA[$F{Code}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-11" y="80" width="58" height="13" uuid="6267da09-fd09-4d64-88b6-5cd1002d1d8f">
+				<reportElement x="-4" y="80" width="58" height="13" uuid="6267da09-fd09-4d64-88b6-5cd1002d1d8f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{emp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="77" y="80" width="115" height="13" uuid="61fce3d7-6d43-4d8c-b846-b7460c0c649c">
+				<reportElement x="77" y="80" width="187" height="13" uuid="61fce3d7-6d43-4d8c-b846-b7460c0c649c">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{autre}]]></textFieldExpression>

@@ -8,7 +8,9 @@ import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Transfert.TransfertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -88,9 +90,9 @@ public class TransfertController {
     }
 
     @PostMapping("/insertFSIL")
-    public ResponseEntity<String> insert_FSIL(@RequestParam(required = true) String ids, @RequestParam(required = true) String commentaire) {
+    public ResponseEntity<String> insert_FSIL(@RequestParam(required = true) String ids, @RequestParam(required = true) String commentaire,@RequestParam(required = true) String depOrg,@RequestParam(required = true) String depDest) {
         try {
-            String cmd = transfertRepository.insert_FSIL(ids, commentaire);
+            String cmd = transfertRepository.insert_FSIL(ids, commentaire,depOrg,depDest);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -126,6 +128,21 @@ public class TransfertController {
             }*/
             return new ResponseEntity<>(cmd, HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/printTransfert")
+    public ResponseEntity<byte[]> generateReport(@RequestParam String td,@RequestParam String org,@RequestParam String dest, @RequestParam Integer isDouble,@RequestParam String users) {
+        byte[] reportBytes = transfertRepository.generateReportTransfert(td,org,dest, isDouble,users);
+
+        if (reportBytes != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "transfertA5.pdf");
+
+            return new ResponseEntity<>(reportBytes, headers, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

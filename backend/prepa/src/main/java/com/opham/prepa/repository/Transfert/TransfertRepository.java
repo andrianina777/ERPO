@@ -16,10 +16,13 @@ public interface TransfertRepository {
 
     int insertL6_Transfert(Transfert t);
 
-    String insert_FSIL(String ids, String commentaire);
+    String insert_FSIL(String ids, String commentaire,String depOrg,String depDest);
 
 
     ProblemeStock testStock(String article,int qte,String depot,String lettre,String empl);
     int stockPasVide(String depot_Dest,String empl_Dest);
+
+    byte[] generateReportTransfert(String td,String org,String dest, Integer isDouble,String users);
+
 
 }
