@@ -23,10 +23,21 @@ public class JdbcUtilsRepository implements UtilsRepository {
         this.dataSourceConfig = dataSourceConfig;
     }
 
+
+
     @Override
     public List<String> findAllAxe() {
-        return jdbcTemplate.query("select distinct CLPR from FCL order by CLPR", new AxeMapper());
+        return jdbcTemplate.query("select CLPR from FCL group by CLPR", new AxeMapper());
     }
+
+    @Override
+    public List<Alle> listAlle(String depot, String critere) {
+        String sql = "select xDEPOT,xALLE,isnull(xSTATUT,0) as xSTATUT from xEMP_DIGUE where rtrim(xDEPOT)=rtrim(?)" +
+                (critere != null && !critere.isEmpty() ? "AND " + critere : "")+ "order by xALLE" ;
+
+        return jdbcTemplate.query(sql, new AlleMapper(),depot);
+    }
+
 
     @Override
     public List<String> findParCode(String code) {
@@ -74,13 +85,7 @@ public class JdbcUtilsRepository implements UtilsRepository {
         return jdbcTemplate.query(sql, new DepotMapper());
     }
 
-    @Override
-    public List<Alle> listAlle(String depot, String critere) {
-        String sql = "select xDEPOT,xALLE,isnull(xSTATUT,0) as xSTATUT from xEMP_DIGUE where rtrim(xDEPOT)=rtrim(?)" +
-                (critere != null && !critere.isEmpty() ? "AND " + critere : "")+ "order by xALLE" ;
 
-        return jdbcTemplate.query(sql, new AlleMapper(),depot);
-    }
 
     @Override
     public List<Article> listArticle(String critere) {

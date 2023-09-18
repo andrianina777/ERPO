@@ -3,6 +3,7 @@ package com.opham.prepa.controller;
 import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Transfert.ProblemeStock;
 import com.opham.prepa.model.Transfert.Transfert;
+import com.opham.prepa.model.Transfert.TransfertConseilReappro;
 import com.opham.prepa.model.Utils.Droit;
 import com.opham.prepa.model.genererBP.ListeCmd;
 import com.opham.prepa.repository.Transfert.TransfertRepository;
@@ -89,6 +90,16 @@ public class TransfertController {
         }
     }
 
+    @PostMapping("/insertL6_transfertConseil")
+    public ResponseEntity<TransfertConseilReappro> insertL6_TransfertConseil(@RequestBody TransfertConseilReappro t) {
+        int updatedRows = transfertRepository.insertL6_TransfertConseil(t);
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/insertFSIL")
     public ResponseEntity<String> insert_FSIL(@RequestParam(required = true) String ids, @RequestParam(required = true) String commentaire,@RequestParam(required = true) String depOrg,@RequestParam(required = true) String depDest) {
         try {
@@ -143,6 +154,21 @@ public class TransfertController {
 
             return new ResponseEntity<>(reportBytes, headers, HttpStatus.OK);
         } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/conseilReappro")
+    public ResponseEntity<List<List<Object>>> conseilReappro(@RequestParam(required = false) String article,@RequestParam(required = false, defaultValue = "GROS") String depotOrg, @RequestParam(required = false, defaultValue = "DET") String depotDest) {
+        try {
+            List<List<Object>> cmd = transfertRepository.conseilReappro(article,depotOrg, depotDest);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

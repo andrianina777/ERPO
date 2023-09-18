@@ -10,6 +10,7 @@ import com.opham.prepa.model.Apreparer.Commande;
 import com.opham.prepa.model.Transfert.ProblemeStock;
 import com.opham.prepa.model.Transfert.Rangement;
 import com.opham.prepa.model.Transfert.Transfert;
+import com.opham.prepa.model.Transfert.TransfertConseilReappro;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,9 +145,21 @@ public class JdbcTransfertRepository implements TransfertRepository {
     }
 
     @Override
-    public String insert_FSIL(String ids, String commentaire,String depOrg,String depDest) {
+    public int insertL6_TransfertConseil(TransfertConseilReappro t) {
+        String sql = "\n" +
+                "INSERT INTO DBSUIVI..L6_TRANSFERT\n" +
+                "\t(Article, libelle, labo, depotOrg, emplOrg, depotDest, emplDest, lot, dateper, lettre, qte, numarm1, numarm2, devise, padev, paht, frais, ug, qtenonEtq, qteEncours, qteEtiq, id,commentaire, urgent)\n" +
+                "VALUES \n" +
+                "\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ,? ,? ,? ,? ,? ,? , ?,?,?)";
+
+        return jdbcTemplate.update(sql, t.getArticle(), t.getLibelle(), t.getLabo(), t.getDepot_org(), t.getEmpl_org(), t.getDepot_dest(), t.getEmpl_dest(), t.getLot(), t.getDatePer(), t.getLettre(),
+                t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId(), t.getCommentaire(), t.getUrg());
+    }
+
+    @Override
+    public String insert_FSIL(String ids, String commentaire, String depOrg, String depDest) {
         String sql = "exec v_bp_transfert ?, ?,?,?";
-        String result = jdbcTemplate.queryForObject(sql, new Object[]{ids, commentaire,depOrg,depDest}, String.class);
+        String result = jdbcTemplate.queryForObject(sql, new Object[]{ids, commentaire, depOrg, depDest}, String.class);
         return result;
     }
 
@@ -157,7 +170,7 @@ public class JdbcTransfertRepository implements TransfertRepository {
     }
 
     @Override
-    public int stockPasVide( String depot_Dest, String empl_Dest) {
+    public int stockPasVide(String depot_Dest, String empl_Dest) {
         return jdbcTemplate.queryForObject("select count(*) from VIEW_STOCK_LOT_EMPL_FRBP where  STEMPDEPOT=? and STEMPEMP=? and isnull(QTE_DISPO,0)>0",
                 Integer.class, depot_Dest, empl_Dest);
     }
@@ -190,6 +203,29 @@ public class JdbcTransfertRepository implements TransfertRepository {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<List<Object>> conseilReappro(String article, String depotOrg, String depotDest) {
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("x_ListeReappro3")
+                .declareParameters(
+                        new SqlParameter("article", Types.VARCHAR),
+                        new SqlParameter("depotOrg", Types.VARCHAR),
+                        new SqlParameter("depotDest", Types.VARCHAR)
+
+                )
+                .returningResultSet("result1", new ConseilReapproMapper())
+                .returningResultSet("result2", new TransfertConseilReapproMapper());
+
+        Map<String, Object> results = jdbcCall.execute(null, null, article, depotOrg, depotDest);
+
+        Map<String, List<Object>> mappedResults = new HashMap<>();
+
+        List<List<Object>> resultList = new ArrayList<>();
+        resultList.add((List<Object>) results.get("result1"));
+        resultList.add((List<Object>) results.get("result2"));
+        return resultList;
     }
 
 

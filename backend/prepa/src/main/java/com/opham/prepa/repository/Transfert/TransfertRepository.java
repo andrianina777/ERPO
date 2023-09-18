@@ -3,6 +3,7 @@ package com.opham.prepa.repository.Transfert;
 import com.opham.prepa.model.Transfert.ProblemeStock;
 import com.opham.prepa.model.Transfert.Rotation;
 import com.opham.prepa.model.Transfert.Transfert;
+import com.opham.prepa.model.Transfert.TransfertConseilReappro;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface TransfertRepository {
 
     int insertL6_Transfert(Transfert t);
 
+    int insertL6_TransfertConseil(TransfertConseilReappro t);
+
     String insert_FSIL(String ids, String commentaire,String depOrg,String depDest);
 
 
@@ -23,6 +26,10 @@ public interface TransfertRepository {
     int stockPasVide(String depot_Dest,String empl_Dest);
 
     byte[] generateReportTransfert(String td,String org,String dest, Integer isDouble,String users);
+
+    List<List<Object>> conseilReappro(String article,String depotOrg,String depotDest);
+
+
 
 
 }
