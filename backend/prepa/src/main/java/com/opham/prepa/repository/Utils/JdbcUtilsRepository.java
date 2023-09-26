@@ -106,4 +106,17 @@ public class JdbcUtilsRepository implements UtilsRepository {
 
         return jdbcTemplate.query(sql, new ArticleMapper());
     }
+
+    @Override
+    public List<Labo> listLabo(String critere) {
+        String sql = "select rtrim(FOCODE),rtrim(FONOM),rtrim(FONOM1) from FFO where isnull(FOANCIEN,0)=0 " +
+                (critere != null && !critere.isEmpty() ? "AND " + critere : "") + "order by FOCODE,FONOM ";
+        return jdbcTemplate.query(sql, new LaboMapper());
+    }
+
+    @Override
+    public List<Famille> listFamille() {
+        String sql = "select rtrim(DTCODE),rtrim(DTLIB) from FDT order by DTCODE,DTLIB";
+        return jdbcTemplate.query(sql, new FamilleMapper());
+    }
 }

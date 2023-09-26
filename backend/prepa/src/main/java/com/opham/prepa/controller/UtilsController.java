@@ -171,5 +171,30 @@ public class UtilsController {
         }
     }
 
+    @GetMapping("/listLabo")
+    public ResponseEntity<List<Labo>> listLabo(@RequestParam(required = false) String critere) {
+        try {
+            List<Labo> cmd = utilsRepository.listLabo(critere);
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/listFamille")
+    public ResponseEntity<List<Famille>> listFamille() {
+        try {
+            List<Famille> cmd = utilsRepository.listFamille();
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

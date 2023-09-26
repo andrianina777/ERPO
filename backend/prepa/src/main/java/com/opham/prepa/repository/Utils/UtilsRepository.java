@@ -23,4 +23,8 @@ public interface UtilsRepository {
     List<Alle> listAlle(String depot,String critere);
 
     List<Article> listArticle(String critere);
+
+    List<Labo> listLabo(String critere);
+
+    List<Famille> listFamille();
 }
