@@ -1,10 +1,8 @@
 package com.opham.prepa.repository.Transfert;
 
-import com.opham.prepa.model.Transfert.ProblemeStock;
-import com.opham.prepa.model.Transfert.Rotation;
-import com.opham.prepa.model.Transfert.Transfert;
-import com.opham.prepa.model.Transfert.TransfertConseilReappro;
+import com.opham.prepa.model.Transfert.*;
 
+import java.util.Date;
 import java.util.List;
 
 public interface TransfertRepository {
@@ -28,6 +26,8 @@ public interface TransfertRepository {
     byte[] generateReportTransfert(String td,String org,String dest, Integer isDouble,String users);
 
     List<List<Object>> conseilReappro(String article,String depotOrg,String depotDest);
+
+    List<SuiviTD> listSuiviTD(String code, String depOrg, String depDest, Date datedeb,Date datefin,String article);
 
 
 

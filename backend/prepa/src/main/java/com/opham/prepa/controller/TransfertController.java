@@ -1,7 +1,9 @@
 package com.opham.prepa.controller;
 
 import com.opham.prepa.model.Apreparer.Commande;
+import com.opham.prepa.model.EnPreparation.EnCoursCMD;
 import com.opham.prepa.model.Transfert.ProblemeStock;
+import com.opham.prepa.model.Transfert.SuiviTD;
 import com.opham.prepa.model.Transfert.Transfert;
 import com.opham.prepa.model.Transfert.TransfertConseilReappro;
 import com.opham.prepa.model.Utils.Droit;
@@ -101,9 +103,9 @@ public class TransfertController {
     }
 
     @PostMapping("/insertFSIL")
-    public ResponseEntity<String> insert_FSIL(@RequestParam(required = true) String ids, @RequestParam(required = true) String commentaire,@RequestParam(required = true) String depOrg,@RequestParam(required = true) String depDest) {
+    public ResponseEntity<String> insert_FSIL(@RequestParam(required = true) String ids, @RequestParam(required = true) String commentaire, @RequestParam(required = true) String depOrg, @RequestParam(required = true) String depDest) {
         try {
-            String cmd = transfertRepository.insert_FSIL(ids, commentaire,depOrg,depDest);
+            String cmd = transfertRepository.insert_FSIL(ids, commentaire, depOrg, depDest);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -115,10 +117,10 @@ public class TransfertController {
     }
 
     @GetMapping("/testStock")
-    public ResponseEntity<ProblemeStock> testStock(@RequestParam(required = true) String article,@RequestParam(required = true) int qte,@RequestParam(required = true) String depot,@RequestParam(required = true) String lettre,@RequestParam(required = true) String empl) {
+    public ResponseEntity<ProblemeStock> testStock(@RequestParam(required = true) String article, @RequestParam(required = true) int qte, @RequestParam(required = true) String depot, @RequestParam(required = true) String lettre, @RequestParam(required = true) String empl) {
         try {
-            ProblemeStock cmd = transfertRepository.testStock(article, qte, depot,lettre, empl);
-            if (cmd!=null) {
+            ProblemeStock cmd = transfertRepository.testStock(article, qte, depot, lettre, empl);
+            if (cmd != null) {
                 return new ResponseEntity<>(cmd, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -129,9 +131,9 @@ public class TransfertController {
     }
 
     @GetMapping("/stockPasVide")
-    public ResponseEntity<Integer> stockPasVide(@RequestParam(required = true) String depot,@RequestParam(required = true) String empl ) {
+    public ResponseEntity<Integer> stockPasVide(@RequestParam(required = true) String depot, @RequestParam(required = true) String empl) {
         try {
-            int cmd = transfertRepository.stockPasVide(depot,empl);
+            int cmd = transfertRepository.stockPasVide(depot, empl);
 
 /*            if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -144,8 +146,8 @@ public class TransfertController {
     }
 
     @GetMapping("/printTransfert")
-    public ResponseEntity<byte[]> generateReport(@RequestParam String td,@RequestParam String org,@RequestParam String dest, @RequestParam Integer isDouble,@RequestParam String users) {
-        byte[] reportBytes = transfertRepository.generateReportTransfert(td,org,dest, isDouble,users);
+    public ResponseEntity<byte[]> generateReport(@RequestParam String td, @RequestParam String org, @RequestParam String dest, @RequestParam Integer isDouble, @RequestParam String users) {
+        byte[] reportBytes = transfertRepository.generateReportTransfert(td, org, dest, isDouble, users);
 
         if (reportBytes != null) {
             HttpHeaders headers = new HttpHeaders();
@@ -159,9 +161,9 @@ public class TransfertController {
     }
 
     @GetMapping("/conseilReappro")
-    public ResponseEntity<List<List<Object>>> conseilReappro(@RequestParam(required = false) String article,@RequestParam(required = false, defaultValue = "GROS") String depotOrg, @RequestParam(required = false, defaultValue = "DET") String depotDest) {
+    public ResponseEntity<List<List<Object>>> conseilReappro(@RequestParam(required = false) String article, @RequestParam(required = false, defaultValue = "GROS") String depotOrg, @RequestParam(required = false, defaultValue = "DET") String depotDest) {
         try {
-            List<List<Object>> cmd = transfertRepository.conseilReappro(article,depotOrg, depotDest);
+            List<List<Object>> cmd = transfertRepository.conseilReappro(article, depotOrg, depotDest);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -169,6 +171,21 @@ public class TransfertController {
             return new ResponseEntity<>(cmd, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/suiviTD")
+    public ResponseEntity<List<SuiviTD>> listSuiviTD(@RequestParam(required = false) String code, @RequestParam(required = true) String depOrg, @RequestParam(required = true) String depDest,
+                                                     @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date datedeb, @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date datefin, @RequestParam(required = false) String article) {
+        try {
+            List<SuiviTD> cmd = transfertRepository.listSuiviTD(code, depOrg, depOrg, datedeb, datefin, article);
+
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
