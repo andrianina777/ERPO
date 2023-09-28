@@ -6,11 +6,9 @@ import com.opham.prepa.mapper.Apreparer.CommandeMapper;
 import com.opham.prepa.mapper.Transfert.*;
 import com.opham.prepa.mapper.Utlis.AlleMapper;
 import com.opham.prepa.mapper.Utlis.DroitMapper;
+import com.opham.prepa.mapper.Utlis.LaboMapper;
 import com.opham.prepa.model.Apreparer.Commande;
-import com.opham.prepa.model.Transfert.ProblemeStock;
-import com.opham.prepa.model.Transfert.Rangement;
-import com.opham.prepa.model.Transfert.Transfert;
-import com.opham.prepa.model.Transfert.TransfertConseilReappro;
+import com.opham.prepa.model.Transfert.*;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,7 @@ import org.springframework.stereotype.Repository;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Types;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Repository
@@ -226,6 +221,12 @@ public class JdbcTransfertRepository implements TransfertRepository {
         resultList.add((List<Object>) results.get("result1"));
         resultList.add((List<Object>) results.get("result2"));
         return resultList;
+    }
+
+    @Override
+    public List<SuiviTD> listSuiviTD(String code, String depOrg, String depDest, Date datedeb, Date datefin, String article) {
+        String sql = "exec v_bp_list_transfert ?,?,?,?,?,?";
+        return jdbcTemplate.query(sql, new SuiviTDMapper(),code,depOrg,depDest,datedeb,datefin,article);
     }
 
 
