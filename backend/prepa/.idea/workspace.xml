@@ -10,9 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AdminsControlleur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Admins/AccesMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Admins/GroupeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Admins/UsersMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Admins/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/AdminsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/JdbcAdminsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/TransfertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/TransfertController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/JdbcTransfertRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/TransfertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Transfert/TransfertRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/SuiviTDMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Transfert/SuiviTDMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Admins/Acces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Admins/Acces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Transfert/SuiviTD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Transfert/SuiviTD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,6 +262,10 @@
       <workItem from="1695619081769" duration="7128000" />
       <workItem from="1695704197019" duration="726000" />
       <workItem from="1695790927690" duration="598000" />
+      <workItem from="1695892637559" duration="5009000" />
+      <workItem from="1695963618115" duration="4334000" />
+      <workItem from="1696222337201" duration="2519000" />
+      <workItem from="1696308855658" duration="15587000" />
     </task>
     <servers />
   </component>

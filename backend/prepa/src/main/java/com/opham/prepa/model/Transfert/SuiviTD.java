@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -19,6 +20,9 @@ public class SuiviTD implements Serializable {
     private String empl_dest;
     private String commentaire;
     private String motif;
+    private Timestamp date_entree;
+    private String users;
+
 
 
 }

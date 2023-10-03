@@ -80,7 +80,7 @@ public class JdbcUtilsRepository implements UtilsRepository {
     @Override
     public List<Depot> listDepot(String critere) {
         String sql = "SELECT DPCODE, DPNOM, isnull(DPCENTRAL,0) as DPCENTRAL, isnull(DPCOLIS,0) as DPCOLIS, isnull(xDPVTE,0) as xDPVTE,isnull(DP_TRANSFERT,0) as DP_TRANSFERT, isnull(DP_PREPA,0) as  DP_PREPA FROM FDP WHERE ISNULL(DP_DESACTIVE, 0) = 0 " +
-                (critere != null && !critere.isEmpty() ? "AND " + critere : "");
+                (critere != null && !critere.isEmpty() ? "AND " + critere : "")+"order by DPCODE ";
 
         return jdbcTemplate.query(sql, new DepotMapper());
     }
