@@ -16,4 +16,5 @@ public class Acces implements Serializable {
     private boolean read;
     private boolean write;
     private String type;
+    private String categorie;
 }

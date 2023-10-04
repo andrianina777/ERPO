@@ -44,13 +44,13 @@ public class JdbcAdminsRepository implements AdminsRepository{
 
     @Override
     public List<Acces> listAcces(String groupe) {
-        String sql = "select xAcces,xDesc,xGroupe,isnull(xRead,1),isnull(xWrite,1),isnull(xType,'') from v_xListeAcces left join v_xDroit on xDroit=xAcces and xGroupe=? where xDroit is null order by xAcces";
+        String sql = "exec v_bp_list_acces ?";
         return jdbcTemplate.query(sql, new AccesMapper(),groupe);
     }
 
     @Override
     public List<Acces> listDroit(String groupe) {
-        String sql = "select xAcces,xDesc,xGroupe,isnull(xRead,0),isnull(xWrite,0),isnull(xType,'') from v_xDroit inner join v_xListeAcces on xDroit=xAcces where xGroupe=? order by xAcces";
+        String sql = "select xAcces,xDesc,xGroupe,isnull(xRead,0),isnull(xWrite,0),isnull(xType,''),isnull(xCategorie,'') from v_xDroit inner join v_xListeAcces on xDroit=xAcces where xGroupe=? order by xCategorie,xAcces";
         return jdbcTemplate.query(sql, new AccesMapper(),groupe);
     }
 
@@ -77,4 +77,12 @@ public class JdbcAdminsRepository implements AdminsRepository{
         String sql="delete from v_xDroit where xGroupe=? and xDroit=?";
         return jdbcTemplate.update(sql,groupe,droit);
     }
+
+    @Override
+    public int update_droit(String groupe, String droit, boolean w, boolean r) {
+        String sql="update v_xDroit set xRead=?,xWrite=? where xGroupe=? and xDroit=?";
+        return jdbcTemplate.update(sql,r,w,groupe,droit);
+    }
+
+
 }

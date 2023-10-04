@@ -17,6 +17,7 @@ public class AccesMapper implements RowMapper<Acces> {
         A.setRead(rs.getBoolean(4));
         A.setWrite(rs.getBoolean(5));
         A.setType(rs.getString(6));
+        A.setCategorie(rs.getString(7));
         return A;
     }
 }

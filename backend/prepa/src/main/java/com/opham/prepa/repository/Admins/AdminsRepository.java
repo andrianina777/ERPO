@@ -23,4 +23,8 @@ public interface AdminsRepository {
     int delete_Membres(String groupe,String users);
 
     int delete_droit(String groupe,String droit);
+
+    int update_droit(String groupe,String droit,boolean w,boolean r);
+
+
 }

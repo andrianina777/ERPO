@@ -126,4 +126,14 @@ public class AdminsControlleur {
         }
     }
 
+    @PutMapping ("/update_Droit")
+    public ResponseEntity<String> update_Droit(@RequestParam(required = true) boolean read,@RequestParam(required = true) boolean write,@RequestParam(required = true) String groupe,@RequestParam(required = true) String droit) {
+        int updatedRows = adminsRepository.update_droit(groupe,droit,read,write);
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
