@@ -12,5 +12,9 @@ import java.io.Serializable;
 public class Acces implements Serializable {
     private String code;
     private String desc;
-
+    private String groupe;
+    private boolean read;
+    private boolean write;
+    private String type;
+    private String categorie;
 }

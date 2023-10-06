@@ -19,6 +19,8 @@ public class SuiviTDMapper  implements RowMapper<SuiviTD> {
         td.setEmpl_dest(rs.getString(6));
         td.setCommentaire(rs.getString(7));
         td.setMotif(rs.getString(8));
+        td.setDate_entree(rs.getTimestamp(9));
+        td.setUsers(rs.getString(10));
         return td;
     }
 }
