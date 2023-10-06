@@ -11,11 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AdminsControlleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AdminsControlleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Admins/AccesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/mapper/Admins/AccesMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Admins/Acces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/Admins/Acces.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/AdminsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/AdminsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/JdbcAdminsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/JdbcAdminsRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +254,9 @@
       <workItem from="1695963618115" duration="4334000" />
       <workItem from="1696222337201" duration="2519000" />
       <workItem from="1696308855658" duration="16340000" />
-      <workItem from="1696395640411" duration="4597000" />
+      <workItem from="1696395640411" duration="6020000" />
+      <workItem from="1696481643376" duration="945000" />
+      <workItem from="1696569053864" duration="1058000" />
     </task>
     <servers />
   </component>
