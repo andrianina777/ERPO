@@ -136,4 +136,14 @@ public class AdminsControlleur {
         }
     }
 
+    @PostMapping("/insert_groupe")
+    public ResponseEntity<Groupe> insert_groupe(@RequestBody Groupe G) {
+        int updatedRows = adminsRepository.insert_groupe(G);
+        if (updatedRows > 0) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

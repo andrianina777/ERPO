@@ -50,7 +50,7 @@ public class JdbcAdminsRepository implements AdminsRepository{
 
     @Override
     public List<Acces> listDroit(String groupe) {
-        String sql = "select xAcces,xDesc,xGroupe,isnull(xRead,0),isnull(xWrite,0),isnull(xType,''),isnull(xCategorie,'') from v_xDroit inner join v_xListeAcces on xDroit=xAcces where xGroupe=? order by xCategorie,xAcces";
+        String sql = "exec v_bp_getSesDroit ? ";
         return jdbcTemplate.query(sql, new AccesMapper(),groupe);
     }
 
@@ -62,7 +62,7 @@ public class JdbcAdminsRepository implements AdminsRepository{
 
     @Override
     public int insert_droit(Acces A) {
-        String sql="INSERT INTO Equagestion.dbo.v_xDroit(xGroupe, xDroit, xRead, xWrite) VALUES (?,?,?,?)";
+        String sql="INSERT INTO Equagestion..v_xDroit(xGroupe, xDroit, xRead, xWrite) VALUES (?,?,?,?)";
         return jdbcTemplate.update(sql,A.getGroupe(),A.getCode(),A.isRead(),A.isWrite());
     }
 
@@ -82,6 +82,12 @@ public class JdbcAdminsRepository implements AdminsRepository{
     public int update_droit(String groupe, String droit, boolean w, boolean r) {
         String sql="update v_xDroit set xRead=?,xWrite=? where xGroupe=? and xDroit=?";
         return jdbcTemplate.update(sql,r,w,groupe,droit);
+    }
+
+    @Override
+    public int insert_groupe(Groupe G) {
+        String sql="INSERT INTO Equagestion..v_xGroupe ( xCode, xLibelle) VALUES (?,?)";
+        return jdbcTemplate.update(sql,G.getCode(),G.getLibelle());
     }
 
 

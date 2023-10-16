@@ -72,8 +72,7 @@ public class JdbcUtilsRepository implements UtilsRepository {
 
     @Override
     public List<Droit> listDoit(String xUser) {
-        return jdbcTemplate.query("select isnull(rtrim(xGroupeCode),'') as CodeGroupe,isnull(xRead,0) as LIRE,isnull(xWrite,0) as WRITE,isnull(rtrim(xUser),'') as xUser ,isnull(rtrim(xDroit),'') as xDroit from v_xGroupeUsers  \n" +
-                        "left join v_xGroupe on rtrim(xGroupeCode)=rtrim(xCode) left join v_xDroit on  rtrim(xGroupe)=rtrim(xGroupeCode) where  rtrim(xUser)=? ",
+        return jdbcTemplate.query("exec v_bp_getlistDroit ? ",
                 new DroitMapper(), xUser);
     }
 

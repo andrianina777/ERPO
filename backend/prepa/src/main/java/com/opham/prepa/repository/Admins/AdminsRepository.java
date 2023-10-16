@@ -26,5 +26,7 @@ public interface AdminsRepository {
 
     int update_droit(String groupe,String droit,boolean w,boolean r);
 
+    int insert_groupe(Groupe G);
+
 
 }
