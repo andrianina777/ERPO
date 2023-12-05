@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c5dce589-9a11-464a-a1ed-c84a130772ed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c5dce589-9a11-464a-a1ed-c84a130772ed.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AdminsControlleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AdminsControlleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/AdminsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/AdminsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/JdbcAdminsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Admins/JdbcAdminsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +265,19 @@
       <workItem from="1696939931658" duration="713000" />
       <workItem from="1697087826365" duration="1484000" />
       <workItem from="1697174912335" duration="5662000" />
-      <workItem from="1697432464493" duration="1613000" />
+      <workItem from="1697432464493" duration="1624000" />
+      <workItem from="1697521753049" duration="1195000" />
+      <workItem from="1697614962669" duration="1199000" />
+      <workItem from="1697778042436" duration="1199000" />
+      <workItem from="1698039014020" duration="1820000" />
+      <workItem from="1698123414975" duration="1201000" />
+      <workItem from="1698211086031" duration="1213000" />
+      <workItem from="1699425469936" duration="676000" />
+      <workItem from="1699856759094" duration="928000" />
+      <workItem from="1699872779435" duration="4387000" />
+      <workItem from="1700552938492" duration="666000" />
+      <workItem from="1701063093411" duration="627000" />
+      <workItem from="1701677722728" duration="619000" />
     </task>
     <servers />
   </component>
