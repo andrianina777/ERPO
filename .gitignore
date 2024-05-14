@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
+.DS_Store
 ### STS ###
 .apt_generated
 .classpath
@@ -35,3 +35,14 @@ build/
 
 ### VS Code ###
 .vscode/
+.DS_Store
+backend/.DS_Store
+backend/prepa/.DS_Store
+backend/prepa/.idea/workspace.xml
+backend/prepa/src/.DS_Store
+backend/prepa/src/main/.DS_Store
+backend/prepa/src/main/java/.DS_Store
+backend/prepa/src/main/java/com/.DS_Store
+backend/prepa/src/main/java/com/opham/.DS_Store
+backend/prepa/src/main/java/com/opham/prepa/.DS_Store
+

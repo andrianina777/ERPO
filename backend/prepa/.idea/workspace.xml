@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/model/ADV/DeblocCmdADV.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -278,6 +279,14 @@
       <workItem from="1700552938492" duration="666000" />
       <workItem from="1701063093411" duration="627000" />
       <workItem from="1701677722728" duration="619000" />
+      <workItem from="1701753892625" duration="1437000" />
+      <workItem from="1701759331429" duration="1408000" />
+      <workItem from="1704785329039" duration="907000" />
+      <workItem from="1705317805398" duration="709000" />
+      <workItem from="1705565645931" duration="597000" />
+      <workItem from="1713182901568" duration="644000" />
+      <workItem from="1713864006934" duration="3214000" />
+      <workItem from="1714377813402" duration="614000" />
     </task>
     <servers />
   </component>
