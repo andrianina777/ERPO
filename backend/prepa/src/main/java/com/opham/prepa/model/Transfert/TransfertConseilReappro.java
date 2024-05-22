@@ -35,4 +35,5 @@ public class TransfertConseilReappro implements Serializable {
     private String commentaire;
     private String urg;
     private String myId;
+    private String ip_web;
 }
