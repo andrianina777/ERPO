@@ -3,6 +3,7 @@ package com.opham.prepa.controller;
 import com.opham.prepa.Utils.FileParser;
 import com.opham.prepa.model.Utils.*;
 import com.opham.prepa.repository.Utils.UtilsRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -195,6 +196,12 @@ public class UtilsController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/local-ip")
+    public String getLocalIPAddress(HttpServletRequest request) {
+        String ipAddress = request.getRemoteAddr();
+        return ipAddress;
     }
 
 }

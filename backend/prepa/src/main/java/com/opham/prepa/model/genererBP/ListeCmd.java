@@ -70,5 +70,6 @@ public class ListeCmd implements Serializable {
     private String rayon;
     private int cclpromo;
     private String myID;
+    private String ip_web;
 
 }

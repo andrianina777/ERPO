@@ -33,6 +33,7 @@ public class Transfert implements Serializable {
     private int qteEnCoursEt;
     private int qteEt;
     private String myId;
+    private String ip_web;
 
 
 
