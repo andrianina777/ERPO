@@ -145,7 +145,7 @@ public class UtilsController {
         try {
             FileParser fileParser = new FileParser();
 
-            List<String> names = fileParser.extractNames("interfaces");
+            List<String> names = fileParser.extractNames("/Users/anjaniainaandrianina/Desktop/Projet/Preparation Aout2023/Backend/ERPO/backend/prepa/interfaces");
 
             if (names.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
