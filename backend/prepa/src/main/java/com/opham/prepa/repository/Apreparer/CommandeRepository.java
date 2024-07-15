@@ -55,6 +55,8 @@ public interface CommandeRepository {
 
     EnCoursPrepBP infoEncoursBP(String BP);
 
+    int check_PP();
+
 
 
 

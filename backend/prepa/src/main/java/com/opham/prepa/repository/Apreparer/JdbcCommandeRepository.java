@@ -69,7 +69,7 @@ public class JdbcCommandeRepository implements CommandeRepository {
     public Credentials checkCredentials(Credentials credentials) {
         //DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
         String name = credentials.getName_server();
-        String filepath = "/Users/anjaniainaandrianina/Desktop/Projet/Preparation Aout2023/Backend/ERPO/backend/prepa/interfaces";
+        String filepath = "interfaces";
         FileParser fileParser = new FileParser();
         String ip = fileParser.recupererIP(name, filepath);
         DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(), ip);
@@ -291,5 +291,11 @@ public class JdbcCommandeRepository implements CommandeRepository {
     public EnCoursPrepBP infoEncoursBP(String BP) {
         return jdbcTemplate.queryForObject(" select BPCODE,ETAT_BP,xEmp from VIEW_BP_ENCOURS left join xEMP_CTRL  on xCC_Encours=BPCODE where BPCODE=?",
                 new InfoEncoursBPMapper(), BP);
+    }
+
+    @Override
+    public int check_PP() {
+        String sql="select count(*) from x_PP where isnull(PPIMPRIME,0)=0";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 }

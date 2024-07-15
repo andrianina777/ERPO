@@ -159,6 +159,19 @@ public class CommandeController {
         }
     }
 
+    @GetMapping("/check_PP")
+    public ResponseEntity<Integer> check_PP() {
+        try {
+            int id = commandeRepository.check_PP();
+
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @GetMapping("/printPrepa")
     public ResponseEntity<byte[]> generateReport(@RequestParam String codeBP, @RequestParam Integer isDouble) {
         byte[] reportBytes = commandeRepository.generateReport(codeBP, isDouble);
