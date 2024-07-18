@@ -69,7 +69,7 @@ public class JdbcCommandeRepository implements CommandeRepository {
     public Credentials checkCredentials(Credentials credentials) {
         //DriverManagerDataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword());
         String name = credentials.getName_server();
-        String filepath = "interfaces";
+        String filepath = "/Users/anjaniainaandrianina/Desktop/SuiviFacturation1/backend_suivi_fact/ERPO/backend/prepa/interfaces";
         FileParser fileParser = new FileParser();
         String ip = fileParser.recupererIP(name, filepath);
         DataSource dataSource = dataSourceConfig.getDataSource(credentials.getUsername(), credentials.getPassword(), ip);
