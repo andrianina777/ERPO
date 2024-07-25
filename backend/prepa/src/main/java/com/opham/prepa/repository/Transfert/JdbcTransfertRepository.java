@@ -131,24 +131,24 @@ public class JdbcTransfertRepository implements TransfertRepository {
     public int insertL6_Transfert(Transfert t) {
         String sql = "\n" +
                 "INSERT INTO DBSUIVI..L6_TRANSFERT\n" +
-                "\t(Article, libelle, labo, depotOrg, emplOrg, depotDest, emplDest, lot, dateper, lettre, qte, numarm1, numarm2, devise, padev, paht, frais, ug, qtenonEtq, qteEncours, qteEtiq, id)\n" +
+                "\t(Article, libelle, labo, depotOrg, emplOrg, depotDest, emplDest, lot, dateper, lettre, qte, numarm1, numarm2, devise, padev, paht, frais, ug, qtenonEtq, qteEncours, qteEtiq, id,ip_web)\n" +
                 "VALUES \n" +
-                "\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ,? ,? ,? ,? ,? ,? , ?)";
+                "\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ,? ,? ,? ,? ,? ,? , ?,?)";
 
         return jdbcTemplate.update(sql, t.getArticle(), t.getLibelle(), t.getLabo(), t.getDepot_org(), t.getEmpl_org(), t.getDepot_dest(), t.getEmpl_dest(), t.getLot(), t.getDatePer(), t.getLettre(),
-                t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId());
+                t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId(),t.getIp_web());
     }
 
     @Override
     public int insertL6_TransfertConseil(TransfertConseilReappro t) {
         String sql = "\n" +
                 "INSERT INTO DBSUIVI..L6_TRANSFERT\n" +
-                "\t(Article, libelle, labo, depotOrg, emplOrg, depotDest, emplDest, lot, dateper, lettre, qte, numarm1, numarm2, devise, padev, paht, frais, ug, qtenonEtq, qteEncours, qteEtiq, id,commentaire, urgent)\n" +
+                "\t(Article, libelle, labo, depotOrg, emplOrg, depotDest, emplDest, lot, dateper, lettre, qte, numarm1, numarm2, devise, padev, paht, frais, ug, qtenonEtq, qteEncours, qteEtiq, id,commentaire, urgent,ip_web)\n" +
                 "VALUES \n" +
-                "\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ,? ,? ,? ,? ,? ,? , ?,?,?)";
+                "\t(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ,? ,? ,? ,? ,? ,? , ?,?,?,?)";
 
         return jdbcTemplate.update(sql, t.getArticle(), t.getLibelle(), t.getLabo(), t.getDepot_org(), t.getEmpl_org(), t.getDepot_dest(), t.getEmpl_dest(), t.getLot(), t.getDatePer(), t.getLettre(),
-                t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId(), t.getCommentaire(), t.getUrg());
+                t.getQte(), t.getNumarm1(), t.getNumarm1(), t.getDevise(), t.getPadev(), t.getPaht(), t.getFrais(), t.getUg(), t.getQteNonEt(), t.getQteEnCoursEt(), t.getQteEt(), t.getMyId(), t.getCommentaire(), t.getUrg(),t.getIp_web());
     }
 
     @Override

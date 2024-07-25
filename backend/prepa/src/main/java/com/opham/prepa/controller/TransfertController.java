@@ -179,7 +179,7 @@ public class TransfertController {
     public ResponseEntity<List<SuiviTD>> listSuiviTD(@RequestParam(required = false) String code, @RequestParam(required = true) String depOrg, @RequestParam(required = true) String depDest,
                                                      @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date datedeb, @RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date datefin, @RequestParam(required = false) String article) {
         try {
-            List<SuiviTD> cmd = transfertRepository.listSuiviTD(code, depOrg, depOrg, datedeb, datefin, article);
+            List<SuiviTD> cmd = transfertRepository.listSuiviTD(code, depOrg, depDest, datedeb, datefin, article);
 
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
