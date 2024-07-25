@@ -15,17 +15,18 @@ public class AppelEntrantMapper implements RowMapper<AppelEntrant> {
         cmd.setSrc(rs.getString(3));
         cmd.setNumero(rs.getString(4));
         cmd.setNumero_indicatif(rs.getString(5));
-        cmd.setDcontext(rs.getString(6));
-        cmd.setDst(rs.getString(7));
-        cmd.setDstchannel(rs.getString(8));
-        cmd.setPoste_interne(rs.getString(9));
-        cmd.setDuration(rs.getInt(10));
-        cmd.setBillsec(rs.getInt(11));
-        cmd.setDisposition(rs.getString(12));
-        cmd.setUniqueid(rs.getString(13));
-        cmd.setEtat(rs.getInt(14));
-        cmd.setStatut(rs.getString(15));
-        cmd.setDepuis(rs.getLong(16));
+        cmd.setClient(rs.getString(6));
+        cmd.setDcontext(rs.getString(7));
+        cmd.setDst(rs.getString(8));
+        cmd.setDstchannel(rs.getString(9));
+        cmd.setPoste_interne(rs.getString(10));
+        cmd.setDuration(rs.getInt(11));
+        cmd.setBillsec(rs.getInt(12));
+        cmd.setDisposition(rs.getString(13));
+        cmd.setUniqueid(rs.getString(14));
+        cmd.setEtat(rs.getInt(15));
+        cmd.setStatut(rs.getString(16));
+        cmd.setDepuis(rs.getLong(17));
         return cmd;
 
     }

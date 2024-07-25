@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface AppelEntrantRepository {
-    List<AppelEntrant> findAppelEntrant();
+    List<AppelEntrant> findAppelEntrant(Date date_deb, Date date_fin);
 
     void updateEtat(Long AppelId);
+    void updateEtat1(Long AppelId);
 
 }

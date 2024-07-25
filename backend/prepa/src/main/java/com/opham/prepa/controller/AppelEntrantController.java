@@ -21,9 +21,9 @@ public class AppelEntrantController {
 
     @GetMapping("/appelentrant")
 
-    public ResponseEntity<List<AppelEntrant>> onAppelEntrant() {
+    public ResponseEntity<List<AppelEntrant>> onAppelEntrant(@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date_deb, @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date_fin) {
         try {
-            List<AppelEntrant> cmd = appelentrantRepository.findAppelEntrant();
+            List<AppelEntrant> cmd = appelentrantRepository.findAppelEntrant(date_deb ,date_fin);
             if (cmd.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -39,5 +39,11 @@ public class AppelEntrantController {
     public ResponseEntity<String> updateFrais(@RequestParam Long AppelId) {
         appelentrantRepository.updateEtat(AppelId);
         return ResponseEntity.status(HttpStatus.OK).body("update Etat successfully");
+    }
+
+    @PutMapping("/updateEtat1")
+    public ResponseEntity<String> updateEtat(@RequestParam Long AppelId) {
+        appelentrantRepository.updateEtat(AppelId);
+        return ResponseEntity.status(HttpStatus.OK).body("update Etat to 2 successfully");
     }
 }

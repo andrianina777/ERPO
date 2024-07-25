@@ -23,16 +23,22 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
     }
 
     @Override
-    public List<AppelEntrant> findAppelEntrant() {
+    public List<AppelEntrant> findAppelEntrant(Date date_deb , Date date_fin) {
         //Requête qui affiche les appels entrant
-        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS from CALLING_OPHAM..VIEW_APPEL_ENTRANT ",
-                new AppelEntrantMapper());
+        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS from CALLING_OPHAM..VIEW_APPEL_ENTRANT where  convert(date,CALLDATE) between ? and ? ",
+                new AppelEntrantMapper(),date_deb,date_fin);
     }
 
 
     @Override
     public void updateEtat(Long AppelId) {
-        String sql = "update CALLING_OPHAM..FAPPEL set ETAT=1 , DATEARAPPEL=getdate() where SEQ=?";
+        String sql = "update CALLING_OPHAM..FAPPEL set ETAT=1 where SEQ=?";
+        jdbcTemplate.update(sql, AppelId);
+    }
+
+    @Override
+    public void updateEtat1(Long AppelId) {
+        String sql = "update CALLING_OPHAM..FAPPEL set ETAT=2 where SEQ=?";
         jdbcTemplate.update(sql, AppelId);
     }
 }

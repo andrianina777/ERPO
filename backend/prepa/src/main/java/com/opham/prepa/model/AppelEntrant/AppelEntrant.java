@@ -19,6 +19,7 @@ public class AppelEntrant implements Serializable {
     private String src;
     private String numero;
     private String numero_indicatif;
+    private String client;
     private String dcontext;
     private String dst;
     private String dstchannel;
