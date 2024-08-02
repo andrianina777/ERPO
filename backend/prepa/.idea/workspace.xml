@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="" />
+    <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/Utils/JdbcUtilsRepository.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -293,6 +296,9 @@
       <workItem from="1720789524646" duration="1228000" />
       <workItem from="1721020767599" duration="4115000" />
       <workItem from="1721903446009" duration="4863000" />
+      <workItem from="1722337959821" duration="1115000" />
+      <workItem from="1722509149312" duration="597000" />
+      <workItem from="1722580316058" duration="4122000" />
     </task>
     <servers />
   </component>
