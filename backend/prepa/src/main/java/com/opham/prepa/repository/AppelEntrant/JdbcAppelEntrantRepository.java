@@ -1,8 +1,12 @@
 package com.opham.prepa.repository.AppelEntrant;
 
 import com.opham.prepa.Utils.DataSourceConfig;
+import com.opham.prepa.mapper.AppelEntrant.ActionFirstAppelMapper;
 import com.opham.prepa.mapper.AppelEntrant.AppelEntrantMapper;
+import com.opham.prepa.mapper.AppelEntrant.AppelSortantMapper;
 import com.opham.prepa.model.AppelEntrant.AppelEntrant;
+import com.opham.prepa.model.AppelEntrant.AppelSortant;
+import com.opham.prepa.model.AppelEntrant.ActionFirstAppel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,6 +31,18 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
         //Requête qui affiche les appels entrant
         return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS from CALLING_OPHAM..VIEW_APPEL_ENTRANT where  convert(date,CALLDATE) between ? and ? ",
                 new AppelEntrantMapper(),date_deb,date_fin);
+    }
+
+    @Override
+    public List<AppelSortant> findAppelSortant(Date date_sortant , String numero) {
+        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT from CALLING_OPHAM..VIEW_APPEL_SORTANT where  NUMERO =? and CALLDATE>? ",
+                new AppelSortantMapper(),numero,date_sortant);
+    }
+
+    @Override
+    public List<ActionFirstAppel> findActionFirstAppel() {
+        return jdbcTemplate.query("select SEQ,ACTION from CALLING_OPHAM..ACTIONS",
+                new ActionFirstAppelMapper());
     }
 
 

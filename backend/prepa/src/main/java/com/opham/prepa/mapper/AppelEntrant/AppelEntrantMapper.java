@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-public class AppelEntrantMapper implements RowMapper<AppelEntrant> {
+public class
+AppelEntrantMapper implements RowMapper<AppelEntrant> {
     public AppelEntrant mapRow(ResultSet rs, int rowNum) throws SQLException {
         AppelEntrant cmd = new AppelEntrant();
         cmd.setSeq(rs.getLong(1));

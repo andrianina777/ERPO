@@ -1,6 +1,8 @@
 package com.opham.prepa.controller;
 
 import com.opham.prepa.model.AppelEntrant.AppelEntrant;
+import com.opham.prepa.model.AppelEntrant.AppelSortant;
+import com.opham.prepa.model.AppelEntrant.ActionFirstAppel;
 import com.opham.prepa.repository.AppelEntrant.AppelEntrantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,6 +36,43 @@ public class AppelEntrantController {
         }
     }
 
+    @Autowired
+    AppelEntrantRepository appelsortantrepository;
+
+    @GetMapping("/appelsortant")
+
+    public ResponseEntity<List<AppelSortant>> onAppelSortant(@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date date_sortant, @RequestParam(required = false)  String numero) {
+        try {
+            List<AppelSortant> cmd = appelsortantrepository.findAppelSortant(date_sortant ,numero);
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Autowired
+    AppelEntrantRepository actionfirstappelrepository;
+
+    @GetMapping("/listAction")
+
+    public ResponseEntity<List<ActionFirstAppel>> onActionFirstAppel() {
+        try {
+            List<ActionFirstAppel> cmd = actionfirstappelrepository.findActionFirstAppel();
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
     @PutMapping("/updateEtat")
     public ResponseEntity<String> updateFrais(@RequestParam Long AppelId) {
@@ -46,4 +85,7 @@ public class AppelEntrantController {
         appelentrantRepository.updateEtat(AppelId);
         return ResponseEntity.status(HttpStatus.OK).body("update Etat to 2 successfully");
     }
+
+
+
 }
