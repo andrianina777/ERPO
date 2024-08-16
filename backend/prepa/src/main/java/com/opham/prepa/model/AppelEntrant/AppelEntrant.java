@@ -31,6 +31,7 @@ public class AppelEntrant implements Serializable {
     private int etat;
     private String statut;
     private Long depuis;
+    private Timestamp daterappel_1;
   //  private Timestamp datecre;
 
 }

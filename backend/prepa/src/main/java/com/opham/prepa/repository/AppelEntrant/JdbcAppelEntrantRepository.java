@@ -31,7 +31,7 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
     @Override
     public List<AppelEntrant> findAppelEntrant(Date date_deb , Date date_fin) {
         //Requête qui affiche les appels entrant
-        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS from CALLING_OPHAM..VIEW_APPEL_ENTRANT where  convert(date,CALLDATE) between ? and ? ",
+        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS,DATERAPPEL_1 from CALLING_OPHAM..VIEW_APPEL_ENTRANT where  convert(date,CALLDATE) between ? and ? ",
                 new AppelEntrantMapper(),date_deb,date_fin);
     }
 

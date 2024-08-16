@@ -28,6 +28,7 @@ AppelEntrantMapper implements RowMapper<AppelEntrant> {
         cmd.setEtat(rs.getInt(15));
         cmd.setStatut(rs.getString(16));
         cmd.setDepuis(rs.getLong(17));
+        cmd.setDaterappel_1(rs.getTimestamp(18));
         return cmd;
 
     }
