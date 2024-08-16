@@ -188,14 +188,19 @@ public class CommandeController {
     }
 
     @PostMapping("/atteTransfert")
-    public ResponseEntity<String> atteTransfert(@RequestParam String code_CC, @RequestParam Integer xSeq) {
-        int updatedRows = commandeRepository.atteTransfert(code_CC, xSeq);
-        if (updatedRows > 0) {
+    public ResponseEntity<String> atteTransfert(@RequestParam String code_CC, @RequestParam String article) {
+        try {
+            // Call the stored procedure
+            commandeRepository.atteTransfert(code_CC, article);
+
+            // If no exception was thrown, assume success
             return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            // Handle exceptions (e.g., SQLException, DataAccessException)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
     }
+
 
     @PutMapping("/resumeT")
     public ResponseEntity<String> updateCCResume(@RequestParam String codeCC) {

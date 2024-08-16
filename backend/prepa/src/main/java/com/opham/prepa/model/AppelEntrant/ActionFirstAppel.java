@@ -12,6 +12,6 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 
 public class ActionFirstAppel implements Serializable{
-    private Long seq;
-    private String action;
+    private int id;
+    private String name;
 }

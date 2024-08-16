@@ -132,9 +132,9 @@ public class JdbcCommandeRepository implements CommandeRepository {
     }
 
     @Override
-    public int atteTransfert(String code_CC, int xSeq) {
+    public int atteTransfert(String code_CC, String article) {
         String sql = "exec v_bp_updateAtteTransfert ?, ?";
-        return jdbcTemplate.update(sql, code_CC, xSeq);
+        return jdbcTemplate.update(sql, code_CC, article);
     }
 
     @Override

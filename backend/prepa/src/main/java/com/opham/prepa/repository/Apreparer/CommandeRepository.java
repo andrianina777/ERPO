@@ -39,7 +39,7 @@ public interface CommandeRepository {
 
     byte[] generateReport(String codeBP, Integer isDouble);
 
-    int atteTransfert(String code_CC, int xSeq);
+    int atteTransfert(String code_CC, String article);
 
     List<EnCoursCMD> listEnCoursPrepa(int prepspecif,int isVisible,Date dateliv);
     Credentials checkCredentials(Credentials credentials);

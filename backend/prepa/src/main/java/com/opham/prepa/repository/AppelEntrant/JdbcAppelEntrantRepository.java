@@ -41,7 +41,7 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
 
     @Override
     public List<ActionFirstAppel> findActionFirstAppel() {
-        return jdbcTemplate.query("select SEQ,ACTION from CALLING_OPHAM..ACTIONS",
+        return jdbcTemplate.query("select SEQ,ACTION from CALLING_OPHAM..ACTIONS order by SEQ",
                 new ActionFirstAppelMapper());
     }
 
