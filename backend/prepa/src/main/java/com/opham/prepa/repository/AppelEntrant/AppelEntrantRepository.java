@@ -4,6 +4,8 @@ import com.opham.prepa.model.AppelEntrant.AppelEntrant;
 import com.opham.prepa.model.AppelEntrant.AppelSortant;
 import com.opham.prepa.model.AppelEntrant.ActionFirstAppel;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -14,5 +16,7 @@ public interface AppelEntrantRepository {
 
     void updateEtat(Long AppelId);
     void updateEtat1(Long AppelId);
+
+    int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortie);
 
 }

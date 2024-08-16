@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -56,5 +58,11 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
     public void updateEtat1(Long AppelId) {
         String sql = "update CALLING_OPHAM..FAPPEL set ETAT=2 where SEQ=?";
         jdbcTemplate.update(sql, AppelId);
+    }
+
+    @Override
+    public int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortant) {
+        String sql = "execute CALLING_OPHAM..bp_majEtatAppel ?,?,?";
+       return jdbcTemplate.update(sql, seq,etat,seqSortant);
     }
 }
