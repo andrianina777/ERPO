@@ -17,6 +17,6 @@ public interface AppelEntrantRepository {
     void updateEtat(Long AppelId);
     void updateEtat1(Long AppelId);
 
-    int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortie);
+    int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortie,int rappel);
 
 }

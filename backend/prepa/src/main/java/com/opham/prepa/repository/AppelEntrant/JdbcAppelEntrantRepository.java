@@ -61,8 +61,8 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
     }
 
     @Override
-    public int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortant) {
-        String sql = "execute CALLING_OPHAM..bp_majEtatAppel ?,?,?";
-       return jdbcTemplate.update(sql, seq,etat,seqSortant);
+    public int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortant,int rappel) {
+        String sql = "execute CALLING_OPHAM..bp_majEtatAppel ?,?,?,?";
+       return jdbcTemplate.update(sql, seq,etat,seqSortant,rappel);
     }
 }

@@ -89,10 +89,10 @@ public class AppelEntrantController {
         return ResponseEntity.status(HttpStatus.OK).body("update Etat to 2 successfully");
     }
     @PostMapping("/updateEtatSortie")
-    public ResponseEntity<String> updateEtatSortie(@RequestParam BigDecimal seq,@RequestParam int etat,@RequestParam BigDecimal seqSortie) {
+    public ResponseEntity<String> updateEtatSortie(@RequestParam BigDecimal seq,@RequestParam int etat,@RequestParam BigDecimal seqSortie,@RequestParam int rappel) {
 
         try {
-            int rowsAffected = appelentrantRepository.updateEtatSortie(seq,etat,seqSortie);
+            int rowsAffected = appelentrantRepository.updateEtatSortie(seq,etat,seqSortie,rappel);
             if (rowsAffected > 0) {
                 return ResponseEntity.status(HttpStatus.CREATED).body("resultat update vel avec succès");
             } else {
