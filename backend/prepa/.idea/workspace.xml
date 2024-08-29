@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c25d66f8-21ed-4497-abe5-497770cb253e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AppelEntrantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/controller/AppelEntrantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/AppelEntrant/AppelEntrantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/AppelEntrant/AppelEntrantRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/AppelEntrant/JdbcAppelEntrantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opham/prepa/repository/AppelEntrant/JdbcAppelEntrantRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,6 +311,7 @@
       <workItem from="1724088574514" duration="121000" />
       <workItem from="1724219200880" duration="4150000" />
       <workItem from="1724226892432" duration="3741000" />
+      <workItem from="1724929336540" duration="378000" />
     </task>
     <servers />
   </component>
