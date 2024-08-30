@@ -32,7 +32,7 @@ backend/prepa/.idea/workspace.xml
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+backend/prepa/.idea/workspace.xml
 ### VS Code ###
 .vscode/
 .DS_Store
@@ -48,3 +48,4 @@ backend/prepa/src/main/java/com/opham/prepa/.DS_Store
 
 backend/prepa/.idea/workspace.xml
 .idea/workspace.xml
+backend/prepa/.idea/workspace.xml
