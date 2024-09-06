@@ -33,6 +33,8 @@ public class AppelEntrant implements Serializable {
     private Long depuis;
     private Timestamp daterappel_1;
     private Timestamp daterappel_2;
+    private String poste_rap1;
+    private String poste_rap2;
   //  private Timestamp datecre;
 
 }

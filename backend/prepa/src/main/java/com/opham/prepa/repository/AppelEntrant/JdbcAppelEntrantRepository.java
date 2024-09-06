@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
     @Override
     public List<AppelEntrant> findAppelEntrant(Date date_deb , Date date_fin) {
         //Requête qui affiche les appels entrant
-        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS,DATERAPPEL_1,DATERAPPEL_2 from CALLING_OPHAM..VIEW_APPEL_ENTRANT where  convert(date,CALLDATE) between ? and ? ",
+        return jdbcTemplate.query("select SEQ,CALLDATE,SRC,NUMERO,NUMERO_INDICATIF,CLIENT,DCONTEXT,DST,DSTCHANNEL,POSTE_INTERNE,DURATION,BILLSEC,DISPOSITION,UNIQUEID,ETAT,STATUT,DEPUIS,DATERAPPEL_1,DATERAPPEL_2,POSTE_RAP1,POSTE_RAP2 from CALLING_OPHAM..VIEW_APPEL_ENTRANT where  convert(date,CALLDATE) between ? and ? ",
                 new AppelEntrantMapper(),date_deb,date_fin);
     }
 
@@ -61,8 +60,8 @@ public class JdbcAppelEntrantRepository implements AppelEntrantRepository{
     }
 
     @Override
-    public int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortant,int rappel) {
-        String sql = "execute CALLING_OPHAM..bp_majEtatAppel ?,?,?,?";
-       return jdbcTemplate.update(sql, seq,etat,seqSortant,rappel);
+    public int updateEtatSortie(BigDecimal seq, int etat, BigDecimal seqSortant, int rappel, String src_sortant) {
+        String sql = "execute CALLING_OPHAM..bp_majEtatAppel ?,?,?,?,?";
+       return jdbcTemplate.update(sql, seq,etat,seqSortant,rappel,src_sortant);
     }
 }
