@@ -27,4 +27,6 @@ public interface UtilsRepository {
     List<Labo> listLabo(String critere);
 
     List<Famille> listFamille();
+
+    List<Client> listClient();
 }

@@ -118,4 +118,10 @@ public class JdbcUtilsRepository implements UtilsRepository {
         String sql = "select rtrim(DTCODE),rtrim(DTLIB) from FDT order by DTCODE,DTLIB";
         return jdbcTemplate.query(sql, new FamilleMapper());
     }
+
+    @Override
+    public List<Client> listClient() {
+        String sql = "select CLCODE,CLNOM1,CLADR1,CLADR2,CLSTATUS,CLSA,CLVALEUR from Equagestion..FCL where CLSTATUS = 0";
+        return jdbcTemplate.query(sql, new ClientMapper());
+    }
 }

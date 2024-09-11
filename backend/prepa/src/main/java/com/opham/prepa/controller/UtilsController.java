@@ -204,4 +204,18 @@ public class UtilsController {
         return ipAddress;
     }
 
+    @GetMapping("/listClient")
+    public ResponseEntity<List<Client>> listClient() {
+        try {
+            List<Client> cmd = utilsRepository.listClient();
+            if (cmd.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(cmd, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
