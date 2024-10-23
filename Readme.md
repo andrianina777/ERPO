@@ -25,4 +25,4 @@ npm run serve
 ```
 
 ### Database :
--**Sybase**
+- **Sybase**
