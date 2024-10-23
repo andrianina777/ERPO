@@ -1,14 +1,16 @@
 package com.opham.prepa.repository.Utils;
 
 import com.opham.prepa.Utils.DataSourceConfig;
+import com.opham.prepa.mapper.Utlis.CauseRacineMapper;
 import com.opham.prepa.mapper.Utlis.*;
+import com.opham.prepa.model.Utils.CauseRacine;
 import com.opham.prepa.model.Utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -29,6 +31,30 @@ public class JdbcUtilsRepository implements UtilsRepository {
     public List<String> findAllAxe() {
         return jdbcTemplate.query("select CLPR from FCL group by CLPR", new AxeMapper());
     }
+
+    @Override
+    public List<String> findallemetteur() {
+        return jdbcTemplate.query("SELECT DISTINCT NCPS_EMETTEUR FROM AMC..VIEW_SUIVI_AMELIORATION", new EmetteurMapper());
+    }
+
+    @Override
+    public List<Proc> listEnum() {
+        String sql = "SELECT ENUM_CODE,ENUM_LIBELLE,ENUM_TYPE FROM AMC..FENUMERATION";
+        return jdbcTemplate.query(sql, new ProcMapper());
+    }
+    @Override
+    public List<String> findalldpt() {
+        return jdbcTemplate.query("SELECT DISTINCT LIBELLE_DEP FROM AMC..VIEW_SUIVI_AMELIORATION", new DptMapper());
+    }
+    @Override
+    public List<String> findalldpt2() {
+        return jdbcTemplate.query("SELECT DISTINCT NCPS_DEPARTEMENT FROM AMC..VIEW_SUIVI_AMELIORATION", new Dpt2Mapper());
+    }
+    @Override
+    public List<String> findalluser() {
+        return jdbcTemplate.query("SELECT USER_NOM FROM AMC..FUSER", new UserMapper());
+    }
+
 
     @Override
     public List<Alle> listAlle(String depot, String critere) {
@@ -124,4 +150,119 @@ public class JdbcUtilsRepository implements UtilsRepository {
         String sql = "select CLCODE,CLNOM1,CLADR1,CLADR2,CLSTATUS,CLSA,CLVALEUR from Equagestion..FCL where CLSTATUS = 0";
         return jdbcTemplate.query(sql, new ClientMapper());
     }
+
+    //code de cause racine
+
+    @Override
+    public List<CauseRacine> findcauseraccode(String code_causerac) {
+        StringBuilder sql = new StringBuilder("SELECT CAUSE_RAC_SEQ,CAUSE_RAC_NCPSCODE, CAUSE_RAC_DATE, CAUSE_RAC_DESCRIPTION, NBACTION, CAUSE_RAC_PROC_IMPUT, ETAT, CAUSE_RAC_VALID FROM AMC..VIEW_CAUSE_RACINE WHERE 1=1");
+        List<Object> params = new ArrayList<>();
+
+        sql.append(" AND CAUSE_RAC_NCPSCODE = ?");
+        params.add(code_causerac);
+
+        System.out.println("Requête SQL : " + sql.toString());
+        System.out.println("Paramètres : " + params);
+
+        return jdbcTemplate.query(sql.toString(), params.toArray(), new CauseRacineMapper());
+    }
+
+    @Override
+    public void insertFNCPS_CAUSE(String causeRacCode, String causeRacDescription , Date causeRacDate, int causeRacValid, String causeRacProcImput) {
+        StringBuilder sql = new StringBuilder("INSERT INTO AMC..FCAUSE_RAC (CAUSE_RAC_NCPSCODE, CAUSE_RAC_DESCRIPTION, CAUSE_RAC_DATE, CAUSE_RAC_VALID, CAUSE_RAC_PROC_IMPUT) VALUES (?, ?, ?, ?, ?)");
+        List<Object> params = new ArrayList<>();
+
+        params.add(causeRacCode);
+        params.add(causeRacDescription);
+        params.add(causeRacDate);
+        params.add(causeRacValid);
+        params.add(causeRacProcImput);
+
+        jdbcTemplate.update(sql.toString(), params.toArray());
+    }
+
+    @Override
+    public void updateFCAUSE_RAC(int causeRacSeq, String causeRacCode, Date causeRacDate, String causeRacDescription, String causeRacProcImput, int causeRacValide) {
+        StringBuilder sql = new StringBuilder("UPDATE AMC..FCAUSE_RAC SET ");
+        List<Object> params = new ArrayList<>();
+
+        if (causeRacProcImput != null && !causeRacProcImput.isEmpty()) {
+            sql.append("CAUSE_RAC_VALID = ?");
+            params.add(causeRacValide);
+        }
+
+        if (causeRacDate != null) {
+            sql.append(", CAUSE_RAC_DATE = ?");
+            params.add(causeRacDate);
+        }
+
+        sql.append(", CAUSE_RAC_DESCRIPTION = ?");
+        params.add(causeRacDescription);
+
+        if (causeRacProcImput != null && !causeRacProcImput.isEmpty()) {
+            sql.append(", CAUSE_RAC_PROC_IMPUT = ?");
+            params.add(causeRacProcImput);
+        }
+
+        sql.append(" WHERE CAUSE_RAC_SEQ = ?");
+        params.add(causeRacSeq);
+
+        System.out.println("SQL Query: " + sql.toString());
+        System.out.println("Parameters: " + params);
+
+        jdbcTemplate.update(sql.toString(), params.toArray());
+    }
+
+
+    public void deleteFCAUSE_RAC(int causeracseq) {
+        StringBuilder sql = new StringBuilder("DELETE FROM AMC..FCAUSE_RAC WHERE CAUSE_RAC_SEQ = ?");
+        List<Object> params = new ArrayList<>();
+
+        params.add(causeracseq);
+        jdbcTemplate.update(sql.toString(), params.toArray());
+    }
+
+    @Override
+    public void insertFNCPS_USER(String ncpsuserusercode,String ncpsuserncpscode) {
+        StringBuilder sql = new StringBuilder("INSERT INTO AMC..FNCPS_USER (NCPS_USER_USERCODE, NCPS_USER_NCPSCODE) VALUES (?, ?)");
+        List<Object> params = new ArrayList<>();
+
+        params.add(ncpsuserusercode);
+        params.add(ncpsuserncpscode);
+
+        jdbcTemplate.update(sql.toString(), params.toArray());
+    }
+
+    @Override
+    public List<Userinsert> listUserinsert(String ncpsuserncpscode) {
+        String sql = "SELECT * FROM AMC..FNCPS_USER WHERE NCPS_USER_NCPSCODE = ?";
+        return jdbcTemplate.query(sql, new Object[]{ncpsuserncpscode}, new UserinsertMapper());
+    }
+
+    @Override
+    public List<Proc> listProc(String enumType) {
+        String sql = "SELECT ENUM_CODE,ENUM_LIBELLE,ENUM_TYPE FROM AMC..FENUMERATION WHERE ENUM_TYPE = ?";
+        return jdbcTemplate.query(sql, new Object[]{enumType}, new ProcMapper());
+    }
+
+    @Override
+    public List<String> findallactiontype() {
+        return jdbcTemplate.query("SELECT DISTINCT LIBELLE_TYPE FROM AMC..VIEW_ACTION", new ActionTypeMapper());
+    }
+
+    @Override
+    public void insertAction(String actionNcpscode, int actionValide, int actionMiseappli, String actionDescription,int actionCausesseq, int actionType) {
+        StringBuilder sql = new StringBuilder("INSERT INTO AMC..FACTION (ACTION_NCPSCODE, ACTION_VALIDE, ACTION_MISEAPPLI, ACTION_DESCRIPTION,ACTION_CAUSESEQ, ACTION_TYPE) VALUES (?,?,?,?,?,?)");
+        List<Object> params = new ArrayList<>();
+
+        params.add(actionNcpscode);
+        params.add(actionValide);
+        params.add(actionMiseappli);
+        params.add(actionDescription);
+        params.add(actionCausesseq);
+        params.add(actionType);
+
+        jdbcTemplate.update(sql.toString(), params.toArray());
+    }
+
 }
