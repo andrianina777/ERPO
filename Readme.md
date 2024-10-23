@@ -22,6 +22,7 @@ git clone https://github.com/andrianina777/ERPO.git
 cd prepa
 npm i
 npm run serve
+```
 
- 
-    
+####Database 
+-**Sybase**
